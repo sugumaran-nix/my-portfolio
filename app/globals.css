@@ -2,89 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-}
-
-* {
+html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0a0d12;
-  background-image:
-    radial-gradient(circle at 12% 8%, rgba(94, 234, 212, 0.06), transparent 40%),
-    radial-gradient(circle at 88% 92%, rgba(242, 182, 109, 0.05), transparent 45%);
-  color: #e7ecf2;
+  background-color: #0b0b14;
+  color: #ededf5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light body {
+  background-color: #f6f6fb;
+  color: #15151f;
 }
 
 ::selection {
-  background-color: rgba(94, 234, 212, 0.25);
-  color: #ffffff;
+  background-color: rgba(124, 92, 252, 0.3);
 }
 
-/* Visible keyboard focus */
 a:focus-visible,
 button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #5eead4;
-  outline-offset: 3px;
+  outline: 2px solid #7c5cfc;
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0d12;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232a35;
+  background: #262638;
   border-radius: 8px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #2e3848;
+html.light ::-webkit-scrollbar-thumb {
+  background: #d8d8ea;
 }
 
-.section-eyebrow {
-  font-family: var(--font-mono);
+.eyebrow {
   font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #5eead4;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-/* Stack diagram signature: request travels down, response travels up */
-@keyframes travel-down {
-  0% { top: 0%; opacity: 0; }
-  6% { opacity: 1; }
-  44% { opacity: 1; }
-  50% { top: 100%; opacity: 0; }
-  100% { top: 100%; opacity: 0; }
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(124, 92, 252, 0.15), transparent 35%),
+    radial-gradient(circle at 85% 75%, rgba(77, 124, 254, 0.12), transparent 40%);
 }
 
-@keyframes travel-up {
-  0% { top: 100%; opacity: 0; }
-  50% { top: 100%; opacity: 0; }
-  56% { opacity: 1; }
-  94% { opacity: 1; }
-  100% { top: 0%; opacity: 0; }
-}
-
-.travel-down {
-  animation: travel-down 6s ease-in-out infinite;
-}
-
-.travel-up {
-  animation: travel-up 6s ease-in-out infinite;
-}
-
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

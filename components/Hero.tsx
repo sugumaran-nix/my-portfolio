@@ -1,61 +1,50 @@
-import StackDiagram from "./StackDiagram";
+import AvatarCard from "./AvatarCard";
+import SocialIcons from "./SocialIcons";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden border-b border-line">
-      <div className="mx-auto grid max-w-content gap-12 px-6 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
+    <section id="top" className="bg-grid relative overflow-hidden border-b border-border-light dark:border-border">
+      <div className="mx-auto grid max-w-content gap-12 px-6 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
         <div className="animate-fade-up">
-          <p className="section-eyebrow mb-6">Full-Stack Developer · Coimbatore, India</p>
-          <h1 className="text-balance font-display text-4xl font-semibold leading-[1.08] text-ash sm:text-5xl lg:text-6xl">
-            I build the whole stack —{" "}
-            <span className="text-mint">database to UI</span>, and everything in between.
+          <span className="eyebrow inline-block rounded-full border border-violet/30 bg-violet/10 px-4 py-1.5 text-violet">
+            Full Stack Developer
+          </span>
+
+          <h1 className="mt-6 text-balance font-display text-4xl font-extrabold leading-[1.08] text-ink-light dark:text-ink sm:text-5xl">
+            Sugumaran{" "}
+            <span className="bg-gradient-to-r from-violet to-blue bg-clip-text text-transparent">
+              S
+            </span>
           </h1>
-          <p className="mt-6 max-w-xl text-balance text-base leading-relaxed text-muted sm:text-lg">
-            Final-year MCA student shipping production-style web apps with Python,
-            Flask, React and MongoDB — including two AI-powered platforms with
-            measured accuracy and response-time targets, not just demos.
+          <p className="mt-2 font-display text-xl font-semibold text-muted-light dark:text-muted sm:text-2xl">
+            Full Stack Developer
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <p className="mt-5 max-w-lg text-balance text-base leading-relaxed text-muted-light dark:text-muted sm:text-lg">
+            I build modern, responsive and scalable web applications with
+            Python, React and MongoDB — and bring ideas to life on the web.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href="#work"
-              className="rounded-full bg-mint px-6 py-3 font-mono text-sm font-medium text-ink transition-transform hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(94,234,212,0.35)]"
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet/30"
             >
-              View featured work
+              View My Work
+              <span aria-hidden="true">→</span>
             </a>
             <a
-              href="mailto:sugumarankugan@gmail.com"
-              className="rounded-full border border-line px-6 py-3 font-mono text-sm text-ash transition-colors hover:border-mint hover:text-mint"
+              href="#contact"
+              className="rounded-full border border-border-light px-6 py-3 text-sm font-semibold text-ink-light transition-colors hover:border-violet hover:text-violet dark:border-border dark:text-ink"
             >
-              sugumarankugan@gmail.com
+              Contact Me
             </a>
           </div>
 
-          <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-6">
-            <div>
-              <dd className="font-display text-2xl font-semibold text-ash">90%</dd>
-              <dt className="mt-1 font-mono text-xs uppercase tracking-wider text-muted">
-                Classifier accuracy
-              </dt>
-            </div>
-            <div>
-              <dd className="font-display text-2xl font-semibold text-ash">&lt;800ms</dd>
-              <dt className="mt-1 font-mono text-xs uppercase tracking-wider text-muted">
-                Avg API response
-              </dt>
-            </div>
-            <div>
-              <dd className="font-display text-2xl font-semibold text-ash">2026</dd>
-              <dt className="mt-1 font-mono text-xs uppercase tracking-wider text-muted">
-                MCA graduation
-              </dt>
-            </div>
-          </dl>
+          <SocialIcons className="mt-8" />
         </div>
 
-        <div className="lg:pl-6">
-          <StackDiagram />
-        </div>
+        <AvatarCard />
       </div>
     </section>
   );
