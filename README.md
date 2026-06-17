@@ -10,6 +10,10 @@ npm install
 npm run dev
 ```
 
+**Want to change content (projects, skills, bio, contact info, links)?**
+See `EDITING_GUIDE.md` — it maps every editable piece of content to the exact
+file and section to change, without needing to understand the rest of the code.
+
 ## What changed vs. the reference UI
 - **Experience section removed entirely** — both the section and the nav link.
   Sections are: Home → About → Skills → Projects → Contact.
@@ -61,3 +65,9 @@ adjusted in one place.
 ## Where to add your photo
 Drop a real headshot at `public/profile.jpg` and reference it in the About
 section's card if you'd rather show a photo than the code icon shown now.
+
+## Where to add your resume/CV
+The Contact section's "Download CV" button points to `public/sugumaran-s-resume.pdf`,
+which doesn't exist yet — add your resume PDF there with that exact filename
+(or update the button's `href` if you use a different name). See
+`EDITING_GUIDE.md` §6 for details.
