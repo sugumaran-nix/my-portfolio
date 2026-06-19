@@ -2,24 +2,49 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import ProficiencyBar from '../components/ProficiencyBar.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
 import ContactForm from '../components/ContactForm.jsx';
 
-const proficiency = [
-  { label: 'JavaScript / TypeScript', percent: 85 },
-  { label: 'Next.js / React', percent: 80 },
-  { label: 'Python (FastAPI)', percent: 80 },
-  { label: 'SQL (PostgreSQL/MySQL)', percent: 78 },
-  { label: 'Git / GitHub', percent: 85 },
-  { label: 'Cloud (AWS Basics)', percent: 55 },
-];
-
 const skillGroups = [
-  { title: 'Frontend', skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'GSAP'] },
-  { title: 'Backend', skills: ['Node.js', 'Express.js', 'Python', 'FastAPI', 'REST APIs'] },
-  { title: 'Database', skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'] },
-  { title: 'Tools & Practices', skills: ['Git', 'GitHub', 'Docker', 'Linux/Bash', 'Agile/Scrum'] },
+  {
+    title: 'Languages',
+    skills: [
+      { name: 'Python' },
+      { name: 'JavaScript' },
+      { name: 'TypeScript', learning: true },
+    ],
+  },
+  {
+    title: 'Frontend',
+    skills: [
+      { name: 'React.js' },
+      { name: 'HTML5' },
+      { name: 'CSS3' },
+      { name: 'Next.js', learning: true },
+      { name: 'Tailwind CSS', learning: true },
+    ],
+  },
+  {
+    title: 'Backend',
+    skills: [{ name: 'FastAPI' }],
+  },
+  {
+    title: 'Databases',
+    skills: [
+      { name: 'MySQL' },
+      { name: 'MongoDB' },
+      { name: 'SQLite' },
+      { name: 'PostgreSQL', learning: true },
+    ],
+  },
+  {
+    title: 'Tools & OS',
+    skills: [
+      { name: 'GitHub' },
+      { name: 'VS Code' },
+      { name: 'Linux' },
+    ],
+  },
 ];
 
 const projects = [
@@ -52,6 +77,7 @@ const projects = [
     desc: 'Detects whether a piece of text was written by a human or an AI model, using statistical signals like perplexity and burstiness alongside a trained classifier — with sentence-level explainability highlighting exactly which parts read as machine-generated.',
     tags: ['Python', 'FastAPI', 'NLP', 'Explainable AI'],
     href: 'https://github.com/sugumaran-nix/ai-content-detector',
+    demoHref: 'https://ai-content-detector-3u5f.vercel.app/',
   },
 ];
 
@@ -78,8 +104,8 @@ const socials = [
       </p>
 
       <div class="flex items-center justify-center gap-3 mb-9">
-        <a href="#projects" class="text-sm font-medium px-6 py-2.5 rounded-lg bg-accent dark:bg-accentDark text-white transition-colors hover:bg-accentHover dark:hover:opacity-90 shadow-card">
-          View My Work
+        <a href="/sugumaran-s-resume.pdf" download class="text-sm font-medium px-6 py-2.5 rounded-lg bg-accent dark:bg-accentDark text-white transition-colors hover:bg-accentHover dark:hover:opacity-90 shadow-card">
+          Download CV
         </a>
         <a href="#contact" class="text-sm font-medium px-6 py-2.5 rounded-lg border border-borderLight dark:border-borderDark text-ink dark:text-white transition-colors hover:bg-black/5 dark:hover:bg-white/5">
           Get In Touch
@@ -162,28 +188,25 @@ const socials = [
       </p>
     </div>
 
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-      <div class="reveal">
-        <h3 class="text-lg font-semibold mb-5">Proficiency</h3>
-        {proficiency.map((p, i) => (
-          <ProficiencyBar client:visible label={p.label} percent={p.percent} delay={i * 0.05} />
-        ))}
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {skillGroups.map((g, i) => (
-          <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-5" style={`transition-delay: ${i * 0.05}s`}>
-            <h4 class="text-sm font-semibold mb-3">{g.title}</h4>
-            <div class="flex flex-wrap gap-1.5">
-              {g.skills.map((s) => (
-                <span class="text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/10 text-ink dark:text-white/80">
-                  {s}
+    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+      {skillGroups.map((g, i) => (
+        <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-5" style={`transition-delay: ${i * 0.05}s`}>
+          <h4 class="text-sm font-semibold mb-3">{g.title}</h4>
+          <div class="flex flex-wrap gap-1.5">
+            {g.skills.map((s) => (
+              s.learning ? (
+                <span class="text-xs px-2.5 py-1 rounded-full border border-dashed border-borderLight dark:border-borderDark text-inkMuted dark:text-white/50">
+                  {s.name} <span class="opacity-70">· learning</span>
                 </span>
-              ))}
-            </div>
+              ) : (
+                <span class="text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/10 text-ink dark:text-white/80">
+                  {s.name}
+                </span>
+              )
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </section>
 
