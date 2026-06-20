@@ -15,13 +15,13 @@ const ExternalLinkIcon = () => (
 export default function ProjectCard({ image, title, desc, tags, href, demoHref, comingSoon = false, delay = 0 }) {
   return (
     <motion.div
-      className="rounded-xl overflow-hidden border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card hover:shadow-cardHover dark:shadow-cardDark dark:hover:shadow-cardDarkHover transition-shadow flex flex-col h-full"
+      className="rounded-xl overflow-hidden border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-md shadow-card hover:shadow-cardHover dark:shadow-cardDark dark:hover:shadow-cardDarkHover transition-shadow flex flex-col h-full [will-change:transform]"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay, ease: 'easeOut' }}
-      whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.15, ease: 'easeOut', delay: 0 } }}
-      whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+      whileHover={{ y: -3, scale: 1.012, transition: { duration: 0.1, ease: 'easeOut', delay: 0 } }}
+      whileTap={{ scale: 0.99, transition: { duration: 0.08 } }}
     >
       <div className="w-full aspect-[16/10] overflow-hidden bg-black/5 dark:bg-white/5">
         <img src={image} alt={title} className="w-full h-full object-cover" loading="lazy" />
