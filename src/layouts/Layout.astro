@@ -30,6 +30,10 @@ const {
     </script>
   </head>
   <body class="bg-surface dark:bg-surfaceDark text-ink dark:text-white">
+    <!-- Decorative glow blobs — dark mode only, fixed behind all content -->
+    <div class="hidden dark:block fixed -top-32 -left-32 w-[480px] h-[480px] rounded-full pointer-events-none z-0" style="background: radial-gradient(circle, rgba(10,132,255,0.18), transparent 70%); filter: blur(90px);"></div>
+    <div class="hidden dark:block fixed top-[55%] -right-40 w-[520px] h-[520px] rounded-full pointer-events-none z-0" style="background: radial-gradient(circle, rgba(168,85,247,0.14), transparent 70%); filter: blur(100px);"></div>
+    <div class="hidden dark:block fixed bottom-[-10%] left-[20%] w-[400px] h-[400px] rounded-full pointer-events-none z-0" style="background: radial-gradient(circle, rgba(16,185,129,0.10), transparent 70%); filter: blur(90px);"></div>
     <slot />
     <script is:inline>
       // Drives the .reveal fade-up class for static Astro content.

@@ -19,7 +19,7 @@ export default function ContactForm() {
 
   return (
     <motion.div
-      className="rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6 md:p-7"
+      className="rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark p-6 md:p-7"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}

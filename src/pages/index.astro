@@ -78,7 +78,7 @@ const socials = [
   <Navbar />
 
   <!-- HOME / HERO -->
-  <section id="home" class="min-h-[88vh] flex flex-col items-center justify-center text-center px-6 py-20">
+  <section id="home" class="relative z-10 min-h-[88vh] flex flex-col items-center justify-center text-center px-6 py-20">
     <div class="reveal">
       <h1 class="text-[44px] md:text-[64px] font-bold leading-[1.05] tracking-tight mb-6">
         Full Stack<br />Developer
@@ -114,7 +114,7 @@ const socials = [
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-20">
+  <section id="about" class="relative z-10 bg-surfaceMuted dark:bg-transparent px-6 md:px-10 py-20">
     <div class="reveal text-center mb-14">
       <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">About Me</h2>
       <p class="max-w-[640px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
@@ -128,16 +128,21 @@ const socials = [
         <h3 class="text-xl font-semibold mb-4">My Journey</h3>
         <div class="flex flex-col gap-4 text-sm text-inkMuted dark:text-white/60 leading-[1.8]">
           <p>
-            I'm a full-stack developer who turns ideas into deployed, working software — pairing modern frontends with FastAPI backends and the machine learning models behind them.
+            My path into software started with a Python-based web scraping tool — a small project
+            that pulled me toward full-stack development and shaped the direction I've followed
+            since.
           </p>
           <p>
-           Rather than isolated demos, I focus on shipping complete systems: an AI fake news detection platform, a fraud-detection model for flagging fake job postings, and the infrastructure connecting them end to end. I'm now looking for a Full-Stack Developer or AI-adjacent role to keep building at that intersection.
+            I've focused on shipping complete, working systems: pairing Next.js and FastAPI to
+            build an AI fake news detection platform, a fraud-detection ML system, and other
+            end-to-end projects. I'm now entering the job market with certifications across SQL,
+            cloud, and AI/ML, looking for a Full-Stack Developer or AI-adjacent engineering role.
           </p>
         </div>
       </div>
 
       <div class="reveal h-full" style="transition-delay: 0.1s">
-        <div class="h-full rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-8 md:p-10 text-center flex flex-col items-center justify-center">
+        <div class="h-full rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-8 md:p-10 text-center flex flex-col items-center justify-center">
           <div class="w-20 h-20 mx-auto rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-6">
            
           <img src="/profile.jpg" alt="Sugumaran S" class="w-full h-full object-cover rounded-full" />
@@ -158,7 +163,7 @@ const socials = [
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="px-6 md:px-10 py-20">
+  <section id="skills" class="relative z-10 px-6 md:px-10 py-20">
     <div class="reveal text-center mb-14">
       <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">Skills & Technologies</h2>
       <p class="max-w-[640px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
@@ -168,7 +173,7 @@ const socials = [
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
       <!-- Languages -->
-      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6" style="transition-delay: 0s">
+      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-6" style="transition-delay: 0s">
         <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-ink dark:text-white">
             <path d="M9 6l-5 6 5 6M15 6l5 6-5 6" stroke-linecap="round" stroke-linejoin="round" />
@@ -179,7 +184,7 @@ const socials = [
       </div>
 
       <!-- Frontend -->
-      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6" style="transition-delay: 0.05s">
+      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-6" style="transition-delay: 0.05s">
         <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-ink dark:text-white">
             <rect x="3" y="4" width="18" height="16" rx="2" stroke-linejoin="round" />
@@ -191,7 +196,7 @@ const socials = [
       </div>
 
       <!-- Backend -->
-      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6" style="transition-delay: 0.1s">
+      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-6" style="transition-delay: 0.1s">
         <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-ink dark:text-white">
             <rect x="3" y="4" width="18" height="6" rx="1.5" />
@@ -204,7 +209,7 @@ const socials = [
       </div>
 
       <!-- Databases -->
-      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6" style="transition-delay: 0.15s">
+      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-6" style="transition-delay: 0.15s">
         <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-ink dark:text-white">
             <ellipse cx="12" cy="5" rx="8" ry="3" />
@@ -216,7 +221,7 @@ const socials = [
       </div>
 
       <!-- Tools & OS -->
-      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6" style="transition-delay: 0.2s">
+      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-6" style="transition-delay: 0.2s">
         <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-ink dark:text-white">
             <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -228,7 +233,7 @@ const socials = [
       </div>
 
       <!-- AI/ML & NLP -->
-      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6" style="transition-delay: 0.25s">
+      <div class="reveal rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-white/[0.06] dark:backdrop-blur-xl shadow-card dark:shadow-cardDark transition-transform duration-300 hover:scale-[1.02] active:scale-[1.02] p-6" style="transition-delay: 0.25s">
         <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center mb-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-ink dark:text-white">
             <circle cx="6" cy="6" r="2.5" />
@@ -244,7 +249,7 @@ const socials = [
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-20">
+  <section id="projects" class="relative z-10 bg-surfaceMuted dark:bg-transparent px-6 md:px-10 py-20">
     <div class="reveal text-center mb-14">
       <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">Featured Projects</h2>
       <p class="max-w-[640px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
@@ -271,7 +276,7 @@ const socials = [
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="px-6 md:px-10 py-20">
+  <section id="contact" class="relative z-10 px-6 md:px-10 py-20">
     <div class="reveal text-center mb-14">
       <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">Get In Touch</h2>
       <p class="max-w-[640px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
