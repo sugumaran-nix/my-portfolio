@@ -10,6 +10,9 @@ const {
   title = 'Sugumaran S — Full Stack Developer',
   description = 'Full Stack Developer portfolio — projects, skills, and contact.',
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(Astro.url.pathname, Astro.url.origin);
+const ogImage = new URL('/profile.jpg', siteUrl).toString();
 ---
 
 <!DOCTYPE html>
@@ -18,7 +21,22 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={Astro.url.href} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <script is:inline>
       // Runs before paint to avoid a light/dark flash on load.
       (function () {
