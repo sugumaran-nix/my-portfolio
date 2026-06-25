@@ -6,9 +6,9 @@ import emailjs from '@emailjs/browser';
 // - Service ID: Email Services tab
 // - Template ID: Email Templates tab — your template should use {{name}}, {{email}}, {{subject}}, {{message}}
 // - Public Key: Account > General
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'service_31032004';
+const EMAILJS_TEMPLATE_ID = 'template_portfolio';
+const EMAILJS_PUBLIC_KEY = '8uu423dLe1JTzervU';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
