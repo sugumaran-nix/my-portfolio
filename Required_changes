@@ -149,3 +149,188 @@ Content width is inconsistent across sections — some feel wider than others. F
 No visual landmark or anchor that makes any single section memorable. Fix: Give at least one section a distinct layout treatment — a full-bleed background, an offset grid, or a bold typographic moment.
 
 Page feels like stacked identical blocks with no personality or flow connecting them. Fix: Use spacing variation, alignment shifts, and at least one visually distinct section to break the monotony and create a sense of intentional design.
+
+
+
+
+\n
+
+
+
+
+Here's the complete final list of every text content change:
+
+---
+
+**HERO SECTION**
+
+Role line:
+Current: Full Stack Developer
+Change to: Software Developer
+
+Tagline:
+Current: "I build clean, responsive web applications with modern tools, focused on writing maintainable code and shipping things that work end to end."
+Change to: "I build and ship AI/ML models and full-stack web apps — fraud detectors, text classifiers, and real-time collaborative tools. Python · FastAPI · React.js. All deployed and live."
+
+---
+
+**ABOUT SECTION**
+
+Section subtitle:
+Current: "A full-stack developer building practical, deployable projects while preparing to start my career as a software developer."
+Change to: "A software developer building AI/ML systems and full-stack web apps — all deployed and live."
+
+Remove "My Journey" subheading entirely.
+
+Main body text:
+Current: "My path into software started with a Python-based web scraping tool — a small project that pulled me toward full-stack development and shaped the direction I've followed since. I've focused on shipping complete, working systems: pairing Next.js and FastAPI to build an AI fake news detection platform, a fraud-detection ML system, and other end-to-end projects. I'm now entering the job market with certifications across SQL, cloud, and AI/ML, looking for a Full-Stack Developer or AI-adjacent engineering role."
+Change to: "Recent MCA Graduate (2026) from Anna University, Coimbatore. I build AI/ML systems and full-stack web applications end-to-end — from data preprocessing and model training to REST API deployment and React frontends.
+
+I've shipped a fraud detection ML model with an 87.57% F1-score, an AI-generated text classifier, a real-time multiplayer whiteboard with sub-100ms WebSocket latency, and a drag-and-drop task manager — all deployed and live.
+
+Open to AI/ML Engineer, Full Stack Developer, and Data Annotation Specialist roles. Available immediately. Open to relocation anywhere in India and remote work."
+
+Profile card title:
+Current: Full Stack Developer
+Change to: Software Developer
+
+Profile card location line:
+Current: "Based in Coimbatore, Tamil Nadu."
+Keep as is.
+
+Profile card badge:
+Current: "Open to full-time opportunities"
+Change to: "Open to full-time opportunities · Remote / Relocation"
+
+Add education block below the body text:
+"MCA — Anna University (Sri Venkateshwara College of Computer Applications and Management), 2024–2026 — Score: 80%
+BCA — Bharathiar University (Govt Arts & Science College, Gudalur), 2021–2024 — Score: 83.71%"
+
+---
+
+**SKILLS SECTION**
+
+Section subtitle:
+Current: "The tools and technologies I use to design, build, and ship full-stack applications."
+Change to: "The tools and technologies I use to design, build, and ship AI/ML systems and full-stack applications."
+
+Languages card:
+Current: Python, JavaScript, TypeScript
+Change to: Python (Primary), JavaScript (ES6+), TypeScript, SQL
+
+Frontend Development card:
+Current: React.js, HTML5, CSS3, Next.js, Tailwind CSS
+Keep as is.
+
+Backend Development card:
+Current: Python, FastAPI
+Change to: FastAPI, Flask, WebSockets, REST API Design
+
+Database Management card:
+Current: MySQL, MongoDB, SQLite, PostgreSQL
+Change to: MySQL, SQLite, MongoDB
+Remove PostgreSQL.
+
+Tools & OS card:
+Current: GitHub, VS Code, Linux
+Change to: Git, GitHub, VS Code, Linux, Jupyter Notebook
+
+AI/ML & NLP card:
+Current: Scikit-learn, Hugging Face, NLTK
+Change to: Scikit-learn, TF-IDF, NLP, Hugging Face Transformers, BERT, LLM Prompt Engineering
+
+---
+
+**PROJECTS SECTION**
+
+Section subtitle:
+Current: "A selection of projects I've built — from machine learning systems to deployable AI-integrated platforms."
+Keep as is.
+
+Remove VeritAI (AI Fake News Detection Platform) card entirely.
+
+Reorder cards to:
+1. ML-Powered Fake Job Detector
+2. AI-Generated Text Detector
+3. Sketchline — Real-Time Collaborative Whiteboard
+4. ProjectScope — Eisenhower Matrix Task Manager
+
+---
+
+Project 1 — ML-Powered Fake Job Detector
+
+Title: Keep as is.
+
+Description:
+Current: "A multi-model fraud-detection system that flags fraudulent job postings using TF-IDF text features across four classifiers (Logistic Regression, Random Forest, LinearSVC, Naive Bayes), a weighted URL fraud-scoring engine, and fully explainable predictions that trace each verdict back to the exact words that drove it."
+Change to: "Benchmarked 4 ML classifiers on 17,880 real-world job postings to detect fraudulent listings. Best-class Fraud F1-score: 87.57% on a heavily imbalanced dataset (4.8% fraud rate). Features a 10,000-feature bigram TF-IDF pipeline, SHAP-style explainability, runtime model switching, and SQLite-backed prediction history. Sub-800ms end-to-end API response."
+
+Tags:
+Current: Scikit-Learn · NLP · Explainable AI
+Change to: Python · Scikit-learn · NLP · Flask · Explainable AI
+
+---
+
+Project 2 — AI-Generated Text Detector
+
+Title: Keep as is.
+
+Description:
+Current: "Detects whether a piece of text was written by a human or an AI model, using statistical signals like perplexity and burstiness alongside a trained classifier — with sentence-level explainability highlighting exactly which parts read as machine-generated."
+Change to: "Statistical classifier distinguishing human-written from AI-generated text using perplexity, burstiness, and sentence-level variance. Sentence-level explainability highlights exact text spans flagged as machine-generated. Served via FastAPI returning structured JSON with per-sentence confidence scores."
+
+Tags:
+Current: Python · FastAPI · NLP · Explainable AI
+Keep as is.
+
+---
+
+Project 3 — Sketchline
+
+Title:
+Current: Sketchline (or whatever is shown)
+Change to: Sketchline — Real-Time Collaborative Whiteboard
+
+Description:
+Current: whatever is shown
+Change to: "Full-stack multiplayer whiteboard built from scratch. FastAPI WebSocket backend manages room state, stroke history, and multi-client broadcast via a custom 7-message-type JSON protocol. Sub-100ms stroke sync latency, full board-state replay on reconnect, live cursor presence at 20 updates/sec. Frontend on Vercel, backend on Railway via Dockerfile."
+
+Tags: FastAPI · WebSockets · Next.js · TypeScript · HTML5 Canvas
+
+---
+
+Project 4 — ProjectScope
+
+Title:
+Current: ProjectScope
+Change to: ProjectScope — Eisenhower Matrix Task Manager
+
+Description:
+Current: "A frontend-only Eisenhower Matrix task manager — drag-and-drop prioritisation, keyboard-accessible, DnD, and state that persists and syncs across browser tabs via localStorage."
+Change to: "Fully responsive drag-and-drop task manager built in React.js and TypeScript. Quadrant-based prioritisation using dnd-kit, keyboard-accessible interactions, and cross-tab localStorage state sync for a persistent, backend-free experience."
+
+Tags:
+Current: React · TypeScript · Tailwind CSS · dnd-kit
+Change to: React.js · TypeScript · Tailwind CSS · dnd-kit
+
+---
+
+**CONTACT SECTION**
+
+Section intro:
+Current: "I'm currently looking for full-time Full Stack Developer roles. Reach out if you'd like to talk."
+Change to: "I'm currently looking for full-time opportunities. Reach out if you'd like to talk."
+
+Let's Connect paragraph:
+Current: "Whether you have an opening, a project in mind, or just want to talk tech, I'd love to hear from you."
+Keep as is.
+
+Phone number: +91 63810 74457
+Remove entirely from public display.
+
+---
+
+**FOOTER**
+
+Current: "© 2026 Sugumaran S. All rights reserved."
+Keep as is.
