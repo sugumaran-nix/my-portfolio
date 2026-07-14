@@ -1,0 +1,21 @@
+{
+  "name": "sugumaran-portfolio-v2",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "@vercel/analytics": "^1.4.1",
+    "@astrojs/react": "^3.6.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "framer-motion": "^11.11.0",
+    "tailwindcss": "^3.4.0",
+    "@emailjs/browser": "^4.4.1"
+  }
+}
