@@ -1,0 +1,151 @@
+### Things to change ###
+
+**NAVBAR**
+
+"Sugumaran S" — the "S" is lighter font weight than "Sugumaran", looks unfinished. Fix: Make both the same weight, or make "S" a deliberately styled accent — pick one, don't leave it half-done.
+
+Faint bottom border makes navbar feel floaty and disconnected. Fix: Remove the border entirely and use background blur or shadow on scroll instead.
+
+Dark mode toggle icon is too large relative to nav links — size mismatch. Fix: Match the toggle icon size to the nav link font size around 16–18px.
+
+Three-zone layout (logo left, links center, toggle right) creates too much dead space on wide screens. Fix: Constrain the navbar to a max-width container like 1200px so the zones don't spread across the full viewport.
+
+Nav links are unevenly spaced. Fix: Use consistent gap values in flexbox — same spacing between every link.
+
+Navbar is too thin vertically — lacks presence. Fix: Increase padding-top and padding-bottom to at least 16–20px.
+
+---
+
+**HERO**
+
+Massive dead empty space above the heading — content sits too low, not vertically centered. Fix: Set the hero section to min-height 100vh with flexbox align-items center so content sits true center in the viewport.
+
+Massive dead empty space below the social icons before the next section starts. Fix: Either increase hero height to fill the viewport properly, or add a scroll indicator arrow to intentionally anchor the bottom.
+
+"I'm Sugumaran" apostrophe makes the heading optically off-center. Fix: Apply optical margin alignment, or rephrase to avoid the apostrophe shift entirely.
+
+Hero content block is too narrow — huge blank space left and right. Fix: Let the surrounding hero area fill the viewport width with a background treatment while keeping the content at max-width 700–800px.
+
+"Full Stack Developer" subtitle sits too close to the name. Fix: Increase margin-top on the subtitle to at least 8–12px.
+
+Gap between subtitle and tagline paragraph is too large and inconsistent. Fix: Standardize spacing to around 24px between each element — name, subtitle, paragraph, buttons, icons.
+
+Tagline paragraph line break wraps awkwardly — uneven two-line split. Fix: Set max-width 520px on the paragraph so lines break naturally and evenly.
+
+"Download CV" and "Get In Touch" buttons have mismatched heights. Fix: Ensure both share the same padding and height values.
+
+Two CTA buttons look near identical in visual weight — no primary vs secondary distinction. Fix: Make Download CV a solid filled button and Get In Touch a ghost outline button to clearly separate their hierarchy.
+
+Button sizes feel small relative to the surrounding empty space. Fix: Increase button padding to at least 12px 28px, minimum height 44px.
+
+Three social icons are unevenly spaced — LinkedIn and Mail sit closer together than GitHub and LinkedIn. Fix: Use consistent gap of 20px between all three icons in a flex container.
+
+Social icons have no labels. Fix: Add tooltip labels on hover, or add small text labels below each icon.
+
+Social icons feel disconnected from the buttons above. Fix: Add consistent margin-top of 32px to create intentional visual separation as a deliberate group.
+
+Nothing anchors the bottom of the hero — abruptly cuts into the next section. Fix: Add a subtle scroll indicator animated chevron or arrow, or a soft gradient fade at the bottom.
+
+"Sugumaran S" in navbar and "I'm Sugumaran" in hero repeat immediately — visual stutter. Fix: Either remove the name from the navbar logo and use initials or an icon, or rephrase the hero headline to avoid the direct repeat.
+
+---
+
+**ABOUT SECTION**
+
+"About Me" title is the same size and weight as every other section title — no hierarchy variation across the page. Fix: Vary size, weight, or spacing between section titles to create a sense of hierarchy rather than identical blocks stacked on each other.
+
+"My Journey" subheading creates an awkward section-within-section. Fix: Remove it and fold the journey content directly under the About intro as a continuous paragraph.
+
+Left text block is a dense wall of text with no visual breaks. Fix: Break into 2–3 shorter paragraphs with clear spacing between them.
+
+Profile card floats too high relative to the text beside it. Fix: Use CSS flexbox align-items flex-start consistently so both columns start from the same baseline.
+
+Left text and right card don't share a common vertical midpoint or baseline. Fix: Align both columns to a shared top axis, not floating independently.
+
+Profile photo inside the card is too small. Fix: Increase to at least 80–100px or use a larger avatar-style placement outside the card.
+
+"Open to full-time opportunities" tag inside the card looks like an afterthought. Fix: Style it as a proper badge with consistent padding, border, and intentional placement below the title.
+
+Inconsistent gap between About section and Skills section. Fix: Set a global section padding of 80–100px top and bottom on every section and apply it without exception.
+
+---
+
+**SKILLS SECTION**
+
+Six completely identical flat cards — no visual differentiation whatsoever. Fix: Replace with a grouped tag list, horizontal chip row, or a two-column categorized list instead of cards.
+
+Card heights vary due to text length — breaks grid consistency. Fix: Use CSS Grid with align-items stretch so all cards in a row match height, or switch to a non-card layout entirely.
+
+Icons are too small to read clearly. Fix: Increase icon size to at least 24–28px, or remove icons entirely if they add no real value.
+
+Skill category names and tech listed below them have barely any size contrast. Fix: Make the category name at least 4–6px larger than the tech list text and use font-weight 600 on the heading.
+
+The entire section reads as a generic filler pattern — identical card grid with icon, heading, and text repeated six times. Fix: Redesign the section entirely away from the card grid — it is the single most overused pattern in developer portfolios.
+
+---
+
+**PROJECTS SECTION**
+
+Stock photos (sunset, sticky notes, robot arm, blurry light) are completely unrelated to the actual projects. Fix: Replace with actual screenshots of your deployed apps — Fake Job Detector UI, AI Text Detector UI, ProjectScope UI.
+
+All four cards carry equal visual weight — no way to tell which project is most important. Fix: Feature your strongest project larger — make it span full width or double height compared to the others.
+
+Card image heights are inconsistent across the 2x2 grid. Fix: Fix all images to the same aspect ratio using object-fit cover with a fixed container height.
+
+Horizontal and vertical gutters between cards appear to be different sizes. Fix: Use CSS Grid gap property with identical values for both row-gap and column-gap.
+
+Tech tag badges are extremely small and hard to read. Fix: Increase font size to at least 11–12px, add more padding of 4px 10px, and give them a visible background.
+
+"View Demo" and "View on GitHub" links inside cards are too small and cramped together. Fix: Increase link font size and add at least 8px gap between them.
+
+Project descriptions are too long for cards — text gets cut off unevenly. Fix: Limit to 2 lines max using overflow hidden with webkit-line-clamp 2.
+
+"View All Projects on GitHub" floats alone in empty space below the grid with no visual anchor. Fix: Style it as a subtle outlined button with proper margin-top 40px, centered — not a plain text link floating in space.
+
+---
+
+**CONTACT SECTION**
+
+Left contact info column and right form column have no visual divider or alignment relationship — just float beside each other. Fix: Add a vertical divider line between columns, or align both to a shared grid baseline so they feel structurally related.
+
+"Let's Connect" block spacing from contact details above it is inconsistent. Fix: Add consistent margin-top of 32px between each contact info item and the Let's Connect block.
+
+Social icons in contact section have no labels. Fix: Add text labels below or beside each icon.
+
+Social icons in contact are a redundant second appearance — they also appear in the hero. Fix: Remove from either hero or contact — pick one location and keep them there.
+
+Form field borders are very thin — feel fragile and lightweight. Fix: Increase border to 1.5–2px and use a slightly visible border color even in unfocused state.
+
+Message textarea is too short — looks incomplete. Fix: Set min-height 120px on the textarea.
+
+"Send Message" button is undersized relative to the form it belongs to. Fix: Make it full-width of the form or at least match the form field widths.
+
+"Get In Touch" tagline paragraph is too wide — same line length problem as the hero tagline. Fix: Set max-width 480px and center it.
+
+Phone number is publicly visible on the page. Fix: Remove it entirely — email is sufficient for a portfolio contact form.
+
+---
+
+**FOOTER**
+
+Footer is visually cramped — copyright text and social icons sit too close together. Fix: Add padding 24px top and bottom and use flexbox with justify-content space-between.
+
+Social icons in footer are a third repeat of the same icons already shown in hero and contact. Fix: Remove footer social icons entirely — they have already appeared twice.
+
+No visual separation between contact section and footer — they bleed into each other. Fix: Add a subtle 1px divider line or use a slightly different background opacity to create a clean boundary.
+
+Copyright text and icons sit at the same visual weight with no hierarchy. Fix: Make copyright text smaller at around 13px with muted opacity so it clearly reads as secondary information.
+
+---
+
+**GLOBAL LAYOUT**
+
+Every single section uses the exact same centered title, subtitle, content structure — zero layout variation across the entire page. Fix: Alternate section layouts — some left-aligned, some full-width, some with a two-column split — to create rhythm and visual flow.
+
+Section transitions are abrupt with no spacing rhythm. Fix: Set a consistent global section padding of 80–100px top and bottom and apply it without exception across every section.
+
+Content width is inconsistent across sections — some feel wider than others. Fix: Set a single max-width 1100px container class and wrap every section's content in it.
+
+No visual landmark or anchor that makes any single section memorable. Fix: Give at least one section a distinct layout treatment — a full-bleed background, an offset grid, or a bold typographic moment.
+
+Page feels like stacked identical blocks with no personality or flow connecting them. Fix: Use spacing variation, alignment shifts, and at least one visually distinct section to break the monotony and create a sense of intentional design.
