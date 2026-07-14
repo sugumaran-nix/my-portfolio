@@ -1,13 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  // Lazy initializer reads the actual DOM state set by the inline script in
-  // Layout.astro, so the correct icon renders on first paint — no useEffect flicker.
-  const [isDark, setIsDark] = useState(() =>
-    typeof document !== 'undefined'
-      ? document.documentElement.classList.contains('dark')
-      : false
-  );
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'));
+  }, []);
 
   const toggle = () => {
     const next = !isDark;

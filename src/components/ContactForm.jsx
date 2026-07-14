@@ -2,14 +2,13 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
-// Set these in a .env file at the project root (see .env.example):
-// - PUBLIC_EMAILJS_SERVICE_ID: Email Services tab on emailjs.com
-// - PUBLIC_EMAILJS_TEMPLATE_ID: Email Templates tab — template should use {{name}}, {{email}}, {{subject}}, {{message}}
-// - PUBLIC_EMAILJS_PUBLIC_KEY: Account > General
-// Vite/Astro only exposes env vars prefixed with PUBLIC_ to client-side code.
-const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+// Fill these in from your EmailJS dashboard (emailjs.com):
+// - Service ID: Email Services tab
+// - Template ID: Email Templates tab — your template should use {{name}}, {{email}}, {{subject}}, {{message}}
+// - Public Key: Account > General
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -17,14 +16,6 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      console.error('EmailJS env vars are missing. Check your .env file against .env.example.');
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
-      return;
-    }
-
     setStatus('sending');
 
     emailjs
@@ -75,7 +66,7 @@ export default function ContactForm() {
           <textarea
             id="f-message"
             name="message"
-            placeholder="Hi Sugumaran, I'm reaching out about..."
+            placeholder="Tell me about your project..."
             required
             rows={4}
             className={`${inputClass} resize-none`}
