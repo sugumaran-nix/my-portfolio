@@ -74,7 +74,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-full flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg bg-accent dark:bg-accentDark text-white transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 disabled:opacity-60 hover:scale-[1.02] mt-1"
+          className="w-full flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 disabled:opacity-60 hover:scale-[1.02] mt-1"
         >
           {status === 'idle' && (
             <>

@@ -94,25 +94,25 @@ const socials = [
   <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-24">
     <div class="reveal max-w-[760px] mx-auto w-full">
 
-      <h1 class="text-[44px] md:text-[68px] font-bold leading-[1.05] tracking-tight mb-4">
-        I'm Sugumaran
+      <h1 class="text-[36px] sm:text-[44px] md:text-[68px] font-bold leading-[1.05] tracking-tight mb-4">
+        Hii, I'm Sugumaran
       </h1>
 
-      <p class="text-lg md:text-2xl font-medium text-inkMuted dark:text-white/70 mb-8">
+      <p class="text-base sm:text-lg md:text-2xl font-medium text-inkMuted dark:text-white/70 mb-6">
         Software Developer
       </p>
 
-      <p class="max-w-[520px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed mb-10">
+      <p class="max-w-[520px] mx-auto text-sm sm:text-base text-inkMuted dark:text-white/60 leading-relaxed mb-8 px-2">
         I build and ship AI/ML models and full-stack web apps — fraud detectors, text classifiers,
         and real-time collaborative tools. Python · FastAPI · React.js. All deployed and live.
       </p>
 
-      <!-- CTAs — solid primary vs ghost secondary -->
-      <div class="flex items-center justify-center gap-4 mb-10">
+      <!-- CTAs — stack on mobile, row on sm+ -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
         <a
           href="/sugumaran-s-resume.pdf"
           download
-          class="inline-flex items-center gap-2 text-sm font-semibold px-7 py-3 min-h-[44px] rounded-lg bg-accent dark:bg-accentDark text-white transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm font-semibold px-7 py-3 min-h-[44px] rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
             <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round" />
@@ -121,13 +121,13 @@ const socials = [
         </a>
         <a
           href="#contact"
-          class="inline-flex items-center text-sm font-semibold px-7 py-3 min-h-[44px] rounded-lg border-2 border-ink/20 dark:border-white/20 text-ink dark:text-white transition-colors hover:border-ink/40 dark:hover:border-white/40 hover:bg-black/5 dark:hover:bg-white/5"
+          class="git-btn w-full sm:w-auto inline-flex items-center justify-center text-sm font-semibold px-7 py-3 min-h-[44px]"
         >
           Get In Touch
         </a>
       </div>
 
-      <!-- Social icons with tooltips -->
+      <!-- Social icons -->
       <div class="flex items-center justify-center gap-6 mt-2">
         {socials.map((s) => (
           <a
@@ -153,33 +153,22 @@ const socials = [
   </section>
 
   <!-- ─── ABOUT ─────────────────────────────────────────────────────────── -->
-  <section id="about" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-24">
+  <section id="about" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal text-center mb-14">
-        <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">About Me</h2>
-        <p class="max-w-[600px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
-          A software developer building AI/ML systems and full-stack web apps — all deployed and live.
-        </p>
+      <div class="reveal mb-10 md:mb-14">
+        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">About Me</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
 
         <!-- Text column -->
         <div class="reveal flex flex-col gap-4 text-sm text-inkMuted dark:text-white/60 leading-[1.85]">
           <p>
-            Recent MCA Graduate (2026) from Anna University, Coimbatore. I build AI/ML systems
-            and full-stack web applications end-to-end — from data preprocessing and model training
-            to REST API deployment and React frontends.
+            Recent MCA Graduate (2026) from Anna University, Coimbatore. I build AI/ML systems and full-stack web applications end-to-end — from data preprocessing and model training to REST API deployment and React frontends.
           </p>
           <p>
-            I've shipped a fraud detection ML model with an 87.57% F1-score, an AI-generated text
-            classifier, a real-time multiplayer whiteboard with sub-100ms WebSocket latency, and a
-            drag-and-drop task manager — all deployed and live.
-          </p>
-          <p>
-            Open to AI/ML Engineer, Full Stack Developer, and Data Annotation Specialist roles.
-            Available immediately. Open to relocation anywhere in India and remote work.
+            I've shipped a fraud detection ML model (87.57% F1-score), an AI-generated text classifier, a real-time multiplayer whiteboard with sub-100ms WebSocket latency, and a drag-and-drop task manager — all deployed and live. Open to AI/ML Engineer, Full Stack Developer, and Data Annotation Specialist roles. Available immediately, open to relocation anywhere in India and remote work.
           </p>
 
           <!-- Education -->
@@ -198,16 +187,16 @@ const socials = [
 
         <!-- Profile card -->
         <div class="reveal" style="transition-delay: 0.1s">
-          <div class="rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-8 text-center flex flex-col items-center">
+          <div class="rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6 text-center flex flex-col items-center">
 
             <!-- Profile photo — enlarged -->
-            <div class="w-28 h-28 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-5">
+            <div class="w-40 h-40 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-4">
               <img src="/profile.jpg" alt="Sugumaran S" class="w-full h-full object-cover" />
             </div>
 
             <h4 class="text-lg font-semibold mb-1">Sugumaran S</h4>
             <p class="text-sm text-inkMuted dark:text-white/60 mb-1">Software Developer</p>
-            <p class="text-sm text-inkMuted dark:text-white/60 mb-6">Based in Coimbatore, Tamil Nadu</p>
+            <p class="text-sm text-inkMuted dark:text-white/60 mb-4">Based in Coimbatore, Tamil Nadu</p>
 
             <!-- Availability badges -->
             <div class="flex flex-wrap justify-center gap-2">
@@ -231,27 +220,22 @@ const socials = [
     Layout variation: left-aligned title + chip/tag rows instead of card grid.
     Breaks the "stacked identical centered blocks" pattern.
   -->
-  <section id="skills" class="px-6 md:px-10 py-24">
+  <section id="skills" class="px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <!-- Left-aligned title as layout contrast -->
-      <div class="reveal mb-14">
-        <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">Skills & Technologies</h2>
-        <p class="max-w-[560px] text-base text-inkMuted dark:text-white/60 leading-relaxed">
-          The tools and technologies I use to design, build, and ship AI/ML systems and full-stack applications.
-        </p>
+      <div class="reveal mb-10 md:mb-14">
+        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">Skills & Technologies</h2>
       </div>
 
-      <!-- Two-column chip layout -->
-      <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10" style="transition-delay: 0.1s">
+      <div class="reveal flex flex-col divide-y divide-borderLight dark:divide-borderDark border border-borderLight dark:border-borderDark rounded-xl overflow-hidden" style="transition-delay: 0.1s">
         {skillGroups.map((group) => (
-          <div class="flex flex-col gap-3">
-            <h4 class="text-[11px] font-semibold uppercase tracking-widest text-inkMuted/60 dark:text-white/35">
+          <div class="flex flex-col sm:grid sm:grid-cols-[160px_1fr] items-start gap-3 sm:gap-6 px-5 py-4 sm:px-6 sm:py-5">
+            <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-inkMuted/60 dark:text-white/35 sm:pt-1">
               {group.title}
-            </h4>
+            </p>
             <div class="flex flex-wrap gap-2">
               {group.skills.map((skill) => (
-                <span class="text-sm px-3 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.07] text-ink dark:text-white/85 border border-borderLight dark:border-borderDark">
+                <span class="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.07] text-ink dark:text-white/85 border border-borderLight dark:border-borderDark">
                   {skill}
                 </span>
               ))}
@@ -264,26 +248,17 @@ const socials = [
   </section>
 
   <!-- ─── PROJECTS ──────────────────────────────────────────────────────── -->
-  <section id="projects" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-24">
+  <section id="projects" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal text-center mb-14">
-        <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">Featured Projects</h2>
-        <p class="max-w-[600px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
-          A selection of projects I've built — from machine learning systems to deployable AI-integrated platforms.
-        </p>
+      <div class="reveal mb-10 md:mb-14">
+        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">Featured Projects</h2>
       </div>
 
-      <div class="flex flex-col gap-6">
-        <!-- First project: featured full-width horizontal card -->
-        <ProjectCard client:visible {...projects[0]} featured delay={0} />
-
-        <!-- Remaining 3: equal 3-column grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {projects.slice(1).map((p, i) => (
-            <ProjectCard client:visible {...p} delay={(i + 1) * 0.08} />
-          ))}
-        </div>
+      <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {projects.map((p, i) => (
+          <ProjectCard client:visible {...p} delay={i * 0.08} />
+        ))}
       </div>
 
       <div class="flex justify-center mt-12">
@@ -291,7 +266,7 @@ const socials = [
           href="https://github.com/sugumaran-nix"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-2 text-sm font-medium px-6 py-2.5 rounded-lg border border-borderLight dark:border-borderDark text-ink dark:text-white transition-colors hover:bg-black/5 dark:hover:bg-white/5"
+          class="inline-flex items-center gap-2 text-sm font-medium px-6 py-2.5 rounded-xl border border-borderLight dark:border-borderDark text-ink dark:text-white transition-colors hover:bg-black/5 dark:hover:bg-white/5"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
@@ -303,14 +278,11 @@ const socials = [
   </section>
 
   <!-- ─── CONTACT ───────────────────────────────────────────────────────── -->
-  <section id="contact" class="px-6 md:px-10 py-24">
+  <section id="contact" class="px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal text-center mb-14">
-        <h2 class="text-3xl md:text-[42px] font-bold tracking-tight mb-4">Get In Touch</h2>
-        <p class="max-w-[480px] mx-auto text-base text-inkMuted dark:text-white/60 leading-relaxed">
-          I'm currently looking for full-time opportunities. Reach out if you'd like to talk.
-        </p>
+      <div class="reveal mb-10 md:mb-14">
+        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">Get In Touch</h2>
       </div>
 
       <!--
@@ -378,7 +350,7 @@ const socials = [
             <a
               href="/sugumaran-s-resume.pdf"
               download
-              class="inline-flex items-center gap-2 mt-3 text-sm font-medium px-5 py-2.5 rounded-lg bg-accent dark:bg-accentDark text-white transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105 w-fit"
+              class="inline-flex items-center gap-2 mt-3 text-sm font-medium px-5 py-2.5 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105 w-fit"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
                 <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round" />

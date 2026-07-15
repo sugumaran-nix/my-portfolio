@@ -14,15 +14,16 @@ const links = [
   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
 
     <a href="#home" class="text-[17px] font-bold tracking-tight">
-      Sugumaran<span class="text-accent dark:text-accentDark font-bold"> S</span>
+      Sugumaran<span class="font-bold"> S</span>
     </a>
 
-    <ul class="hidden md:flex items-center gap-8 list-none">
+    <ul class="hidden md:flex items-center gap-7 list-none">
       {links.map((link) => (
         <li>
           <a
             href={link.href}
-            class="text-sm text-inkMuted dark:text-white/70 hover:text-ink dark:hover:text-white transition-all duration-150 hover:scale-105 inline-block"
+            data-section={link.href.replace('#', '')}
+            class="nav-link text-sm text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-all duration-150 hover:scale-105 inline-block"
           >
             {link.label}
           </a>
@@ -57,7 +58,8 @@ const links = [
       <li>
         <a
           href={link.href}
-          class="mobile-menu-link block py-3 text-base text-inkMuted dark:text-white/70 hover:text-ink dark:hover:text-white transition-colors"
+          data-section={link.href.replace('#', '')}
+          class="mobile-nav-link mobile-menu-link block py-3 text-base text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors"
         >
           {link.label}
         </a>
@@ -99,7 +101,7 @@ const links = [
     link.addEventListener('click', closeMenu);
   });
 
-  // Add shadow on scroll (replaces border-b)
+  // Add shadow on scroll
   const nav = document.getElementById('site-nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
@@ -110,4 +112,35 @@ const links = [
       nav?.classList.remove('dark:shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
     }
   }, { passive: true });
+
+  // Active nav link via IntersectionObserver
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function setActive(id) {
+    [...navLinks, ...mobileNavLinks].forEach((link) => {
+      const isActive = link.getAttribute('data-section') === id;
+      if (isActive) {
+        link.classList.add('!text-ink', 'dark:!text-white', 'font-semibold');
+        link.classList.remove('text-inkMuted', 'dark:text-white/50');
+      } else {
+        link.classList.remove('!text-ink', 'dark:!text-white', 'font-semibold');
+        link.classList.add('text-inkMuted', 'dark:text-white/50');
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    },
+    { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
 </script>

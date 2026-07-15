@@ -35,10 +35,10 @@ export default {
         ink:      '#171717',         // 900   — primary text (light mode)
         inkMuted: '#737373',         // 500   — secondary/muted text
 
-        // ── Accent (Apple system blue) ────────────────────────────────────
-        accent:      '#0071e3',
-        accentHover: '#0077ed',
-        accentDark:  '#0a84ff',
+        // ── Accent (monochrome — black in light, white in dark) ───────────
+        accent:      '#0A0A0A',
+        accentHover: '#262626',
+        accentDark:  '#F5F5F5',
       },
 
       boxShadow: {

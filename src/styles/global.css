@@ -12,20 +12,15 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FFFFFF;  /* scale Base */
-  color: #171717;              /* scale 900 */
+  background-color: #FFFFFF;
+  color: #171717;
 }
 
 html.dark body {
-  background-color: #000000;  /* dark Base */
-  color: #F5F5F5;              /* dark 900 — warm-enough white for readability */
+  background-color: #000000;
+  color: #F5F5F5;
 }
 
-/*
-  Scope color transitions to intentional surfaces only.
-  Applying `transition` to every `*` causes layout thrash and
-  breaks focus-ring timing — this is the safer, targeted version.
-*/
 *,
 *::before,
 *::after {
@@ -43,4 +38,62 @@ html.dark body {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Get In Touch — animated fill button */
+.git-btn {
+  cursor: pointer;
+  position: relative;
+  border-radius: 34px;
+  border: 2px solid #171717;
+  color: #171717;
+  background-color: transparent;
+  font-weight: 600;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.git-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #171717;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.git-btn:hover::before {
+  scale: 3;
+}
+
+.git-btn:hover {
+  color: #ffffff;
+  scale: 1.05;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.25);
+}
+
+.git-btn:active {
+  scale: 1;
+}
+
+/* Dark mode variant */
+html.dark .git-btn {
+  border-color: #F5F5F5;
+  color: #F5F5F5;
+}
+
+html.dark .git-btn::before {
+  background-color: #F5F5F5;
+}
+
+html.dark .git-btn:hover {
+  color: #000000;
+  box-shadow: 0 0px 20px rgba(255, 255, 255, 0.15);
 }
