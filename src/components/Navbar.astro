@@ -10,10 +10,11 @@ const links = [
 ];
 ---
 
-<nav class="sticky top-0 z-50 bg-surface/80 dark:bg-surfaceDark/80 backdrop-blur-xl border-b border-borderLight dark:border-borderDark">
-  <div class="flex items-center justify-between px-6 md:px-10 py-4">
+<nav id="site-nav" class="sticky top-0 z-50 bg-surface/80 dark:bg-surfaceDark/80 backdrop-blur-xl transition-shadow duration-300">
+  <div class="max-w-[1200px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+
     <a href="#home" class="text-[17px] font-bold tracking-tight">
-      Sugumaran<span class="text-inkMuted dark:text-white/50 font-semibold"> S</span>
+      Sugumaran<span class="text-accent dark:text-accentDark font-bold"> S</span>
     </a>
 
     <ul class="hidden md:flex items-center gap-8 list-none">
@@ -66,6 +67,7 @@ const links = [
 </nav>
 
 <script>
+  // Mobile menu toggle
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const iconHamburger = document.getElementById('icon-hamburger');
@@ -96,4 +98,16 @@ const links = [
   document.querySelectorAll('.mobile-menu-link').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
+
+  // Add shadow on scroll (replaces border-b)
+  const nav = document.getElementById('site-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      nav?.classList.add('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]');
+      nav?.classList.add('dark:shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
+    } else {
+      nav?.classList.remove('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]');
+      nav?.classList.remove('dark:shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
+    }
+  }, { passive: true });
 </script>

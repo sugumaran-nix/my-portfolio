@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = 'Sugumaran S — Full Stack Developer',
-  description = 'Full Stack Developer portfolio — projects, skills, and contact.',
+  title = 'Sugumaran S — Software Developer',
+  description = 'Software Developer portfolio — AI/ML systems and full-stack web apps. Python, FastAPI, React.js. All projects deployed and live.',
 } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL(Astro.url.pathname, Astro.url.origin);
@@ -24,21 +24,18 @@ const ogImage = new URL('/profile.jpg', siteUrl).toString();
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
 
-    <!-- Open Graph / social preview -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:url" content={Astro.url.href} />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
     <script is:inline>
-      // Runs before paint to avoid a light/dark flash on load.
       (function () {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -50,8 +47,6 @@ const ogImage = new URL('/profile.jpg', siteUrl).toString();
   <body class="bg-surface dark:bg-surfaceDark text-ink dark:text-white">
     <slot />
     <script is:inline>
-      // Drives the .reveal fade-up class for static Astro content.
-      // Interactive islands (cards, bars, form) animate themselves via Framer Motion instead.
       document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver(
           (entries) => {

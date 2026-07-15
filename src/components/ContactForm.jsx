@@ -2,10 +2,6 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
-// Fill these in from your EmailJS dashboard (emailjs.com):
-// - Service ID: Email Services tab
-// - Template ID: Email Templates tab — your template should use {{name}}, {{email}}, {{subject}}, {{message}}
-// - Public Key: Account > General
 const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
 const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
 const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
@@ -32,8 +28,9 @@ export default function ContactForm() {
       });
   };
 
+  // 1.5px border for more visual presence; slightly visible even unfocused
   const inputClass =
-    'w-full bg-surface dark:bg-surfaceDark border border-borderLight dark:border-borderDark rounded-lg px-4 py-2.5 text-sm text-ink dark:text-white outline-none transition-colors focus:border-accent dark:focus:border-accentDark focus:ring-2 focus:ring-accent/15 dark:focus:ring-accentDark/20 placeholder:text-inkMuted/60 dark:placeholder:text-white/30';
+    'w-full bg-surface dark:bg-surfaceDark border-[1.5px] border-borderLight dark:border-borderDark rounded-lg px-4 py-2.5 text-sm text-ink dark:text-white outline-none transition-colors focus:border-accent dark:focus:border-accentDark focus:ring-2 focus:ring-accent/15 dark:focus:ring-accentDark/20 placeholder:text-inkMuted/50 dark:placeholder:text-white/30';
 
   return (
     <motion.div
@@ -66,17 +63,18 @@ export default function ContactForm() {
           <textarea
             id="f-message"
             name="message"
-            placeholder="Tell me about your project..."
+            placeholder="Tell me about your project or opportunity..."
             required
             rows={4}
-            className={`${inputClass} resize-none`}
+            className={`${inputClass} resize-none min-h-[128px]`}
           />
         </div>
 
+        {/* Full-width submit button */}
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="self-start mt-1 inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-lg bg-accent dark:bg-accentDark text-white transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 disabled:opacity-60 hover:scale-105"
+          className="w-full flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg bg-accent dark:bg-accentDark text-white transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 disabled:opacity-60 hover:scale-[1.02] mt-1"
         >
           {status === 'idle' && (
             <>
@@ -86,7 +84,7 @@ export default function ContactForm() {
               Send Message
             </>
           )}
-          {status === 'sending' && 'Sending...'}
+          {status === 'sending' && 'Sending…'}
           {status === 'sent' && 'Sent ✓'}
           {status === 'error' && 'Failed — try again'}
         </button>
@@ -97,7 +95,7 @@ export default function ContactForm() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-sm text-inkMuted dark:text-white/60"
+              className="text-sm text-inkMuted dark:text-white/60 text-center"
             >
               Message received. I'll get back to you shortly.
             </motion.p>
@@ -107,9 +105,10 @@ export default function ContactForm() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-sm text-red-500 dark:text-red-400"
+              className="text-sm text-red-500 dark:text-red-400 text-center"
             >
-              Something went wrong sending that — please email me directly at sugumarankugan@gmail.com instead.
+              Something went wrong — please email me at{' '}
+              <a href="mailto:sugumarankugan@gmail.com" className="underline">sugumarankugan@gmail.com</a>.
             </motion.p>
           )}
         </AnimatePresence>

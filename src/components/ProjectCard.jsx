@@ -12,7 +12,83 @@ const ExternalLinkIcon = () => (
   </svg>
 );
 
-export default function ProjectCard({ image, title, desc, tags, href, demoHref, comingSoon = false, delay = 0 }) {
+const StarIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+  </svg>
+);
+
+export default function ProjectCard({ image, title, desc, tags, href, demoHref, comingSoon = false, delay = 0, featured = false }) {
+
+  // ── Featured layout: horizontal card ──────────────────────────────────────
+  if (featured) {
+    return (
+      <motion.div
+        className="rounded-xl overflow-hidden border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card hover:shadow-cardHover dark:shadow-cardDark dark:hover:shadow-cardDarkHover transition-shadow flex flex-col md:flex-row"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+        whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut', delay: 0 } }}
+      >
+        {/* Image — left side on md+ */}
+        <div className="md:w-[52%] aspect-[16/10] md:aspect-auto overflow-hidden bg-black/5 dark:bg-white/5 flex-shrink-0">
+          <img src={image} alt={title} className="w-full h-full object-cover" loading="lazy" />
+        </div>
+
+        {/* Content — right side */}
+        <div className="p-6 md:p-8 flex flex-col gap-3 flex-1">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-accent/10 text-accent dark:text-accentDark w-fit">
+            <StarIcon /> Featured Project
+          </span>
+          <h3 className="text-lg font-semibold leading-snug">{title}</h3>
+          <p className="text-sm text-inkMuted dark:text-white/60 leading-relaxed flex-1">{desc}</p>
+          <div className="flex flex-wrap gap-1.5 mt-1">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-ink dark:text-white/80"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          {comingSoon ? (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 w-fit mt-1">
+              🚧 Coming Soon
+            </span>
+          ) : (
+            <div className="flex items-center gap-5 mt-2">
+              {demoHref && (
+                <a
+                  href={demoHref}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-accent dark:text-accentDark hover:text-accentHover dark:hover:opacity-80 transition-all duration-150 hover:scale-105"
+                >
+                  <ExternalLinkIcon />
+                  View Demo
+                </a>
+              )}
+              {href && (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1.5 text-sm text-inkMuted dark:text-white/60 hover:text-ink dark:hover:text-white transition-colors"
+                >
+                  <GitHubIcon />
+                  View on GitHub
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    );
+  }
+
+  // ── Regular card ──────────────────────────────────────────────────────────
   return (
     <motion.div
       className="rounded-xl overflow-hidden border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card hover:shadow-cardHover dark:shadow-cardDark dark:hover:shadow-cardDarkHover transition-shadow flex flex-col h-full"
@@ -26,9 +102,11 @@ export default function ProjectCard({ image, title, desc, tags, href, demoHref, 
         <img src={image} alt={title} className="w-full h-full object-cover" loading="lazy" />
       </div>
       <div className="p-5 flex flex-col gap-2.5 flex-1">
-        <h3 className="text-base font-semibold">{title}</h3>
-        <p className="text-sm text-inkMuted dark:text-white/60 leading-relaxed flex-1">{desc}</p>
-        <div className="flex flex-wrap gap-1.5 mt-1">
+        <h3 className="text-base font-semibold leading-snug">{title}</h3>
+        <p className="text-sm text-inkMuted dark:text-white/60 leading-relaxed line-clamp-3">{desc}</p>
+        {/* Spacer pushes tags + links to bottom */}
+        <div className="flex-1" />
+        <div className="flex flex-wrap gap-1.5">
           {tags.map((tag) => (
             <span
               key={tag}
