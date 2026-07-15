@@ -70,7 +70,7 @@ html.dark body {
 }
 
 .git-btn:hover::before {
-  scale: 3;
+  scale: 6;
 }
 
 .git-btn:hover {

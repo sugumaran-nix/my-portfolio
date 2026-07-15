@@ -34,7 +34,7 @@ export default function ContactForm() {
 
   return (
     <motion.div
-      className="rounded-xl border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card dark:shadow-cardDark p-6 md:p-7"
+      className="rounded-xl border border-white/10 dark:border-white/5 bg-white/60 dark:bg-white/[0.04] backdrop-blur-md shadow-[0_2px_12px_-2px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_0_0_1px_#262626] p-6 md:p-7"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}

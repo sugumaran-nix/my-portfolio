@@ -15,7 +15,7 @@ const ExternalLinkIcon = () => (
 export default function ProjectCard({ image, title, desc, tags, href, demoHref, comingSoon = false, delay = 0 }) {
   return (
     <motion.div
-      className="rounded-xl overflow-hidden border border-borderLight dark:border-borderDark bg-cardLight dark:bg-cardDark shadow-card hover:shadow-cardHover dark:shadow-cardDark dark:hover:shadow-cardDarkHover transition-shadow flex flex-col h-full"
+      className="rounded-xl overflow-hidden border border-white/10 dark:border-white/5 bg-white/60 dark:bg-white/[0.04] backdrop-blur-md shadow-[0_2px_12px_-2px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_28px_-4px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_0_0_1px_#262626] dark:hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_0_0_1px_#373737] transition-shadow duration-200 flex flex-col h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
