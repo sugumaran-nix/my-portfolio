@@ -91,21 +91,21 @@ const socials = [
   <Navbar />
 
   <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
-  <section id="home" class="relative md:min-h-screen flex flex-col items-center justify-center text-center px-6 py-20 md:py-24">
+  <section id="home" class="relative md:min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 md:py-24">
     <div class="reveal max-w-[600px] mx-auto w-full">
 
       <!-- Name — largest -->
-      <h1 class="text-[36px] sm:text-[48px] md:text-[68px] font-bold leading-[1.05] tracking-tight mb-3">
+      <h1 class="text-[32px] sm:text-[48px] md:text-[68px] font-bold leading-[1.1] tracking-tight mb-3">
         Hii, I'm Sugumaran
       </h1>
 
       <!-- Role — medium -->
-      <p class="text-lg sm:text-xl md:text-2xl font-medium text-inkMuted dark:text-white/70 mb-5">
+      <p class="text-[17px] sm:text-xl md:text-2xl font-medium text-inkMuted dark:text-white/70 mb-4">
         Software Developer
       </p>
 
-      <!-- Description — smallest, tighter width, more line height -->
-      <p class="max-w-[480px] mx-auto text-sm sm:text-base text-inkMuted dark:text-white/60 leading-[1.75] mb-10 px-2">
+      <!-- Description — smallest -->
+      <p class="max-w-[480px] mx-auto text-[13px] sm:text-base text-inkMuted dark:text-white/60 leading-[1.75] mb-8 px-2">
         I build and ship AI/ML models and full-stack web apps — fraud detectors, text classifiers,
         and real-time collaborative tools. Python · FastAPI · React.js. All deployed and live.
       </p>
@@ -148,8 +148,8 @@ const socials = [
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-inkMuted/40 dark:text-white/25 animate-bounce pointer-events-none select-none">
+    <!-- Scroll indicator — hidden on mobile -->
+    <div class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-inkMuted/40 dark:text-white/25 animate-bounce pointer-events-none select-none">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
         <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
@@ -168,7 +168,7 @@ const socials = [
 
         <!-- Profile card — shows first on mobile via order, second on desktop -->
         <div class="reveal order-first md:order-last" style="transition-delay: 0.1s">
-          <div class="rounded-xl border border-white/10 dark:border-white/5 bg-white/60 dark:bg-white/[0.04] backdrop-blur-md shadow-[0_2px_12px_-2px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_0_0_1px_#262626] p-6 text-center flex flex-col items-center">
+          <div class="rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_0_0_1px_rgba(255,255,255,0.05),0_4px_24px_-4px_rgba(0,0,0,0.6)] p-6 text-center flex flex-col items-center">
             <div class="w-40 h-40 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-4">
               <img src="/profile.jpg" alt="Sugumaran S" class="w-full h-full object-cover" />
             </div>
@@ -230,9 +230,9 @@ const socials = [
             <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-inkMuted/60 dark:text-white/35 sm:pt-1">
               {group.title}
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 overflow-hidden max-h-[60px] sm:max-h-none">
               {group.skills.map((skill) => (
-                <span class="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.07] text-ink dark:text-white/85 border border-borderLight dark:border-borderDark">
+                <span class="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.07] text-ink dark:text-white/85 border border-borderLight dark:border-borderDark whitespace-nowrap">
                   {skill}
                 </span>
               ))}
