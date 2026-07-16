@@ -22,14 +22,13 @@ export default function ProjectCard({ image, title, desc, tags, href, demoHref, 
       transition={{ duration: 0.6, delay, ease: 'easeOut' }}
       whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut', delay: 0 } }}
     >
-      <div className="w-full aspect-[16/8] overflow-hidden bg-black/5 dark:bg-white/5">
+      <div className="w-full aspect-[16/8] overflow-hidden bg-black/5 dark:bg-white/5 flex-shrink-0">
         <img src={image} alt={title} className="w-full h-full object-cover" loading="lazy" />
       </div>
-      <div className="p-5 flex flex-col gap-2.5 flex-1">
+      <div className="p-5 flex flex-col gap-2.5">
         <h3 className="text-base font-semibold leading-snug">{title}</h3>
         <p className="text-sm text-inkMuted dark:text-white/60 leading-relaxed line-clamp-3">{desc}</p>
-        <div className="flex-1" />
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
           {tags.map((tag) => (
             <span
               key={tag}
@@ -44,7 +43,7 @@ export default function ProjectCard({ image, title, desc, tags, href, demoHref, 
             🚧 Coming Soon
           </span>
         ) : (
-          <div className="flex items-center gap-4 mt-1">
+          <div className="flex items-center gap-4 mt-2">
             {demoHref && (
               <a
                 href={demoHref}
