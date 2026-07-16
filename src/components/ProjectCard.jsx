@@ -15,7 +15,7 @@ const ExternalLinkIcon = () => (
 export default function ProjectCard({ image, title, desc, tags, href, demoHref, comingSoon = false, delay = 0 }) {
   return (
     <motion.div
-      className="rounded-xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.08)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_0_0_1px_rgba(255,255,255,0.05),0_4px_24px_-4px_rgba(0,0,0,0.6)] dark:hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_0_0_1px_rgba(255,255,255,0.08),0_12px_40px_-8px_rgba(0,0,0,0.8)] transition-shadow duration-200 flex flex-col h-full"
+      className="glass-card rounded-xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.07] backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.08)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(255,255,255,0.06),0_4px_24px_-4px_rgba(0,0,0,0.7)] dark:hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),0_0_0_1px_rgba(255,255,255,0.09),0_12px_40px_-8px_rgba(0,0,0,0.85)] transition-shadow duration-200 flex flex-col h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}

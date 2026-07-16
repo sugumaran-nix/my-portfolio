@@ -60,6 +60,11 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
           { threshold: 0.1 }
         );
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Inject mid blob for dark mode glassmorphism
+        const blob = document.createElement('div');
+        blob.className = 'dark-blob-mid';
+        document.body.appendChild(blob);
       });
     </script>
   </body>
