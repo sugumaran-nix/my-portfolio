@@ -1,4 +1,6 @@
 ---
+const year = new Date().getFullYear();
+
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/sugumaran-nix' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sugumaran-nix' },
@@ -6,35 +8,30 @@ const socials = [
 ];
 ---
 
-<footer class="border-t border-borderLight dark:border-borderDark px-6 md:px-10 py-12">
-  <div class="max-w-content mx-auto footer-inner">
-    <!-- Display font name — DM Serif Display italic -->
-    <p class="font-display italic text-2xl text-ink dark:text-white tracking-tight">Sugumaran.</p>
+<footer class="border-t border-borderLight dark:border-borderDark px-6 py-8">
+  <div class="max-w-content mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
 
-    <p class="text-sm text-inkMuted dark:text-white/30 max-w-xs leading-relaxed">
-      Building things that actually work — AI/ML, full-stack, and everything in between.
+    <p class="text-xs text-inkMuted/40 dark:text-white/20">
+      © {year} Sugumaran S.
     </p>
 
-    <div class="flex items-center gap-5 mt-1">
+    <div class="flex items-center gap-5">
       {socials.map((s, i) => (
         <>
           <a
             href={s.href}
             target={s.href.startsWith('http') ? '_blank' : undefined}
             rel={s.href.startsWith('http') ? 'noopener' : undefined}
-            class="line-hover text-xs font-medium text-inkMuted/60 dark:text-white/30 hover:text-ink dark:hover:text-white transition-colors"
+            class="line-hover text-xs font-medium text-inkMuted/50 dark:text-white/25 hover:text-ink dark:hover:text-white transition-colors"
           >
             {s.label}
           </a>
           {i < socials.length - 1 && (
-            <span class="text-inkMuted/25 dark:text-white/15 text-xs">·</span>
+            <span class="text-inkMuted/20 dark:text-white/10 text-xs select-none">·</span>
           )}
         </>
       ))}
     </div>
 
-    <p class="text-xs text-inkMuted/30 dark:text-white/18 mt-4">
-      © {new Date().getFullYear()} Sugumaran S. · Deployed, not just designed.
-    </p>
   </div>
 </footer>
