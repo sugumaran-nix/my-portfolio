@@ -1,0 +1,37 @@
+---
+const year = new Date().getFullYear();
+
+const socials = [
+  { label: 'GitHub',   href: 'https://github.com/sugumaran-nix' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sugumaran-nix' },
+  { label: 'Email',    href: 'mailto:sugumarankugan@gmail.com' },
+];
+---
+
+<footer class="border-t border-borderLight dark:border-borderDark px-6 py-8">
+  <div class="max-w-content mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+
+    <p class="text-xs text-inkMuted/40 dark:text-white/20">
+      © {year} Sugumaran S.
+    </p>
+
+    <div class="flex items-center gap-5">
+      {socials.map((s, i) => (
+        <>
+          <a
+            href={s.href}
+            target={s.href.startsWith('http') ? '_blank' : undefined}
+            rel={s.href.startsWith('http') ? 'noopener' : undefined}
+            class="line-hover text-xs font-medium text-inkMuted/50 dark:text-white/25 hover:text-ink dark:hover:text-white transition-colors"
+          >
+            {s.label}
+          </a>
+          {i < socials.length - 1 && (
+            <span class="text-inkMuted/20 dark:text-white/10 text-xs select-none">·</span>
+          )}
+        </>
+      ))}
+    </div>
+
+  </div>
+</footer>
