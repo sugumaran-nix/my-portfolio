@@ -4,205 +4,180 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.jsx';
 import ContactForm from '../components/ContactForm.jsx';
+import FlipFadeText from '../components/FlipFadeText.jsx';
+import AnimatedCounter from '../components/AnimatedCounter.jsx';
+import GlowBorderCard from '../components/GlowBorderCard.jsx';
+import CustomCursor from '../components/CustomCursor.jsx';
+import LottieHero from '../components/LottieHero.jsx';
+import ScrollProgress from '../components/ScrollProgress.jsx';
 
-// Skills redesigned as arrays for chip/tag rendering
 const skillGroups = [
-  {
-    title: 'Languages',
-    skills: ['Python (Primary)', 'JavaScript (ES6+)', 'TypeScript', 'SQL'],
-  },
-  {
-    title: 'Frontend',
-    skills: ['React.js', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS'],
-  },
-  {
-    title: 'Backend',
-    skills: ['FastAPI', 'Flask', 'WebSockets', 'REST API Design'],
-  },
-  {
-    title: 'Databases',
-    skills: ['MySQL', 'SQLite', 'MongoDB'],
-  },
-  {
-    title: 'Tools & OS',
-    skills: ['Git', 'GitHub', 'VS Code', 'Linux', 'Jupyter Notebook'],
-  },
-  {
-    title: 'AI / ML & NLP',
-    skills: ['Scikit-learn', 'TF-IDF', 'NLP', 'Hugging Face Transformers', 'BERT', 'LLM Prompt Engineering'],
-  },
+  { title: 'Languages',     skills: ['Python (Primary)', 'JavaScript (ES6+)', 'TypeScript', 'SQL'] },
+  { title: 'Frontend',      skills: ['React.js', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS'] },
+  { title: 'Backend',       skills: ['FastAPI', 'Flask', 'WebSockets', 'REST API Design'] },
+  { title: 'Databases',     skills: ['MySQL', 'SQLite', 'MongoDB'] },
+  { title: 'Tools & OS',    skills: ['Git', 'GitHub', 'VS Code', 'Linux', 'Jupyter Notebook'] },
+  { title: 'AI / ML & NLP', skills: ['Scikit-learn', 'TF-IDF', 'NLP', 'Hugging Face', 'BERT', 'Prompt Engineering'] },
 ];
 
 const projects = [
-  {
-    image: 'https://images.unsplash.com/photo-1488229297570-58520851e868?w=800&q=80',
-    title: 'ML-Powered Fake Job Detector',
-    desc: 'Benchmarked 4 ML classifiers on 17,880 real-world job postings to detect fraudulent listings. Best-class Fraud F1-score: 87.57% on a heavily imbalanced dataset (4.8% fraud rate). Features a 10,000-feature bigram TF-IDF pipeline, SHAP-style explainability, runtime model switching, and SQLite-backed prediction history. Sub-800ms end-to-end API response.',
-    tags: ['Python', 'Scikit-learn', 'NLP', 'Flask', 'Explainable AI'],
-    href: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
-    demoHref: 'https://fake-job-posting-ml.onrender.com',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80',
-    title: 'AI-Generated Text Detector',
-    desc: 'Statistical classifier distinguishing human-written from AI-generated text using perplexity, burstiness, and sentence-level variance. Sentence-level explainability highlights exact text spans flagged as machine-generated. Served via FastAPI returning structured JSON with per-sentence confidence scores.',
-    tags: ['Python', 'FastAPI', 'NLP', 'Explainable AI'],
-    href: 'https://github.com/sugumaran-nix/ai-content-detector',
-    demoHref: 'https/ai-content-detector-3u5f.vercel.app/',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80',
-    title: 'Sketchline — Real-Time Collaborative Whiteboard',
-    desc: 'Full-stack multiplayer whiteboard built from scratch. FastAPI WebSocket backend manages room state, stroke history, and multi-client broadcast via a custom 7-message-type JSON protocol. Sub-100ms stroke sync latency, full board-state replay on reconnect, live cursor presence at 20 updates/sec. Frontend on Vercel, backend on Railway via Dockerfile.',
-    tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'HTML5 Canvas'],
-    href: 'https://github.com/sugumaran-nix/Sketchline-whiteboard',
-    demoHref: 'https://whiteboard-frontend-nine-smoky.vercel.app',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1677506048148-0c914dd8197b?w=800&q=80',
-    title: 'ProjectScope — Eisenhower Matrix Task Manager',
-    desc: 'Fully responsive drag-and-drop task manager built in React.js and TypeScript. Quadrant-based prioritisation using dnd-kit, keyboard-accessible interactions, and cross-tab localStorage state sync for a persistent, backend-free experience.',
-    tags: ['React.js', 'TypeScript', 'Tailwind CSS', 'dnd-kit'],
-    href: 'https://github.com/sugumaran-nix/ProjectScope',
-    demoHref: 'https://project-scope-seven.vercel.app',
-  },
+  { title: 'ML-Powered Fake Job Detector',          desc: 'Benchmarked 4 ML classifiers on 17,880 real-world job postings. 87.57% Fraud F1-score on a heavily imbalanced dataset. 10,000-feature bigram TF-IDF pipeline, SHAP-style explainability, runtime model switching, SQLite-backed history. Sub-800ms end-to-end.', tags: ['Python', 'Scikit-learn', 'NLP', 'Flask', 'Explainable AI'], href: 'https://github.com/sugumaran-nix/fake-job-posting-ml', demoHref: 'https://fake-job-posting-ml.onrender.com' },
+  { title: 'AI-Generated Text Detector',            desc: 'Statistical classifier distinguishing human-written from AI-generated text using perplexity, burstiness, and sentence-level variance. Sentence-level explainability highlights exact spans flagged as machine-generated. Served via FastAPI with per-sentence confidence scores.', tags: ['Python', 'FastAPI', 'NLP', 'Explainable AI'], href: 'https://github.com/sugumaran-nix/ai-content-detector', demoHref: 'https://ai-content-detector-3u5f.vercel.app/' },
+  { title: 'Sketchline — Real-Time Collaborative Whiteboard', desc: 'Full-stack multiplayer whiteboard. FastAPI WebSocket backend manages room state, stroke history, and multi-client broadcast via a 7-message-type JSON protocol. Sub-100ms stroke sync, board-state replay on reconnect, live cursor presence at 20 fps.', tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'HTML5 Canvas'], href: 'https://github.com/sugumaran-nix/Sketchline-whiteboard', demoHref: 'https://whiteboard-frontend-nine-smoky.vercel.app' },
+  { title: 'ProjectScope — Eisenhower Matrix Task Manager',   desc: 'Fully responsive drag-and-drop task manager in React.js + TypeScript. Quadrant-based prioritisation using dnd-kit, keyboard-accessible interactions, cross-tab localStorage sync.', tags: ['React.js', 'TypeScript', 'Tailwind CSS', 'dnd-kit'], href: 'https://github.com/sugumaran-nix/ProjectScope', demoHref: 'https://project-scope-seven.vercel.app' },
 ];
 
 const socials = [
-  {
-    label: 'GitHub',
-    href: 'https://github.com/sugumaran-nix',
-    icon: 'M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z',
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/sugumaran-nix',
-    icon: 'M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z',
-  },
-  {
-    label: 'Email',
-    href: 'mailto:sugumarankugan@gmail.com',
-    icon: 'M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
-  },
+  { label: 'GitHub',   href: 'https://github.com/sugumaran-nix',            path: 'M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sugumaran-nix',    path: 'M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z' },
+  { label: 'Email',    href: 'mailto:sugumarankugan@gmail.com',              path: 'M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' },
 ];
+
+const tickerItems = ['Python','FastAPI','React.js','Next.js','TypeScript','Scikit-learn','NLP','WebSockets','TailwindCSS','Linux','Hugging Face','SQLite','Framer Motion','Git','Jupyter','Anime.js'];
+const flipWords   = ['Engineer','Builder','Problem Solver','Deployer'];
 ---
 
 <Layout>
+  <CustomCursor client:load />
   <Navbar />
 
-  <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
-  <section id="home" class="relative md:min-h-screen flex flex-col items-center justify-center text-center px-6 py-28 md:py-24">
-    <div class="reveal max-w-[600px] mx-auto w-full">
+  <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+  <section id="home" class="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-0 overflow-hidden">
 
-      <!-- Name — largest -->
-      <h1 class="text-[38px] sm:text-[48px] md:text-[68px] font-bold leading-[1.1] tracking-tight mb-3">
-        Hii, I'm Sugumaran
-      </h1>
+    <!-- Hero Patterns dot grid bg -->
+    <div class="hero-bg-pattern" aria-hidden="true"></div>
+    <!-- Haikei radial glow -->
+    <div class="hero-glow" aria-hidden="true"></div>
 
-      <!-- Role — medium -->
-      <p class="text-[22px] sm:text-[26px] md:text-[32px] font-medium text-inkMuted dark:text-white/70 mb-4">
-        Software Developer
-      </p>
+    <div class="reveal relative z-10 max-w-[1100px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_360px] gap-8 md:gap-0 items-center">
 
-      <!-- Description — smallest -->
-      <p class="max-w-[480px] mx-auto text-[14px] sm:text-[15px] md:text-base text-inkMuted dark:text-white/60 leading-[1.75] mb-8 px-2">
-        MCA graduate (2026) from Anna University. Actively looking for full-time opportunities. Available immediately.
-      </p>
+      <!-- Left: text -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
 
-      <!-- CTAs — tighter gap between buttons, more space from description handled by mb-10 above -->
-      <div class="flex flex-row sm:flex-row items-center justify-center gap-3 mb-6">
-        <a
-          href="/sugumaran-s-resume.pdf"
-          download
-          class="inline-flex items-center justify-center gap-2 text-sm font-semibold px-7 py-3 h-[44px] rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 flex-shrink-0">
-            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          Download CV
-        </a>
-        <a
-          href="#contact"
-          id="git-btn-hero"
-          class="git-btn inline-flex items-center justify-center text-sm font-semibold px-7 py-3 h-[44px]"
-        >
-          Get In Touch
-        </a>
-      </div>
+        <!-- Eyebrow badge — UIverse badge style -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-borderLight dark:border-borderDark text-xs font-semibold text-inkMuted dark:text-white/50 mb-7 bg-white/60 dark:bg-white/5 backdrop-blur-sm">
+          <span class="avail-dot w-2 h-2 rounded-full bg-emerald-500 inline-block flex-shrink-0"></span>
+          Available for full-time roles · Coimbatore, TN
+        </div>
 
-      <!-- Social icons — closer to buttons, larger icons, even gap -->
-      <div class="flex items-center justify-center gap-5">
-        {socials.map((s) => (
-          <a
-            href={s.href}
-            target={s.href.startsWith('http') ? '_blank' : undefined}
-            rel={s.href.startsWith('http') ? 'noopener' : undefined}
-            aria-label={s.label}
-            title={s.label}
-            class="text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors"
-          >
-            <svg viewBox="0 0 24 24" class="w-[22px] h-[22px] fill-current"><path d={s.icon}></path></svg>
+        <!-- Name — DM Serif Display + gradient (Adobe Color) -->
+        <h1 class="hero-name-display text-[44px] sm:text-[58px] md:text-[70px] tracking-tight mb-4 text-ink dark:text-white">
+          Hi, I'm <em>Sugumaran</em>
+        </h1>
+
+        <!-- FlipFadeText — Vengeance UI -->
+        <p class="text-[18px] sm:text-[22px] md:text-[24px] font-medium text-inkMuted dark:text-white/60 mb-5 min-h-[36px]">
+          AI / ML &amp;&nbsp;Full-Stack&nbsp;
+          <FlipFadeText client:load words={flipWords} interval={2600} className="text-ink dark:text-white font-semibold" />
+        </p>
+
+        <p class="max-w-[480px] text-[14px] sm:text-[15px] text-inkMuted dark:text-white/55 leading-[1.8] mb-9">
+          MCA graduate (2026), Anna University. I build full-stack AI apps that actually do something — four projects, all deployed, all open source.
+        </p>
+
+        <!-- CTAs — UIverse glow btn + git fill btn -->
+        <div class="flex flex-row items-center gap-3 mb-8">
+          <a href="/sugumaran-s-resume.pdf" download class="uiverse-btn">
+            <span class="flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download CV
+            </span>
           </a>
-        ))}
+          <a href="#contact" id="git-btn-hero" class="git-btn inline-flex items-center justify-center text-sm font-semibold px-7 py-3 h-[46px]">
+            Get In Touch
+          </a>
+        </div>
+
+        <!-- Social icons — Lucide via inline SVG paths -->
+        <div class="flex items-center gap-5">
+          {socials.map((s) => (
+            <a href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'noopener' : undefined} aria-label={s.label}
+              class="text-inkMuted/60 dark:text-white/40 hover:text-ink dark:hover:text-white transition-all hover:scale-110">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d={s.path}></path></svg>
+            </a>
+          ))}
+        </div>
       </div>
+
+      <!-- Right: LottieFiles developer animation -->
+      <div class="hidden md:flex items-center justify-center">
+        <LottieHero client:load className="w-[320px] h-[320px] opacity-90" />
+      </div>
+
     </div>
 
-    <!-- Scroll indicator — hidden on mobile -->
-    <div class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-inkMuted/40 dark:text-white/25 animate-bounce pointer-events-none select-none">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-        <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+    <!-- Scroll cue -->
+    <div class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-inkMuted/35 dark:text-white/20 animate-bounce pointer-events-none select-none">
+      <span class="text-[9px] font-bold uppercase tracking-[.2em]">scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
   </section>
 
-  <!-- ─── ABOUT ─────────────────────────────────────────────────────────── -->
-  <section id="about" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-10 md:py-16">
+  <!-- ── TICKER — Animate.css marquee style ────────────────────────────── -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      {[...tickerItems,...tickerItems].map((item) => (
+        <span class="ticker-item">{item}<span class="ticker-dot"></span></span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ── STATS — AnimatedCounter ───────────────────────────────────────── -->
+  <section class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 py-10 md:py-12">
+    <div class="max-w-[860px] mx-auto flex flex-wrap items-center justify-center gap-10 md:divide-x md:divide-borderLight md:dark:divide-borderDark">
+      <div class="flex-1 min-w-[150px] flex justify-center"><AnimatedCounter client:visible end={4}     suffix="+"   label="Projects Deployed"  /></div>
+      <div class="flex-1 min-w-[150px] flex justify-center"><AnimatedCounter client:visible end={87}    suffix="%"   label="Best F1-Score"       duration={1600} /></div>
+      <div class="flex-1 min-w-[150px] flex justify-center"><AnimatedCounter client:visible end={17880} suffix="+"   label="Training Samples"    duration={2000} /></div>
+      <div class="flex-1 min-w-[150px] flex justify-center"><AnimatedCounter client:visible end={800}   suffix="ms"  label="API Response Time"   duration={1400} /></div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ──────────────────────────────────────────────────────────── -->
+  <section id="about" class="px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal mb-6 md:mb-10">
-        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">About Me</h2>
+      <div class="reveal mb-2">
+        <p class="section-eyebrow">✦ Who I Am</p>
+        <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">About <em>Me</em></h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-12 items-start">
+      <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-14 items-start mt-10">
 
-        <!-- Profile card — shows first on mobile via order, second on desktop -->
-        <div class="reveal order-first md:order-last" style="transition-delay: 0.1s">
-          <div class="glass-card rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.07] backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(255,255,255,0.06),0_4px_24px_-4px_rgba(0,0,0,0.7)] p-6 text-center flex flex-col items-center">
-            <div class="w-40 h-40 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-4">
-              <img src="/profile.jpg" alt="Sugumaran S" class="w-full h-full object-cover" />
+        <!-- Profile card — GlowBorderCard (Vengeance UI) + Magic Border (Magic UI) -->
+        <div class="reveal order-first md:order-last" style="transition-delay:.1s">
+          <GlowBorderCard client:visible className="magic-border glass-card p-6 text-center flex flex-col items-center">
+            <div class="w-36 h-36 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-4 shadow-md">
+              <img src="/profile.jpg" alt="Sugumaran S" class="w-full h-full object-cover" loading="lazy"/>
             </div>
-            <h4 class="text-lg font-semibold mb-1">Sugumaran</h4>
-            <p class="text-sm text-inkMuted dark:text-white/60 mb-1">Software Developer</p>
-            <p class="text-sm text-inkMuted dark:text-white/60 mb-4">Based in Coimbatore, Tamil Nadu</p>
+            <!-- Shimmer text — UIverse shimmer effect -->
+            <h4 class="text-lg font-semibold mb-0.5 shimmer-text">Sugumaran S.</h4>
+            <p class="text-sm text-inkMuted dark:text-white/55 mb-0.5 font-display italic">AI/ML & Full-Stack Engineer</p>
+            <p class="text-xs text-inkMuted/60 dark:text-white/35 mb-5">Coimbatore, Tamil Nadu · India</p>
             <div class="flex flex-wrap justify-center gap-2">
-              <span class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-borderLight dark:border-borderDark text-inkMuted dark:text-white/60">
-                <span class="w-1.5 h-1.5 rounded-full bg-ink dark:bg-white/60 animate-pulse"></span>
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border border-borderLight dark:border-borderDark text-inkMuted dark:text-white/55">
+                <span class="avail-dot w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block flex-shrink-0"></span>
                 Available Immediately
               </span>
-              <span class="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full border border-borderLight dark:border-borderDark text-inkMuted dark:text-white/60">
+              <span class="inline-flex items-center text-[11px] font-semibold px-3 py-1.5 rounded-full border border-borderLight dark:border-borderDark text-inkMuted dark:text-white/55">
                 Remote · Open to Relocation
               </span>
             </div>
-          </div>
+          </GlowBorderCard>
         </div>
 
-        <!-- Text column — shows second on mobile, first on desktop -->
-        <div class="reveal order-last md:order-first flex flex-col gap-4 text-sm text-inkMuted dark:text-white/60 leading-[1.85] text-justify">
-          <p>
-            Recent MCA Graduate (2026) from Anna University, Coimbatore. I build AI/ML systems and full-stack web applications end-to-end — from data preprocessing and model training to REST API deployment and React frontends.
-          </p>
-          <p>
-            Open to AI/ML Engineer, Full Stack Developer, and Data Annotation Specialist roles. Available immediately, open to relocation anywhere in India and remote work.
-          </p>
-          <div class="flex flex-col gap-2 mt-4">
-            <div class="flex flex-col gap-0.5">
-              <p class="text-xs font-semibold text-ink dark:text-white uppercase tracking-wider mb-1">Education</p>
-              <p class="text-sm">MCA — Anna University <span class="text-inkMuted/70 dark:text-white/40">(Sri Venkateshwara College of Computer Applications and Management)</span></p>
-              <p class="text-xs text-inkMuted/70 dark:text-white/40">2024–2026 · Score: 80%</p>
+        <!-- Text -->
+        <div class="reveal order-last md:order-first flex flex-col gap-4 text-[14.5px] text-inkMuted dark:text-white/60 leading-[1.85]">
+          <p>Recent MCA graduate (2026) from Anna University, Coimbatore. I build AI/ML systems and full-stack web applications end-to-end — from data preprocessing and model training to REST API deployment and React frontends.</p>
+          <p>Open to AI/ML Engineer, Full Stack Developer, and Data Annotation Specialist roles. Available immediately, open to relocation anywhere in India and remote work.</p>
+          <div class="flex flex-col gap-3 mt-2 pt-4 border-t border-borderLight dark:border-borderDark">
+            <p class="text-[10px] font-bold text-ink dark:text-white uppercase tracking-widest mb-1">Education</p>
+            <div>
+              <p class="text-sm font-semibold text-ink dark:text-white">MCA — Anna University</p>
+              <p class="text-xs text-inkMuted/70 dark:text-white/35">Sri Venkateshwara College · 2024–2026 · 80%</p>
             </div>
-            <div class="flex flex-col gap-0.5 mt-2">
-              <p class="text-sm">BCA — Bharathiar University <span class="text-inkMuted/70 dark:text-white/40">(Govt Arts & Science College, Gudalur)</span></p>
-              <p class="text-xs text-inkMuted/70 dark:text-white/40">2021–2024 · Score: 83.71%</p>
+            <div>
+              <p class="text-sm font-semibold text-ink dark:text-white">BCA — Bharathiar University</p>
+              <p class="text-xs text-inkMuted/70 dark:text-white/35">Govt Arts & Science College, Gudalur · 2021–2024 · 83.71%</p>
             </div>
           </div>
         </div>
@@ -211,149 +186,125 @@ const socials = [
     </div>
   </section>
 
-  <!-- ─── SKILLS ────────────────────────────────────────────────────────── -->
-  <!--
-    Layout variation: left-aligned title + chip/tag rows instead of card grid.
-    Breaks the "stacked identical centered blocks" pattern.
-  -->
-  <section id="skills" class="px-6 md:px-10 py-10 md:py-16">
+  <!-- ── SKILLS ─────────────────────────────────────────────────────────── -->
+  <section id="skills" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal mb-6 md:mb-10">
-        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">Skills & Technologies</h2>
+      <div class="reveal mb-2">
+        <p class="section-eyebrow">✦ What I Work With</p>
+        <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">Skills &amp; <em>Technologies</em></h2>
+        <p class="text-sm text-inkMuted dark:text-white/40 mt-2 max-w-[400px]">Things I've actually used in production — not just listed for keywords.</p>
       </div>
 
-      <div class="reveal glass-card flex flex-col divide-y divide-black/[0.06] dark:divide-white/[0.06] border border-black/[0.08] dark:border-white/[0.08] rounded-xl overflow-hidden bg-white/70 dark:bg-white/[0.07] backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(255,255,255,0.06),0_4px_24px_-4px_rgba(0,0,0,0.7)]" style="transition-delay: 0.1s">
-        {skillGroups.map((group) => (
-          <div class="flex flex-col sm:grid sm:grid-cols-[160px_1fr] items-start gap-3 sm:gap-6 px-5 py-4 sm:px-6 sm:py-5">
-            <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-inkMuted/60 dark:text-white/35 sm:pt-1">
-              {group.title}
-            </p>
-            <div class="flex flex-wrap gap-2 overflow-hidden max-h-[60px] sm:max-h-none">
-              {group.skills.map((skill) => (
-                <span class="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.07] text-ink dark:text-white/85 border border-borderLight dark:border-borderDark whitespace-nowrap">
-                  {skill}
-                </span>
-              ))}
+      <!-- GlowBorderCard + Magic UI Border Beam wrapping the skills table -->
+      <div class="reveal mt-10" style="transition-delay:.1s">
+        <GlowBorderCard client:visible className="magic-border glass-card overflow-hidden divide-y divide-black/[.05] dark:divide-white/[.05]">
+          {skillGroups.map((group) => (
+            <div class="skill-row flex flex-col sm:grid sm:grid-cols-[190px_1fr] items-start gap-3 sm:gap-6 px-5 py-4 sm:px-7 sm:py-5">
+              <p class="text-[10px] font-bold uppercase tracking-[.18em] text-inkMuted/45 dark:text-white/25 sm:pt-1.5 flex-shrink-0">{group.title}</p>
+              <div class="flex flex-wrap gap-2">
+                {group.skills.map((skill) => (
+                  <span class="skill-tag text-xs sm:text-[13px] px-3 py-1.5 rounded-lg bg-black/[.04] dark:bg-white/[.07] text-ink dark:text-white/85 border border-borderLight dark:border-borderDark hover:border-ink/20 dark:hover:border-white/20 transition-colors cursor-default">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </GlowBorderCard>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── PROJECTS ──────────────────────────────────────────────────────── -->
-  <section id="projects" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-10 md:py-16">
+  <!-- ── PROJECTS ───────────────────────────────────────────────────────── -->
+  <section id="projects" class="px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal mb-6 md:mb-10">
-        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">Featured Projects</h2>
+      <div class="reveal mb-2">
+        <p class="section-eyebrow">✦ Things I've Shipped</p>
+        <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">Featured <em>Projects</em></h2>
+        <p class="text-sm text-inkMuted dark:text-white/40 mt-2">Deployed, not just demoed.</p>
       </div>
 
-      <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10" style="transition-delay:.05s">
         {projects.map((p, i) => (
-          <ProjectCard client:visible {...p} delay={i * 0.08} />
+          <ProjectCard client:visible {...p} delay={i * 0.07} />
         ))}
       </div>
 
       <div class="flex justify-center mt-12">
-        <a
-          href="https://github.com/sugumaran-nix"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-2 text-sm font-medium px-6 py-2.5 rounded-xl border border-borderLight dark:border-borderDark text-ink dark:text-white transition-colors hover:bg-black/5 dark:hover:bg-white/5"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
-          </svg>
+        <a href="https://github.com/sugumaran-nix" target="_blank" rel="noopener"
+          class="line-hover inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-xl border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105 transition-all">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
           View All Projects on GitHub
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ─── CONTACT ───────────────────────────────────────────────────────── -->
-  <section id="contact" class="px-6 md:px-10 py-10 md:py-16">
+  <!-- ── CONTACT ────────────────────────────────────────────────────────── -->
+  <section id="contact" class="bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-16 md:py-24">
     <div class="max-w-[1100px] mx-auto">
 
-      <div class="reveal mb-6 md:mb-10">
-        <h2 class="text-2xl sm:text-3xl md:text-[42px] font-bold tracking-tight">Get In Touch</h2>
+      <div class="reveal mb-2">
+        <p class="section-eyebrow">✦ Let's Work Together</p>
+        <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">Got a project?&nbsp;<em>I'd love to hear it.</em></h2>
+        <p class="text-[14px] text-inkMuted dark:text-white/45 mt-3 max-w-[440px] leading-relaxed">Whether it's a full-time role, a freelance project, or just a conversation — response time: hours, not weeks.</p>
       </div>
 
-      <!--
-        3-column grid: [info] [1px divider] [form]
-        Divider creates a structural relationship between the two sides.
-      -->
-      <div class="grid grid-cols-1 md:grid-cols-[1fr_1px_1fr] gap-10 md:gap-0 items-start">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start mt-12">
 
-        <!-- Contact form — first on mobile, right on desktop -->
-        <div class="reveal order-first md:order-last md:pl-12" style="transition-delay: 0.1s">
-          <ContactForm client:visible />
-        </div>
-
-        <!-- Vertical divider — visible on md+ -->
-        <div class="hidden md:block self-stretch bg-borderLight dark:bg-borderDark order-2"></div>
-
-        <!-- Contact info — second on mobile, left on desktop -->
-        <div class="reveal order-last md:order-first md:pr-12">
-          <h3 class="text-lg font-semibold mb-6">Contact Information</h3>
-          <div class="flex flex-col gap-5 mb-8">
-            <div class="flex items-start gap-3.5">
-              <div class="w-9 h-9 rounded-lg bg-black/5 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-                  <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+        <!-- Info -->
+        <div class="reveal flex flex-col gap-6">
+          <div class="flex flex-col gap-5">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-black/5 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-[18px] h-[18px]"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div>
                 <p class="text-sm font-semibold mb-0.5">Email</p>
-                <a href="mailto:sugumarankugan@gmail.com" class="text-sm text-inkMuted dark:text-white/60 hover:text-ink dark:hover:text-white transition-colors">
-                  sugumarankugan@gmail.com
-                </a>
+                <a href="mailto:sugumarankugan@gmail.com" class="line-hover text-sm text-inkMuted dark:text-white/55 font-mono">sugumarankugan@gmail.com</a>
               </div>
             </div>
-            <div class="flex items-start gap-3.5">
-              <div class="w-9 h-9 rounded-lg bg-black/5 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z" stroke-linecap="round" stroke-linejoin="round" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-black/5 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-[18px] h-[18px]"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
               <div>
                 <p class="text-sm font-semibold mb-0.5">Location</p>
-                <p class="text-sm text-inkMuted dark:text-white/60">Coimbatore, Tamil Nadu</p>
+                <p class="text-sm text-inkMuted dark:text-white/55">Coimbatore, Tamil Nadu · Open to relocation</p>
               </div>
             </div>
           </div>
-          <h4 class="text-base font-semibold mb-2">Let's Connect</h4>
-          <p class="text-sm text-inkMuted dark:text-white/60 leading-relaxed mb-6 max-w-[380px]">
-           Open to full-time roles, internships, or freelance work. Feel free to reach out.
-          </p>
-          <div class="flex flex-col gap-3">
+
+          <button id="copy-email-btn" class="copy-box w-fit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5 flex-shrink-0"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="copy-email-text">sugumarankugan@gmail.com</span>
+          </button>
+
+          <div class="flex flex-col gap-3 pt-1">
             {socials.map((s) => (
-              <a
-                href={s.href}
-                target={s.href.startsWith('http') ? '_blank' : undefined}
-                rel={s.href.startsWith('http') ? 'noopener' : undefined}
-                class="inline-flex items-center gap-3 text-sm text-inkMuted dark:text-white/60 hover:text-ink dark:hover:text-white transition-colors group"
-              >
-                <span class="w-8 h-8 rounded-lg border border-borderLight dark:border-borderDark flex items-center justify-center group-hover:border-ink/20 dark:group-hover:border-white/20 transition-colors flex-shrink-0">
-                  <svg viewBox="0 0 24 24" class="w-[15px] h-[15px] fill-current"><path d={s.icon}></path></svg>
+              <a href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'noopener' : undefined}
+                class="line-hover inline-flex items-center gap-3 text-sm text-inkMuted dark:text-white/55 hover:text-ink dark:hover:text-white transition-colors group w-fit">
+                <span class="w-8 h-8 rounded-lg border border-borderLight dark:border-borderDark flex items-center justify-center group-hover:border-ink/25 dark:group-hover:border-white/25 group-hover:scale-105 transition-all flex-shrink-0">
+                  <svg viewBox="0 0 24 24" class="w-[15px] h-[15px] fill-current"><path d={s.path}></path></svg>
                 </span>
                 {s.label}
               </a>
             ))}
-            <a
-              href="/sugumaran-s-resume.pdf"
-              download
-              class="inline-flex items-center gap-2 mt-3 text-sm font-medium px-5 py-2.5 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105 w-fit"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-                <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              Download CV
-            </a>
           </div>
+
+          <a href="/sugumaran-s-resume.pdf" download
+            class="inline-flex items-center gap-2 text-sm font-semibold px-5 py-3 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black hover:bg-accentHover dark:hover:opacity-90 shadow-card hover:scale-105 transition-all w-fit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download CV
+          </a>
+        </div>
+
+        <!-- Form -->
+        <div class="reveal" style="transition-delay:.1s">
+          <ContactForm client:visible />
         </div>
 
       </div>
@@ -363,20 +314,48 @@ const socials = [
   <Footer />
 
   <script>
+    // Git btn reset
     const gitBtn = document.getElementById('git-btn-hero');
     if (gitBtn) {
       gitBtn.addEventListener('click', () => {
-        // Immediately blur to remove focus/hover state
         gitBtn.blur();
-        // Add reset class to snap pseudo-element back
         gitBtn.classList.add('git-btn-reset');
-        // Remove reset class after a frame so transitions re-enable
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            gitBtn.classList.remove('git-btn-reset');
-          });
-        });
+        requestAnimationFrame(() => requestAnimationFrame(() => gitBtn.classList.remove('git-btn-reset')));
       });
     }
+
+    // Copy email
+    const copyBtn  = document.getElementById('copy-email-btn');
+    const copyText = document.getElementById('copy-email-text');
+    if (copyBtn && copyText) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('sugumarankugan@gmail.com');
+          copyText.textContent = 'Copied ✓';
+          setTimeout(() => { copyText.textContent = 'sugumarankugan@gmail.com'; }, 2000);
+        } catch {}
+      });
+    }
+
+    // Anime.js v4 — staggered skill tag entrance
+    (async () => {
+      try {
+        const { animate, stagger } = await import('animejs');
+        const skillsSection = document.getElementById('skills');
+        if (!skillsSection) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const tags = e.target.querySelectorAll('.skill-tag');
+              if (tags.length) {
+                animate(tags, { opacity: [0,1], translateY: [14,0], scale: [0.9,1], duration: 480, delay: stagger(30), easing: 'easeOutCubic' });
+              }
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        obs.observe(skillsSection);
+      } catch {}
+    })();
   </script>
 </Layout>

@@ -1,118 +1,104 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
-const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+// emailjs + Lucide icons + premium form pattern (premium-website skill §Forms)
+const EMAILJS_SERVICE  = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID  || "service_id";
+const EMAILJS_TEMPLATE = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || "template_id";
+const EMAILJS_KEY      = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY  || "public_key";
+
+const inputBase = [
+  "w-full rounded-xl px-4 py-3 text-sm",
+  "bg-surfaceMuted dark:bg-[#0F0F0F]",
+  "border border-borderLight dark:border-borderDark",
+  "text-ink dark:text-white/90",
+  "placeholder:text-inkMuted/50 dark:placeholder:text-white/25",
+  "focus:outline-none focus:border-accentGreen/60 dark:focus:border-accentGreen/50",
+  "transition-colors duration-200",
+].join(" ");
 
 export default function ContactForm() {
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-  const formRef = useRef(null);
+  const [form,    setForm]    = useState({ name: "", email: "", message: "" });
+  const [errors,  setErrors]  = useState({});
+  const [loading, setLoading] = useState(false);
+  const [sent,    setSent]    = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    emailjs
-      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY)
-      .then(() => {
-        setStatus('sent');
-        formRef.current.reset();
-        setTimeout(() => setStatus('idle'), 4000);
-      })
-      .catch((err) => {
-        console.error('EmailJS send failed:', err);
-        setStatus('error');
-        setTimeout(() => setStatus('idle'), 5000);
-      });
+  // Client-side validation (premium-website skill — no empty error states)
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim() || form.name.trim().length < 2) e.name = "Name must be at least 2 characters";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email address";
+    if (!form.message.trim() || form.message.trim().length < 10) e.message = "Message must be at least 10 characters";
+    return e;
   };
 
-  // 1.5px border for more visual presence; slightly visible even unfocused
-  const inputClass =
-    'w-full bg-surface dark:bg-surfaceDark border-[1.5px] border-borderLight dark:border-borderDark rounded-lg px-4 py-2.5 text-sm text-ink dark:text-white outline-none transition-colors focus:border-accent dark:focus:border-accentDark focus:ring-2 focus:ring-accent/15 dark:focus:ring-accentDark/20 placeholder:text-inkMuted/50 dark:placeholder:text-white/30';
+  const handleChange = (e) => {
+    setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+    if (errors[e.target.name]) setErrors((p) => ({ ...p, [e.target.name]: "" }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setLoading(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE, EMAILJS_TEMPLATE,
+        { from_name: form.name, from_email: form.email, message: form.message },
+        EMAILJS_KEY
+      );
+      setSent(true);
+    } catch {
+      setErrors({ submit: "Something went wrong. Email me directly at sugumarankugan@gmail.com" });
+    } finally { setLoading(false); }
+  };
+
+  if (sent) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 py-14 text-center">
+        <CheckCircle2 className="w-10 h-10 text-accentGreen" strokeWidth={1.5} />
+        <p className="text-base font-semibold">Message sent!</p>
+        <p className="text-sm text-inkMuted dark:text-white/50">I'll get back to you within a few hours.</p>
+      </div>
+    );
+  }
 
   return (
-    <motion.div
-      className="glass-card rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.07] backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(255,255,255,0.06),0_4px_24px_-4px_rgba(0,0,0,0.7)] p-6 md:p-7"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-    >
-      <h3 className="text-base font-semibold mb-5">Send me a message</h3>
-      <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="f-name" className="text-sm font-medium">Name</label>
-            <input id="f-name" name="name" type="text" placeholder="Your name" required className={inputClass} />
-          </div>
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="f-email" className="text-sm font-medium">Email</label>
-            <input id="f-email" name="email" type="email" placeholder="your.email@example.com" required className={inputClass} />
-          </div>
-        </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+      {/* Name */}
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="cf-name" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Name</label>
+        <input id="cf-name" name="name" type="text" autoComplete="name" placeholder="Your name"
+          className={inputBase} value={form.name} onChange={handleChange} />
+        {errors.name && <p className="text-xs text-red-400">{errors.name}</p>}
+      </div>
 
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="f-subject" className="text-sm font-medium">Subject</label>
-          <input id="f-subject" name="subject" type="text" placeholder="What's this about?" className={inputClass} />
-        </div>
+      {/* Email */}
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="cf-email" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Email</label>
+        <input id="cf-email" name="email" type="email" autoComplete="email" placeholder="your@email.com"
+          className={inputBase} value={form.email} onChange={handleChange} />
+        {errors.email && <p className="text-xs text-red-400">{errors.email}</p>}
+      </div>
 
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="f-message" className="text-sm font-medium">Message</label>
-          <textarea
-            id="f-message"
-            name="message"
-            placeholder="Tell me about your project or opportunity..."
-            required
-            rows={4}
-            className={`${inputClass} resize-none min-h-[128px]`}
-          />
-        </div>
+      {/* Message */}
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="cf-message" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Message</label>
+        <textarea id="cf-message" name="message" rows={5} placeholder="What are you working on?"
+          className={`${inputBase} resize-none`} value={form.message} onChange={handleChange} />
+        {errors.message && <p className="text-xs text-red-400">{errors.message}</p>}
+      </div>
 
-        {/* Full-width submit button */}
-        <button
-          type="submit"
-          disabled={status === 'sending'}
-          className="w-full flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black transition-all duration-150 hover:bg-accentHover dark:hover:opacity-90 disabled:opacity-60 hover:scale-[1.02] mt-1"
-        >
-          {status === 'idle' && (
-            <>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Send Message
-            </>
-          )}
-          {status === 'sending' && 'Sending…'}
-          {status === 'sent' && 'Sent ✓'}
-          {status === 'error' && 'Failed — try again'}
-        </button>
+      {errors.submit && <p className="text-xs text-red-400">{errors.submit}</p>}
 
-        <AnimatePresence>
-          {status === 'sent' && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="text-sm text-inkMuted dark:text-white/60 text-center"
-            >
-              Message received. I'll get back to you shortly.
-            </motion.p>
-          )}
-          {status === 'error' && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="text-sm text-red-500 dark:text-red-400 text-center"
-            >
-              Something went wrong — please email me at{' '}
-              <a href="mailto:sugumarankugan@gmail.com" className="underline">sugumarankugan@gmail.com</a>.
-            </motion.p>
-          )}
-        </AnimatePresence>
-      </form>
-    </motion.div>
+      <button type="submit" disabled={loading}
+        className="mt-1 w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black text-sm font-semibold hover:bg-accentHover dark:hover:opacity-90 transition-all disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]">
+        {loading
+          ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</>
+          : <><Send className="w-4 h-4" /> Send Message</>
+        }
+      </button>
+    </form>
   );
 }

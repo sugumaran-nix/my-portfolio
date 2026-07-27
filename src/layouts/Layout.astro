@@ -1,18 +1,10 @@
 ---
 import '../styles/global.css';
 
-interface Props {
-  title?: string;
-  description?: string;
-}
-
 const {
-  title = 'Sugumaran — Software Developer',
-  description = 'Software Developer portfolio — AI/ML systems and full-stack web apps. Python, FastAPI, React.js. All projects deployed and live.',
+  title = 'Sugumaran — AI/ML & Full-Stack Engineer',
+  description = 'MCA graduate (2026) building production-grade AI systems, NLP pipelines, and full-stack applications. Python, FastAPI, React.js. All projects deployed and live.',
 } = Astro.props;
-
-const siteUrl = Astro.site ?? new URL(Astro.url.pathname, Astro.url.origin);
-const ogImage = new URL('/og-image.jpg', siteUrl).toString();
 ---
 
 <!DOCTYPE html>
@@ -24,28 +16,38 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>{title}</title>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
+    <!-- Google Fonts — Inter (body) + DM Serif Display (headings) + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- OG / Twitter -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={Astro.url.href} />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:card"       content="summary_large_image" />
+    <meta name="twitter:title"      content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
 
+    <!-- Inline theme init — prevents FOUC (Awwwards best practice) -->
     <script is:inline>
       (function () {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored || (prefersDark ? 'dark' : 'light');
-        if (theme === 'dark') document.documentElement.classList.add('dark');
+        if ((stored || (prefersDark ? 'dark' : 'light')) === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
       })();
     </script>
   </head>
+
   <body class="bg-surface dark:bg-surfaceDark text-ink dark:text-white">
     <slot />
+
+    <!-- Scroll-reveal observer (Motion Primitives pattern) -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver(
@@ -57,14 +59,9 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
               }
             });
           },
-          { threshold: 0.1 }
+          { threshold: 0.08 }
         );
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // Inject mid blob for dark mode glassmorphism
-        const blob = document.createElement('div');
-        blob.className = 'dark-blob-mid';
-        document.body.appendChild(blob);
       });
     </script>
   </body>

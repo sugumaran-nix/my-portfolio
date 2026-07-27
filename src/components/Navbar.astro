@@ -1,29 +1,35 @@
 ---
 import ThemeToggle from './ThemeToggle.jsx';
+import ScrollProgress from './ScrollProgress.jsx';
 
 const links = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#home',     label: 'Home'     },
+  { href: '#about',    label: 'About'    },
+  { href: '#skills',   label: 'Skills'   },
   { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#contact',  label: 'Contact'  },
 ];
 ---
 
-<nav id="site-nav" class="sticky top-0 z-50 bg-surface/80 dark:bg-surfaceDark/80 backdrop-blur-xl transition-shadow duration-300">
-  <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 md:px-10 py-2 md:py-5">
+<!-- Scroll progress bar (Motion Primitives style) -->
+<ScrollProgress client:load />
 
-    <a href="#home" class="text-[17px] font-bold tracking-tight">
-      Sugumaran
+<nav id="site-nav" class="sticky top-0 z-50 bg-surface/80 dark:bg-surfaceDark/80 backdrop-blur-xl transition-shadow duration-300">
+  <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 md:px-10 py-3 md:py-4">
+
+    <!-- Logo / wordmark -->
+    <a href="#home" class="font-display italic text-[18px] tracking-tight text-ink dark:text-white line-hover">
+      Sugumaran.
     </a>
 
-    <ul class="hidden md:flex items-center gap-7 list-none">
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 list-none">
       {links.map((link) => (
         <li>
           <a
             href={link.href}
             data-section={link.href.replace('#', '')}
-            class="nav-link text-sm text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-all duration-150 hover:scale-105 inline-block"
+            class="nav-link line-hover text-sm text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors duration-150"
           >
             {link.label}
           </a>
@@ -33,7 +39,18 @@ const links = [
 
     <div class="flex items-center gap-3">
       <ThemeToggle client:load />
+      <a
+        href="/sugumaran-s-resume.pdf"
+        download
+        class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all hover:scale-105"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Resume
+      </a>
 
+      <!-- Mobile hamburger -->
       <button
         id="mobile-menu-btn"
         aria-label="Toggle menu"
@@ -41,19 +58,17 @@ const links = [
         class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
       >
         <svg id="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
         </svg>
         <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 hidden">
-          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" />
+          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
   </div>
 
-  <ul
-    id="mobile-menu"
-    class="hidden md:hidden flex-col list-none border-t border-borderLight dark:border-borderDark px-6 py-3"
-  >
+  <!-- Mobile menu -->
+  <ul id="mobile-menu" class="hidden md:hidden flex-col list-none border-t border-borderLight dark:border-borderDark px-6 py-3">
     {links.map((link) => (
       <li>
         <a
@@ -65,12 +80,16 @@ const links = [
         </a>
       </li>
     ))}
+    <li class="pt-2 pb-1">
+      <a href="/sugumaran-s-resume.pdf" download class="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg border border-borderLight dark:border-borderDark text-ink dark:text-white">
+        Download Resume
+      </a>
+    </li>
   </ul>
 </nav>
 
 <script>
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('mobile-menu-btn');
+  const menuBtn   = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const iconHamburger = document.getElementById('icon-hamburger');
   const iconClose = document.getElementById('icon-close');
@@ -82,12 +101,10 @@ const links = [
     iconClose?.classList.add('hidden');
     menuBtn?.setAttribute('aria-expanded', 'false');
   }
-
   function toggleMenu() {
     const isOpen = !mobileMenu?.classList.contains('hidden');
-    if (isOpen) {
-      closeMenu();
-    } else {
+    if (isOpen) { closeMenu(); }
+    else {
       mobileMenu?.classList.remove('hidden');
       mobileMenu?.classList.add('flex');
       iconHamburger?.classList.add('hidden');
@@ -95,52 +112,36 @@ const links = [
       menuBtn?.setAttribute('aria-expanded', 'true');
     }
   }
-
   menuBtn?.addEventListener('click', toggleMenu);
-  document.querySelectorAll('.mobile-menu-link').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
+  document.querySelectorAll('.mobile-menu-link').forEach((l) => l.addEventListener('click', closeMenu));
 
-  // Add shadow on scroll
+  // Shadow on scroll
   const nav = document.getElementById('site-nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
       nav?.classList.add('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]');
-      nav?.classList.add('dark:shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
     } else {
       nav?.classList.remove('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]');
-      nav?.classList.remove('dark:shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
     }
   }, { passive: true });
 
-  // Active nav link via IntersectionObserver
+  // Active nav via IntersectionObserver
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks  = document.querySelectorAll('.nav-link');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
   function setActive(id) {
     [...navLinks, ...mobileNavLinks].forEach((link) => {
       const isActive = link.getAttribute('data-section') === id;
-      if (isActive) {
-        link.classList.add('!text-ink', 'dark:!text-white', 'font-semibold');
-        link.classList.remove('text-inkMuted', 'dark:text-white/50');
-      } else {
-        link.classList.remove('!text-ink', 'dark:!text-white', 'font-semibold');
-        link.classList.add('text-inkMuted', 'dark:text-white/50');
-      }
+      link.classList.toggle('!text-ink', isActive);
+      link.classList.toggle('dark:!text-white', isActive);
+      link.classList.toggle('font-semibold', isActive);
     });
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActive(entry.target.id);
-        }
-      });
-    },
+  const sectionObserver = new IntersectionObserver(
+    (entries) => { entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }); },
     { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
   );
-
-  sections.forEach((section) => observer.observe(section));
+  sections.forEach((s) => sectionObserver.observe(s));
 </script>
