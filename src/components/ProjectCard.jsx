@@ -4,19 +4,19 @@ import { ExternalLink, GitBranch } from "lucide-react";
 
 const projectMeta = {
   "ML-Powered Fake Job Detector": {
-    img: "/images/project-fake-job.jpg",
+    img: "/images/project-fake-job.png",
     alt: "ML Fake Job Detector project screenshot",
   },
   "AI-Generated Text Detector": {
-    img: "/images/project-ai-detector.jpg",
+    img: "/images/project-ai-detector.png",
     alt: "AI Text Detector project screenshot",
   },
   "Sketchline — Real-Time Collaborative Whiteboard": {
-    img: "/images/project-sketchline.jpg",
+    img: "/images/project-sketchline.png",
     alt: "Sketchline collaborative whiteboard screenshot",
   },
   "ProjectScope — Eisenhower Matrix Task Manager": {
-    img: "/images/project-scope.jpg",
+    img: "/images/project-scope.png",
     alt: "ProjectScope task manager screenshot",
   },
 };
