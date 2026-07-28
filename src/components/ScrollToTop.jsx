@@ -4,16 +4,21 @@ export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      const windowH = window.innerHeight;
+      const docH = document.body.scrollHeight;
+      // Show after 400px scroll, hide when within 160px of page bottom
+      const nearBottom = scrollY + windowH > docH - 160;
+      setVisible(scrollY > 400 && !nearBottom);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollUp = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
   return (
     <button
-      onClick={scrollUp}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll to top"
       style={{
         opacity: visible ? 1 : 0,
