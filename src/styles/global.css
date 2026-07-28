@@ -159,38 +159,7 @@ html.dark .scroll-progress-bar {
 html.dark .uiverse-btn { background: #F0F0F0; color: #000; }
 html.dark .uiverse-btn::after { background: #F0F0F0; }
 
-/* ── Get In Touch — diagonal shimmer-slide fill button ──────────────────── */
-.git-btn {
-  position: relative; border-radius: 12px;
-  border: 1.5px solid #0D0D0D; color: #0D0D0D; background: transparent;
-  font-weight: 600; overflow: hidden; isolation: isolate; text-decoration: none;
-  transition: color .4s cubic-bezier(.23,1,.32,1),
-              border-color .4s cubic-bezier(.23,1,.32,1),
-              transform .25s cubic-bezier(.23,1,.32,1),
-              box-shadow .25s cubic-bezier(.23,1,.32,1);
-}
-/* sliding diagonal fill */
-.git-btn::before {
-  content: ''; position: absolute;
-  top: 0; left: -110%; width: 100%; height: 100%;
-  background: linear-gradient(105deg, transparent 20%, #0D0D0D 20%);
-  z-index: -1; transition: left .4s cubic-bezier(.23,1,.32,1);
-}
-@media (hover: hover) and (pointer: fine) {
-  .git-btn:hover::before { left: 0; }
-  .git-btn:hover {
-    color: #fff; border-color: #0D0D0D;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,.18);
-  }
-}
-.git-btn:active { transform: translateY(0) scale(.97); }
-
-html.dark .git-btn { border-color: rgba(255,255,255,.7); color: #F5F5F5; }
-html.dark .git-btn::before { background: linear-gradient(105deg, transparent 20%, #F5F5F5 20%); }
-@media (hover: hover) and (pointer: fine) {
-  html.dark .git-btn:hover { color: #000; border-color: #F5F5F5; box-shadow: 0 8px 24px rgba(255,255,255,.08); }
-}
+/* git-btn styles moved to bottom of file (bottom-to-top fill) */
 
 /* ── Magic UI Border Beam ───────────────────────────────────────────────── */
 @property --beam-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
@@ -367,4 +336,53 @@ html.dark .img-skeleton {
 }
 html.dark .mobile-nav-link.font-semibold {
   color: #F5F5F5;
+}
+
+/* ── Skills Marquee animation ────────────────────────────────────────────── */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-scroll-rev {
+  0%   { transform: translateX(-50%); }
+100% { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [style*="marquee-scroll"] { animation: none !important; }
+}
+
+/* ── Get In Touch — bottom-to-top fill (full coverage, no gaps) ──────────── */
+.git-btn {
+  position: relative; border-radius: 12px;
+  border: 1.5px solid #0D0D0D; color: #0D0D0D;
+  background: linear-gradient(to top, #0D0D0D 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  font-weight: 600; overflow: hidden; text-decoration: none;
+  transition: background-position .4s cubic-bezier(.23,1,.32,1),
+              color .4s cubic-bezier(.23,1,.32,1),
+              transform .25s cubic-bezier(.23,1,.32,1),
+              box-shadow .25s cubic-bezier(.23,1,.32,1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .git-btn:hover {
+    background-position: bottom;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  }
+}
+.git-btn:active { transform: translateY(0) scale(.97); }
+html.dark .git-btn {
+  border-color: rgba(255,255,255,.7); color: #F5F5F5;
+  background: linear-gradient(to top, #F5F5F5 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+}
+@media (hover: hover) and (pointer: fine) {
+  html.dark .git-btn:hover {
+    background-position: bottom;
+    color: #000;
+    box-shadow: 0 8px 24px rgba(255,255,255,.08);
+  }
 }
