@@ -49,6 +49,7 @@ export default function ContactForm() {
         EMAILJS_KEY
       );
       setSent(true);
+      window.dispatchEvent(new CustomEvent('form-sent'));
     } catch {
       setErrors({ submit: "Something went wrong. Email me directly at sugumarankugan@gmail.com" });
     } finally { setLoading(false); }
