@@ -454,3 +454,77 @@ html.dark .neu-btn:hover {
 html.dark .neu-btn:active {
   box-shadow: inset 6px 6px 12px #111111, inset -6px -6px 12px #2b2b2b;
 }
+
+/* ── Button style 4: border pill — Get In Touch, View All Projects ───────── */
+/* matches: border 3px solid #315cfd, fills blue on hover, font grows */
+.btn-outline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 52px;
+  padding: 0 2rem;
+  border: 2.5px solid #315cfd;
+  border-radius: 45px;
+  background: white;
+  color: #315cfd;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.btn-outline-pill:hover {
+  background: #315cfd;
+  color: white;
+  font-size: 1.05rem;
+}
+.btn-outline-pill:active {
+  transform: scale(0.97);
+}
+html.dark .btn-outline-pill {
+  background: transparent;
+  color: #6fa0ff;
+  border-color: #6fa0ff;
+}
+html.dark .btn-outline-pill:hover {
+  background: #315cfd;
+  color: white;
+  border-color: #315cfd;
+}
+
+/* ── Button style 5: filled blue pill — Download CV, Send Message ────────── */
+/* matches: bg #2ba8fb, white text, glow + scale on hover */
+.btn-filled-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12.5px 30px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  white-space: nowrap;
+}
+.btn-filled-pill:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.08);
+}
+.btn-filled-pill:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+.btn-filled-pill:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

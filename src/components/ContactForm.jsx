@@ -94,7 +94,7 @@ export default function ContactForm() {
       {errors.submit && <p className="text-xs text-red-400">{errors.submit}</p>}
 
       <button type="submit" disabled={loading}
-        className="mt-1 w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-accent dark:bg-accentDark text-white dark:text-black text-sm font-semibold hover:bg-accentHover dark:hover:opacity-90 transition-all disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]">
+        className="btn-filled-pill mt-1 w-full" style={loading ? {opacity:0.6,pointerEvents:"none"} : {}}>
         {loading
           ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</>
           : <><Send className="w-4 h-4" /> Send Message</>

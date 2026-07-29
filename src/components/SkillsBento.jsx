@@ -1,24 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  Code2, Monitor, Server, Database, Wrench, Brain
-} from "lucide-react";
-
-// Glass card style matching the uiverse component — pure inline, no styled-components needed
-const glassStyle = {
-  background: "rgba(217, 217, 217, 0.38)",
-  border: "1px solid rgba(255,255,255,0.7)",
-  boxShadow: "4px 6px 20px rgba(0,0,0,0.08)",
-  backdropFilter: "blur(6px)",
-  WebkitBackdropFilter: "blur(6px)",
-  borderRadius: "17px",
-  transition: "all 0.5s",
-};
-
-const glassStyleDark = {
-  background: "rgba(30, 30, 30, 0.55)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  boxShadow: "12px 17px 51px rgba(0,0,0,0.45)",
-};
+import { Code2, Monitor, Server, Database, Wrench, Brain } from "lucide-react";
 
 const categories = [
   {
@@ -55,27 +36,21 @@ const categories = [
     title: "AI / ML & NLP",
     Icon: Brain,
     span: "sm:col-span-2 md:col-span-3",
-    skills: [
-      "Scikit-learn", "TF-IDF", "NLP",
-      "Hugging Face", "BERT", "Prompt Engineering", "Explainable AI",
-    ],
+    skills: ["Scikit-learn", "TF-IDF", "NLP", "Hugging Face", "BERT", "Prompt Engineering", "Explainable AI"],
     featured: true,
   },
 ];
 
-function BentoCard({ title, Icon, skills, span = "", delay = 0, featured = false }) {
+function SkillCard({ title, Icon, skills, span = "", delay = 0, featured = false }) {
   return (
     <motion.div
-      className={`bento-glass-card group flex flex-col gap-3.5 p-5 sm:p-6 cursor-default ${span}`}
-      style={glassStyle}
-      initial={{ opacity: 0, y: 18 }}
+      className={`glass-card flex flex-col gap-3.5 p-5 sm:p-6 cursor-default ${span}`}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.48, delay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ scale: 1.03, transition: { duration: 0.25, delay: 0 } }}
-      whileTap={{ scale: 0.97, rotate: 1.2 }}
+      transition={{ duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -2, transition: { duration: 0.2, delay: 0 } }}
     >
-      {/* Header */}
       <div className="flex items-center gap-2.5">
         <Icon
           size={featured ? 20 : 18}
@@ -87,12 +62,11 @@ function BentoCard({ title, Icon, skills, span = "", delay = 0, featured = false
         </h3>
       </div>
 
-      {/* Skills */}
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
           <span
             key={skill}
-            className="text-[12px] sm:text-[13px] px-2.5 py-1 rounded-lg font-medium text-inkMuted dark:text-white/65 bg-black/[.04] dark:bg-white/[.07] border border-black/[.06] dark:border-white/[.08]"
+            className="text-[12px] sm:text-[13px] px-2.5 py-1 rounded-lg font-medium text-inkMuted dark:text-white/65 bg-black/[.04] dark:bg-white/[.07] border border-borderLight dark:border-borderDark"
           >
             {skill}
           </span>
@@ -106,7 +80,7 @@ export default function SkillsBento() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
       {categories.map((cat, i) => (
-        <BentoCard key={cat.title} {...cat} delay={i * 0.07} />
+        <SkillCard key={cat.title} {...cat} delay={i * 0.07} />
       ))}
     </div>
   );
