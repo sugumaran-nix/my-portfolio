@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="404 — Page Not Found | Sugumaran">
+  <Navbar />
+  <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+    <p class="text-[11px] font-bold uppercase tracking-[.25em] text-inkMuted/40 dark:text-white/20 mb-4">404</p>
+    <h1 class="text-[56px] sm:text-[80px] font-bold tracking-tight text-ink dark:text-white leading-none mb-4">
+      Lost?
+    </h1>
+    <p class="text-[16px] text-inkMuted dark:text-white/50 max-w-[360px] leading-[1.8] mb-8">
+      This page doesn't exist. Head back to the portfolio.
+    </p>
+    <a href="/" class="btn-outline-pill">Back to Home</a>
+  </section>
+</Layout>
