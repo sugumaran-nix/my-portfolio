@@ -63,20 +63,20 @@ export default function ProjectCard({ title, desc, tags, href, demoHref, delay =
           ))}
         </div>
 
-        <div className="flex items-center gap-4 pt-1">
-          {demoHref && (
-            <a href={demoHref} target="_blank" rel="noopener"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink dark:text-white/80 hover:opacity-75 transition-opacity">
-              <ExternalLink className="w-3.5 h-3.5" /> View Demo
-            </a>
-          )}
-          {href && (
-            <a href={href} target="_blank" rel="noopener"
-              className="inline-flex items-center gap-1.5 text-xs text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors">
-              <GitBranch className="w-3.5 h-3.5" /> GitHub
-            </a>
-          )}
-        </div>
+        <div className="flex items-center gap-2 pt-1 flex-wrap">
+  {demoHref && (
+    <a href={demoHref} target="_blank" rel="noopener"
+      className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border border-ink/20 dark:border-white/20 text-ink dark:text-white hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition-all">
+      <ExternalLink className="w-3 h-3" /> View Demo
+    </a>
+  )}
+  {href && (
+    <a href={href} target="_blank" rel="noopener"
+      className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1.5 rounded-full border border-black/[.07] dark:border-white/[.07] text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white hover:border-ink/20 dark:hover:border-white/20 transition-all">
+      <GitBranch className="w-3 h-3" /> GitHub
+    </a>
+  )}
+</div>
       </div>
     </MagicCard>
   );
