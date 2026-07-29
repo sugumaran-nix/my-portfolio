@@ -1,104 +1,102 @@
 import { motion } from "framer-motion";
+import {
+  Code2, Monitor, Server, Database, Wrench, Brain
+} from "lucide-react";
+
+// Glass card style matching the uiverse component — pure inline, no styled-components needed
+const glassStyle = {
+  background: "rgba(217, 217, 217, 0.38)",
+  border: "1px solid rgba(255,255,255,0.7)",
+  boxShadow: "12px 17px 51px rgba(0,0,0,0.14)",
+  backdropFilter: "blur(6px)",
+  WebkitBackdropFilter: "blur(6px)",
+  borderRadius: "17px",
+  transition: "all 0.5s",
+};
+
+const glassStyleDark = {
+  background: "rgba(30, 30, 30, 0.55)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  boxShadow: "12px 17px 51px rgba(0,0,0,0.45)",
+};
 
 const categories = [
   {
     title: "Languages",
-    icon: "⌨️",
-    span: "md:col-span-2",
+    Icon: Code2,
+    span: "sm:col-span-2 md:col-span-2",
     skills: ["Python (Primary)", "JavaScript (ES6+)", "TypeScript", "SQL"],
-    accent: "#3776AB",
   },
   {
     title: "Frontend",
-    icon: "🖥️",
-    span: "md:col-span-1",
+    Icon: Monitor,
+    span: "sm:col-span-1 md:col-span-1",
     skills: ["React.js", "Next.js", "Tailwind CSS", "HTML5", "CSS3"],
-    accent: "#61DAFB",
   },
   {
     title: "Backend",
-    icon: "⚙️",
-    span: "md:col-span-1",
+    Icon: Server,
+    span: "sm:col-span-1 md:col-span-1",
     skills: ["FastAPI", "Flask", "WebSockets", "REST API Design"],
-    accent: "#009688",
   },
   {
     title: "Databases",
-    icon: "🗄️",
-    span: "md:col-span-1",
+    Icon: Database,
+    span: "sm:col-span-1 md:col-span-1",
     skills: ["MySQL", "SQLite", "MongoDB"],
-    accent: "#47A248",
   },
   {
     title: "Tools & OS",
-    icon: "🛠️",
-    span: "md:col-span-1",
+    Icon: Wrench,
+    span: "sm:col-span-1 md:col-span-1",
     skills: ["Git", "GitHub", "VS Code", "Linux", "Jupyter Notebook"],
-    accent: "#F05032",
   },
   {
     title: "AI / ML & NLP",
-    icon: "🤖",
-    span: "md:col-span-3",
+    Icon: Brain,
+    span: "sm:col-span-2 md:col-span-3",
     skills: [
-      "Scikit-learn",
-      "TF-IDF",
-      "NLP",
-      "Hugging Face",
-      "BERT",
-      "Prompt Engineering",
-      "Explainable AI",
+      "Scikit-learn", "TF-IDF", "NLP",
+      "Hugging Face", "BERT", "Prompt Engineering", "Explainable AI",
     ],
-    accent: "#10b981",
     featured: true,
   },
 ];
 
-function BentoCard({ title, icon, skills, accent, featured = false, span = "", delay = 0 }) {
+function BentoCard({ title, Icon, skills, span = "", delay = 0, featured = false }) {
   return (
     <motion.div
-      className={`bento-card group relative rounded-2xl p-5 sm:p-6 flex flex-col gap-4 overflow-hidden border border-borderLight dark:border-borderDark bg-white/80 dark:bg-white/[0.03] backdrop-blur-sm ${span} ${featured ? "bento-featured" : ""}`}
-      initial={{ opacity: 0, y: 16 }}
+      className={`bento-glass-card group flex flex-col gap-3.5 p-5 sm:p-6 cursor-default ${span}`}
+      style={glassStyle}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -3, transition: { duration: 0.18, delay: 0 } }}
-      style={{ "--card-accent": accent }}
+      transition={{ duration: 0.48, delay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ scale: 1.03, transition: { duration: 0.25, delay: 0 } }}
+      whileTap={{ scale: 0.97, rotate: 1.2 }}
     >
-      {/* Subtle accent glow on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-        style={{
-          background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${accent}12 0%, transparent 70%)`,
-        }}
-      />
+      {/* Header */}
+      <div className="flex items-center gap-2.5">
+        <Icon
+          size={featured ? 20 : 18}
+          strokeWidth={1.8}
+          className="text-ink dark:text-white flex-shrink-0"
+        />
+        <h3 className={`font-semibold text-ink dark:text-white ${featured ? "text-[15px]" : "text-[14px]"}`}>
+          {title}
+        </h3>
+      </div>
 
-      {/* Accent bar top */}
-      <div
-        className="absolute top-0 left-6 right-6 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: accent }}
-      />
-
-      <div className="relative z-10 flex flex-col gap-3">
-        {/* Header */}
-        <div className="flex items-center gap-2.5">
-          <span className="text-xl leading-none">{icon}</span>
-          <h3 className={`font-semibold text-ink dark:text-white ${featured ? "text-[15px]" : "text-[14px]"}`}>
-            {title}
-          </h3>
-        </div>
-
-        {/* Skills */}
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <span
-              key={skill}
-              className="text-[12px] sm:text-[13px] px-2.5 py-1 rounded-lg font-medium text-inkMuted dark:text-white/65 bg-black/[.04] dark:bg-white/[.06] border border-black/[.06] dark:border-white/[.08] transition-colors group-hover:border-black/10 dark:group-hover:border-white/12"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
+      {/* Skills */}
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span
+            key={skill}
+            className="text-[12px] sm:text-[13px] px-2.5 py-1 rounded-lg font-medium text-inkMuted dark:text-white/65 bg-black/[.04] dark:bg-white/[.07] border border-black/[.06] dark:border-white/[.08]"
+          >
+            {skill}
+          </span>
+        ))}
       </div>
     </motion.div>
   );
@@ -108,11 +106,7 @@ export default function SkillsBento() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
       {categories.map((cat, i) => (
-        <BentoCard
-          key={cat.title}
-          {...cat}
-          delay={i * 0.06}
-        />
+        <BentoCard key={cat.title} {...cat} delay={i * 0.07} />
       ))}
     </div>
   );

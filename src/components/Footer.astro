@@ -20,30 +20,35 @@ const socials = [
 ];
 ---
 
-<footer class="section-divider px-6 py-6">
-  <div class="max-w-content mx-auto flex flex-row items-center justify-center gap-5 flex-wrap">
+<footer class="section-divider px-6 py-8">
+  <div class="max-w-content mx-auto flex flex-col items-center gap-4">
 
-    <!-- Social icons -->
-    {socials.map((s) => (
-      <a
-        href={s.href}
-        target={s.href.startsWith('http') ? '_blank' : undefined}
-        rel={s.href.startsWith('http') ? 'noopener' : undefined}
-        aria-label={s.label}
-        class="text-inkMuted/50 dark:text-white/35 hover:text-ink dark:hover:text-white transition-all hover:scale-110"
-      >
-        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px] fill-current">
-          <path d={s.path} />
-        </svg>
-      </a>
-    ))}
+    <!-- Name + tagline -->
+    <p class="text-[15px] font-semibold text-ink dark:text-white tracking-tight">Sugumaran</p>
+    <p class="text-[12px] font-medium text-inkMuted/50 dark:text-white/25 -mt-2">
+      Fresh Graduate · Open to Work
+    </p>
 
-    <!-- Divider dot -->
-    <span class="text-inkMuted/25 dark:text-white/15 text-[10px]">·</span>
+    <!-- Social icons row -->
+    <div class="flex items-center gap-5">
+      {socials.map((s) => (
+        <a
+          href={s.href}
+          target={s.href.startsWith('http') ? '_blank' : undefined}
+          rel={s.href.startsWith('http') ? 'noopener' : undefined}
+          aria-label={s.label}
+          class="w-8 h-8 rounded-lg border border-borderLight dark:border-borderDark flex items-center justify-center text-inkMuted/50 dark:text-white/30 hover:text-ink dark:hover:text-white hover:border-ink/25 dark:hover:border-white/25 hover:scale-110 transition-all"
+        >
+          <svg viewBox="0 0 24 24" class="w-[15px] h-[15px] fill-current">
+            <path d={s.path} />
+          </svg>
+        </a>
+      ))}
+    </div>
 
     <!-- Copyright -->
-    <p class="text-[13px] font-medium text-inkMuted/60 dark:text-white/35">
-      © {year} Sugumaran S.
+    <p class="text-[12px] font-medium text-inkMuted/35 dark:text-white/20">
+      © {year} Sugumaran
     </p>
 
   </div>
