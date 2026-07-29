@@ -7,7 +7,7 @@ import {
 const glassStyle = {
   background: "rgba(217, 217, 217, 0.38)",
   border: "1px solid rgba(255,255,255,0.7)",
-  boxShadow: "12px 17px 51px rgba(0,0,0,0.14)",
+  boxShadow: "4px 6px 20px rgba(0,0,0,0.08)",
   backdropFilter: "blur(6px)",
   WebkitBackdropFilter: "blur(6px)",
   borderRadius: "17px",

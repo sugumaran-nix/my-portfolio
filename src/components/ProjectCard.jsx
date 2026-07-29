@@ -3,13 +3,12 @@ import MagicCard from "./MagicCard.jsx";
 import { ExternalLink, GitBranch } from "lucide-react";
 
 const projectMeta = {
-  "ML-Powered Fake Job Detector":                   { img: "/images/project-fake-job.jpg",   alt: "ML Fake Job Detector" },
-  "AI-Generated Text Detector":                     { img: "/images/project-ai-detector.jpg", alt: "AI Text Detector" },
-  "Sketchline — Real-Time Collaborative Whiteboard":{ img: "/images/project-sketchline.jpg",  alt: "Sketchline Whiteboard" },
-  "ProjectScope — Eisenhower Matrix Task Manager":  { img: "/images/project-scope.jpg",       alt: "ProjectScope Task Manager" },
+  "ML-Powered Fake Job Detector":                   { imgs: ["/images/project-fake-job.png",   "/images/project-fake-job.jpg"],   alt: "ML Fake Job Detector" },
+  "AI-Generated Text Detector":                     { imgs: ["/images/project-ai-detector.png", "/images/project-ai-detector.jpg"], alt: "AI Text Detector" },
+  "Sketchline — Real-Time Collaborative Whiteboard":{ imgs: ["/images/project-sketchline.png",  "/images/project-sketchline.jpg"],  alt: "Sketchline Whiteboard" },
+  "ProjectScope — Eisenhower Matrix Task Manager":  { imgs: ["/images/project-scope.png",       "/images/project-scope.jpg"],       alt: "ProjectScope Task Manager" },
 };
 
-// Fallback gradient when image fails or is still a placeholder
 const FALLBACK_COLORS = {
   "ML-Powered Fake Job Detector":                   "from-slate-800 to-blue-900",
   "AI-Generated Text Detector":                     "from-zinc-800 to-violet-900",
@@ -17,39 +16,47 @@ const FALLBACK_COLORS = {
   "ProjectScope — Eisenhower Matrix Task Manager":  "from-stone-800 to-amber-900",
 };
 
-function ProjectImage({ src, alt, title }) {
-  const [state, setState] = useState("loading"); // loading | loaded | error
+function ProjectImage({ imgs, alt, title }) {
+  const [idx, setIdx] = useState(0);
+  const [state, setState] = useState("loading");
+
+  const handleError = () => {
+    if (idx + 1 < imgs.length) {
+      setIdx(idx + 1); // try next format
+    } else {
+      setState("error");
+    }
+  };
 
   return (
     <div className="w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden rounded-t-2xl bg-neutral-100 dark:bg-neutral-900">
-      {/* shimmer while loading */}
       {state === "loading" && <div className="absolute inset-0 img-skeleton" />}
-
-      {/* fallback gradient if error */}
       {state === "error" && (
         <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_COLORS[title] ?? "from-zinc-800 to-zinc-900"} flex items-center justify-center`}>
           <span className="text-white/30 text-xs font-mono">screenshot coming soon</span>
         </div>
       )}
-
-      <img
-        src={src}
-        alt={alt}
-        onLoad={() => setState("loaded")}
-        onError={() => setState("error")}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${state === "loaded" ? "opacity-100" : "opacity-0"}`}
-        loading="lazy"
-      />
+      {state !== "error" && (
+        <img
+          key={imgs[idx]}
+          src={imgs[idx]}
+          alt={alt}
+          onLoad={() => setState("loaded")}
+          onError={handleError}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${state === "loaded" ? "opacity-100" : "opacity-0"}`}
+          loading="lazy"
+        />
+      )}
     </div>
   );
 }
 
 export default function ProjectCard({ title, desc, tags, href, demoHref, delay = 0 }) {
-  const meta = projectMeta[title] ?? { img: "/images/project-fake-job.jpg", alt: "Project screenshot" };
+  const meta = projectMeta[title] ?? { imgs: ["/images/project-fake-job.png", "/images/project-fake-job.jpg"], alt: "Project screenshot" };
 
   return (
     <MagicCard delay={delay} className="glass-card flex flex-col h-full">
-      <ProjectImage src={meta.img} alt={meta.alt} title={title} />
+      <ProjectImage imgs={meta.imgs} alt={meta.alt} title={title} />
 
       <div className="p-5 flex flex-col gap-3 flex-1">
         <h3 className="text-[15px] font-semibold leading-snug text-ink dark:text-white">{title}</h3>
