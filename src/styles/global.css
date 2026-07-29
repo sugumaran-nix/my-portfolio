@@ -187,6 +187,7 @@ html.dark .magic-border::before {
   background: rgba(255,255,255,.75);
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(0,0,0,.07);
+  border-radius: 16px;
   box-shadow: 0 1px 3px rgba(0,0,0,.03), 0 8px 24px -4px rgba(0,0,0,.07), 0 0 0 1px rgba(0,0,0,.03);
   transition: box-shadow .2s ease;
 }
@@ -455,76 +456,84 @@ html.dark .neu-btn:active {
   box-shadow: inset 6px 6px 12px #111111, inset -6px -6px 12px #2b2b2b;
 }
 
-/* ── Button style 4: border pill — Get In Touch, View All Projects ───────── */
-/* matches: border 3px solid #315cfd, fills blue on hover, font grows */
+/* ── Button 4: outline pill — Get In Touch, View All Projects ────────────── */
 .btn-outline-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 52px;
-  padding: 0 2rem;
-  border: 2.5px solid #315cfd;
+  height: 50px;
+  padding: 0 1.75rem;
+  border: 2px solid #0D0D0D;
   border-radius: 45px;
-  background: white;
-  color: #315cfd;
-  font-size: 0.95rem;
+  background: transparent;
+  color: #0D0D0D;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
   white-space: nowrap;
 }
 .btn-outline-pill:hover {
-  background: #315cfd;
-  color: white;
-  font-size: 1.05rem;
+  background: #0D0D0D;
+  color: #ffffff;
+  transform: scale(1.03);
 }
 .btn-outline-pill:active {
   transform: scale(0.97);
 }
 html.dark .btn-outline-pill {
-  background: transparent;
-  color: #6fa0ff;
-  border-color: #6fa0ff;
+  border-color: rgba(255,255,255,0.7);
+  color: #F5F5F5;
 }
 html.dark .btn-outline-pill:hover {
-  background: #315cfd;
-  color: white;
-  border-color: #315cfd;
+  background: #F5F5F5;
+  color: #0D0D0D;
+  border-color: #F5F5F5;
 }
 
-/* ── Button style 5: filled blue pill — Download CV, Send Message ────────── */
-/* matches: bg #2ba8fb, white text, glow + scale on hover */
+/* ── Button 5: filled pill — Download CV, Send Message ───────────────────── */
 .btn-filled-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 12.5px 30px;
+  padding: 12px 28px;
   border: 0;
   border-radius: 100px;
-  background-color: #2ba8fb;
+  background-color: #0D0D0D;
   color: #ffffff;
   font-weight: 700;
   font-size: 0.875rem;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   white-space: nowrap;
 }
 .btn-filled-pill:hover {
-  background-color: #6fc5ff;
-  box-shadow: 0 0 20px #6fc5ff50;
-  transform: scale(1.08);
+  background-color: #2a2a2a;
+  box-shadow: 0 0 18px rgba(0,0,0,0.2);
+  transform: scale(1.04);
 }
 .btn-filled-pill:active {
-  background-color: #3d94cf;
-  transition: all 0.25s;
+  background-color: #111;
   box-shadow: none;
-  transform: scale(0.98);
+  transform: scale(0.97);
+  transition: all 0.15s;
 }
 .btn-filled-pill:disabled {
   opacity: 0.6;
   pointer-events: none;
+}
+html.dark .btn-filled-pill {
+  background-color: #F5F5F5;
+  color: #0D0D0D;
+}
+html.dark .btn-filled-pill:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 0 18px rgba(255,255,255,0.1);
+}
+html.dark .btn-filled-pill:active {
+  background-color: #cccccc;
 }

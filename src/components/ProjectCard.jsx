@@ -10,7 +10,7 @@ const projectMeta = {
 };
 
 const FALLBACK = {
-  "ML-Powered Fake Job Detector":                   "from-slate-800 to-blue-900",
+  "ML-Powered Fake Job Detector":                   "from-slate-700 to-slate-900",
   "AI-Generated Text Detector":                     "from-zinc-800 to-violet-900",
   "Sketchline — Real-Time Collaborative Whiteboard":"from-neutral-800 to-teal-900",
   "ProjectScope — Eisenhower Matrix Task Manager":  "from-stone-800 to-amber-900",
@@ -66,7 +66,7 @@ export default function ProjectCard({ title, desc, tags, href, demoHref, delay =
         <div className="flex items-center gap-4 pt-1">
           {demoHref && (
             <a href={demoHref} target="_blank" rel="noopener"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:opacity-75 transition-opacity">
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink dark:text-white/80 hover:opacity-75 transition-opacity">
               <ExternalLink className="w-3.5 h-3.5" /> View Demo
             </a>
           )}
