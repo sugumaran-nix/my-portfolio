@@ -1,6 +1,6 @@
 /**
  * PORTFOLIO — global styles
- * Theme: Warm Graphite Monochrome — light (#F7F5F2) · dark (#050504)
+ * Theme: Warm Graphite Monochrome — light (#F7F5F2) · dark (#0a0a0a)
  * Zero chromatic color. WCAG AA/AAA verified.
  */
 
@@ -26,14 +26,14 @@
     background-color: #F7F5F2;
     color: #0D0D0B;
   }
-  html.dark body { background-color: #050504; color: #F0EDE8; }
+  html.dark body { background-color: #0a0a0a; color: #e8e8e8; }
 
   :focus-visible {
     outline: 2px solid #4A4A47;
     outline-offset: 3px;
     border-radius: 4px;
   }
-  html.dark :focus-visible { outline-color: #C0BDB8; }
+  html.dark :focus-visible { outline-color: #cccccc; }
   :focus:not(:focus-visible) { outline: none; }
 
   h1, h2, h3 {
@@ -53,9 +53,9 @@
   --font-mono: 'JetBrains Mono', Menlo, monospace;
 }
 html.dark {
-  --accent: #EDEBE6;
-  --accent-hover: #F0EDE8;
-  --accent-subtle: rgba(237,235,230,.07);
+  --accent: #e8e8e8;
+  --accent-hover: #f0f0f0;
+  --accent-subtle: rgba(232,232,232,.07);
 }
 
 /* ── Font helpers ───────────────────────────────────────────────────────── */
@@ -77,14 +77,14 @@ html.dark {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 html.dark .hero-name-display em {
-  background: linear-gradient(135deg, #F0EDE8 0%, #C0BDB8 55%, #F0EDE8 100%);
+  background: linear-gradient(135deg, #f0f0f0 0%, #cccccc 55%, #f0f0f0 100%);
   -webkit-background-clip: text; background-clip: text;
 }
 
 
 /* ── Section divider ────────────────────────────────────────────────────── */
 .section-divider { border-top: 1px solid #868380; }
-html.dark .section-divider { border-top-color: #252320; }
+html.dark .section-divider { border-top-color: #222222; }
 
 /* ── Section eyebrow label ──────────────────────────────────────────────── */
 .section-eyebrow {
@@ -93,7 +93,7 @@ html.dark .section-divider { border-top-color: #252320; }
   text-transform: uppercase; color: #6B6860;
   margin-bottom: .5rem;
 }
-html.dark .section-eyebrow { color: #9C9890; }
+html.dark .section-eyebrow { color: #888888; }
 
 /* ── Section heading — DM Serif italic accent ───────────────────────────── */
 .section-heading em {
@@ -108,7 +108,7 @@ html.dark .section-eyebrow { color: #9C9890; }
   background: linear-gradient(90deg, #1A1A18 0%, #4A4A47 100%);
 }
 html.dark .scroll-progress-bar {
-  background: linear-gradient(90deg, #EDEBE6 0%, #C0BDB8 100%);
+  background: linear-gradient(90deg, #e8e8e8 0%, #cccccc 100%);
 }
 
 /* ── Scroll reveal ──────────────────────────────────────────────────────── */
@@ -148,16 +148,16 @@ html.dark .scroll-progress-bar {
 .uiverse-btn span { position: relative; z-index: 2; display: flex; align-items: center; gap: .5rem; }
 @media (hover: hover) {
   .uiverse-btn:hover::before { opacity: 1; animation: uiverse-spin 3s linear infinite; }
-  .uiverse-btn:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(13,13,11,.22); }
+  .uiverse-btn:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
 }
 @keyframes uiverse-spin { to { --uiverse-angle: 360deg; } }
 .uiverse-btn:active { transform: scale(.97); }
-html.dark .uiverse-btn { background: #0F0E0C; color: #F0EDE8; }
-html.dark .uiverse-btn::after { background: #0F0E0C; }
+html.dark .uiverse-btn { background: #111111; color: #e8e8e8; }
+html.dark .uiverse-btn::after { background: #111111; }
 html.dark .uiverse-btn::before {
-  background: conic-gradient(from var(--uiverse-angle), transparent 70%, #C0BDB8 85%, transparent 100%);
+  background: conic-gradient(from var(--uiverse-angle), transparent 70%, #cccccc 85%, transparent 100%);
 }
-html.dark .uiverse-btn:hover { box-shadow: 0 8px 32px rgba(0,0,0,.6); }
+html.dark .uiverse-btn:hover { box-shadow: 0 8px 32px rgba(0,0,0,.7); }
 
 /* ── Magic UI Border Beam ───────────────────────────────────────────────── */
 @property --beam-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
@@ -175,9 +175,9 @@ html.dark .uiverse-btn:hover { box-shadow: 0 8px 32px rgba(0,0,0,.6); }
 }
 @media (hover: hover) { .magic-border:hover::before { opacity: 1; animation-play-state: running; } }
 @keyframes beam-spin { to { --beam-angle: 360deg; } }
-html.dark .magic-border { background: rgba(18,17,15,.92); border-color: rgba(192,189,184,.08); }
+html.dark .magic-border { background: rgba(17,17,17,.92); border-color: rgba(204,204,204,.08); }
 html.dark .magic-border::before {
-  background: conic-gradient(from var(--beam-angle), transparent 70%, rgba(192,189,184,.45) 85%, transparent 100%);
+  background: conic-gradient(from var(--beam-angle), transparent 70%, rgba(204,204,204,.45) 85%, transparent 100%);
 }
 
 /* ── Glass card ─────────────────────────────────────────────────────────── */
@@ -193,12 +193,12 @@ html.dark .magic-border::before {
   box-shadow: 0 4px 8px rgba(13,13,11,.06), 0 20px 40px -8px rgba(13,13,11,.13), 0 0 0 1px rgba(74,74,71,.08);
 }
 html.dark .glass-card {
-  background: rgba(18,17,15,.92) !important;
-  border-color: rgba(192,189,184,.06) !important;
-  box-shadow: inset 0 1px 0 rgba(192,189,184,.04), 0 0 0 1px rgba(192,189,184,.03) !important;
+  background: rgba(17,17,17,.92) !important;
+  border-color: rgba(204,204,204,.06) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 0 0 1px rgba(255,255,255,.03) !important;
 }
 html.dark .glass-card:hover {
-  box-shadow: inset 0 1px 0 rgba(192,189,184,.09), 0 0 0 1px rgba(192,189,184,.08), 0 12px 32px -8px rgba(0,0,0,.9) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 0 0 1px rgba(204,204,204,.08), 0 12px 32px -8px rgba(0,0,0,.9) !important;
 }
 
 /* ── Glow Border Card ───────────────────────────────────────────────────── */
@@ -215,11 +215,11 @@ html.dark .glass-card:hover {
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; transition: none;
 }
-html.dark .glow-border-card { background: rgba(18,17,15,.92); border-color: rgba(192,189,184,.07); }
+html.dark .glow-border-card { background: rgba(17,17,17,.92); border-color: rgba(204,204,204,.07); }
 html.dark .glow-border-card::before {
   background: radial-gradient(
     140px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(192,189,184,.12) 0%, transparent 100%
+    rgba(204,204,204,.12) 0%, transparent 100%
   );
 }
 
@@ -236,14 +236,14 @@ html.dark .glow-border-card::before {
 }
 .project-img-wrap img { transition: transform .4s ease; }
 
-/* ── Availability pulse dot — monochrome warm white ─────────────────────── */
+/* ── Availability pulse dot — monochrome ────────────────────────────────── */
 @keyframes avail-pulse {
   0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(13,13,11,.9); }
   50%      { opacity: .5; box-shadow: 0 0 0 7px rgba(13,13,11,0); }
 }
 @keyframes avail-pulse-dark {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(192,189,184,.7); }
-  50%      { opacity: .5; box-shadow: 0 0 0 6px rgba(192,189,184,0); }
+  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(204,204,204,.7); }
+  50%      { opacity: .5; box-shadow: 0 0 0 6px rgba(204,204,204,0); }
 }
 .avail-dot { animation: avail-pulse 2.4s ease-in-out infinite; }
 html.dark .avail-dot { animation: avail-pulse-dark 2.4s ease-in-out infinite; }
@@ -260,7 +260,7 @@ html.dark .avail-dot { animation: avail-pulse-dark 2.4s ease-in-out infinite; }
   animation: shimmer-move 3.5s linear infinite;
 }
 html.dark .shimmer-text {
-  background: linear-gradient(90deg, #F0EDE8 30%, #C0BDB8 50%, #F0EDE8 70%);
+  background: linear-gradient(90deg, #e8e8e8 30%, #cccccc 50%, #e8e8e8 70%);
   background-size: 200% auto;
   -webkit-background-clip: text; background-clip: text;
 }
@@ -277,16 +277,16 @@ html.dark .shimmer-text {
   border-color: #1A1A18; color: #0D0D0B; background: rgba(26,26,24,.05);
   box-shadow: 0 0 0 3px rgba(26,26,24,.08);
 }
-html.dark .copy-box { border-color: #252320; color: #9C9890; }
+html.dark .copy-box { border-color: #222222; color: #888888; }
 html.dark .copy-box:hover {
-  border-color: #C0BDB8; color: #F0EDE8; background: rgba(192,189,184,.07);
-  box-shadow: 0 0 0 3px rgba(192,189,184,.10);
+  border-color: #cccccc; color: #e8e8e8; background: rgba(204,204,204,.07);
+  box-shadow: 0 0 0 3px rgba(204,204,204,.10);
 }
 
 /* ── Skill row hover ────────────────────────────────────────────────────── */
 .skill-row { transition: background .15s ease; }
 .skill-row:hover { background: rgba(74,74,71,.04); }
-html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
+html.dark .skill-row:hover { background: rgba(255,255,255,.04); }
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 .footer-inner { display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
@@ -297,8 +297,8 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
   50%      { box-shadow: 0 0 14px 3px rgba(74,74,71,0.09); }
 }
 @keyframes badge-glow-dark {
-  0%,100% { box-shadow: 0 0 0 0 rgba(192,189,184,0.0); }
-  50%      { box-shadow: 0 0 14px 3px rgba(192,189,184,0.12); }
+  0%,100% { box-shadow: 0 0 0 0 rgba(204,204,204,0.0); }
+  50%      { box-shadow: 0 0 14px 3px rgba(204,204,204,0.12); }
 }
 .avail-badge { animation: badge-glow 3.5s ease-in-out infinite; }
 html.dark .avail-badge { animation: badge-glow-dark 3.5s ease-in-out infinite; }
@@ -336,9 +336,9 @@ html.dark .magic-card-wrap:hover {
   opacity: 0; transition: opacity .25s ease, transform .25s ease;
   white-space: nowrap;
 }
-html.dark .toast { background: #F0EDE8; color: #050504; }
+html.dark .toast { background: #e8e8e8; color: #0a0a0a; }
 .toast.toast-show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast.toast-error { background: #3d3d3a; color: #F7F5F2; }
+.toast.toast-error { background: #333333; color: #e8e8e8; }
 
 /* ── Project card image shimmer skeleton ────────────────────────────────── */
 @keyframes img-shimmer {
@@ -351,7 +351,7 @@ html.dark .toast { background: #F0EDE8; color: #050504; }
   animation: img-shimmer 1.4s ease-in-out infinite;
 }
 html.dark .img-skeleton {
-  background: linear-gradient(90deg, #0F0E0C 25%, #161513 50%, #0F0E0C 75%);
+  background: linear-gradient(90deg, #111111 25%, #1a1a1a 50%, #111111 75%);
   background-size: 800px 100%;
 }
 
@@ -361,8 +361,8 @@ html.dark .img-skeleton {
   color: #0D0D0B;
 }
 html.dark .mobile-nav-link.font-semibold {
-  border-left-color: #C0BDB8 !important;
-  color: #F0EDE8;
+  border-left-color: #cccccc !important;
+  color: #e8e8e8;
 }
 
 /* ── Skills Marquee animation ────────────────────────────────────────────── */
@@ -401,15 +401,15 @@ html.dark .mobile-nav-link.font-semibold {
 }
 .git-btn:active { transform: translateY(0) scale(.97); }
 html.dark .git-btn {
-  border-color: rgba(192,189,184,.55); color: #F0EDE8;
-  background: linear-gradient(to top, #EDEBE6 50%, transparent 50%);
+  border-color: rgba(204,204,204,.55); color: #e8e8e8;
+  background: linear-gradient(to top, #e8e8e8 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
 }
 @media (hover: hover) and (pointer: fine) {
   html.dark .git-btn:hover {
     background-position: bottom;
-    color: #050504;
+    color: #0a0a0a;
     box-shadow: 0 8px 24px rgba(0,0,0,.5);
   }
 }
@@ -425,24 +425,24 @@ html.dark .git-btn {
 }
 html.dark .bento-card { box-shadow: 0 1px 3px rgba(0,0,0,.5); }
 html.dark .bento-card:hover {
-  border-color: rgba(192,189,184,.12) !important;
-  box-shadow: 0 4px 16px -4px rgba(192,189,184,.08);
+  border-color: rgba(204,204,204,.12) !important;
+  box-shadow: 0 4px 16px -4px rgba(204,204,204,.08);
 }
 .bento-featured {
   background: linear-gradient(135deg, rgba(74,74,71,.05) 0%, rgba(250,250,248,.85) 100%);
 }
 html.dark .bento-featured {
-  background: linear-gradient(135deg, rgba(192,189,184,.05) 0%, rgba(18,17,15,.95) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,.05) 0%, rgba(17,17,17,.95) 100%);
 }
 
 /* ── Bento glass card dark mode ─────────────────────────────────────────── */
 html.dark .bento-glass-card {
-  background: rgba(18,17,15,0.82) !important;
-  border: 1px solid rgba(192,189,184,0.07) !important;
+  background: rgba(17,17,17,0.82) !important;
+  border: 1px solid rgba(204,204,204,0.07) !important;
   box-shadow: 12px 17px 51px rgba(0,0,0,0.6) !important;
 }
 html.dark .bento-glass-card:hover {
-  border-color: rgba(192,189,184,0.14) !important;
+  border-color: rgba(204,204,204,0.14) !important;
 }
 
 /* ── Neumorphic button ───────────────────────────────────────────────────── */
@@ -463,15 +463,15 @@ html.dark .bento-glass-card:hover {
   transform: translateY(0);
 }
 html.dark .neu-btn {
-  background: #161513;
-  box-shadow: 8px 8px 18px #050504, -8px -8px 18px #1E1D1B;
-  color: #F0EDE8;
+  background: #1a1a1a;
+  box-shadow: 8px 8px 18px #0a0a0a, -8px -8px 18px #222222;
+  color: #e8e8e8;
 }
 html.dark .neu-btn:hover {
-  box-shadow: 6px 6px 14px #050504, -6px -6px 14px #1E1D1B;
+  box-shadow: 6px 6px 14px #0a0a0a, -6px -6px 14px #222222;
 }
 html.dark .neu-btn:active {
-  box-shadow: inset 6px 6px 12px #050504, inset -6px -6px 12px #1E1D1B;
+  box-shadow: inset 6px 6px 12px #0a0a0a, inset -6px -6px 12px #222222;
 }
 
 /* ── Button 4: outline pill ─────────────────────────────────────────────── */
@@ -486,8 +486,8 @@ html.dark .neu-btn:active {
 }
 .btn-outline-pill:hover { background: #0D0D0B; color: #F7F5F2; transform: scale(1.03); }
 .btn-outline-pill:active { transform: scale(0.97); }
-html.dark .btn-outline-pill { border-color: rgba(192,189,184,.55); color: #F0EDE8; }
-html.dark .btn-outline-pill:hover { background: #EDEBE6; color: #050504; border-color: #EDEBE6; }
+html.dark .btn-outline-pill { border-color: rgba(204,204,204,.55); color: #e8e8e8; }
+html.dark .btn-outline-pill:hover { background: #e8e8e8; color: #0a0a0a; border-color: #e8e8e8; }
 
 /* ── Button 5: filled pill ──────────────────────────────────────────────── */
 .btn-filled-pill {
@@ -508,9 +508,9 @@ html.dark .btn-outline-pill:hover { background: #EDEBE6; color: #050504; border-
   transform: scale(0.97); transition: all 0.15s;
 }
 .btn-filled-pill:disabled { opacity: 0.6; pointer-events: none; }
-html.dark .btn-filled-pill { background-color: #EDEBE6; color: #050504; }
+html.dark .btn-filled-pill { background-color: #e8e8e8; color: #0a0a0a; }
 html.dark .btn-filled-pill:hover {
-  background-color: #F0EDE8;
-  box-shadow: 0 0 18px rgba(237,235,230,.18);
+  background-color: #f0f0f0;
+  box-shadow: 0 0 18px rgba(232,232,232,.18);
 }
-html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
+html.dark .btn-filled-pill:active { background-color: #cccccc; }
