@@ -315,12 +315,12 @@ html.dark .glow-border-card::before {
 
 /* ── Availability pulse dot — monochrome warm white ─────────────────────── */
 @keyframes avail-pulse {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,74,71,.5); }
-  50%      { opacity: .6; box-shadow: 0 0 0 6px rgba(74,74,71,0); }
+  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,74,71,.7); }
+  50%      { opacity: .5; box-shadow: 0 0 0 12px rgba(74,74,71,0); }
 }
 @keyframes avail-pulse-dark {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(192,189,184,.5); }
-  50%      { opacity: .6; box-shadow: 0 0 0 6px rgba(192,189,184,0); }
+  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(192,189,184,.7); }
+  50%      { opacity: .5; box-shadow: 0 0 0 12px rgba(192,189,184,0); }
 }
 .avail-dot { animation: avail-pulse 2.4s ease-in-out infinite; }
 html.dark .avail-dot { animation: avail-pulse-dark 2.4s ease-in-out infinite; }
