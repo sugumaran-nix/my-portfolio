@@ -28,7 +28,7 @@ export default {
         borderLight:    '#868380',   // solid border
 
         // Dark surfaces
-        surfaceDark:      '#141412',  // page background — warm near-black
+        surfaceDark:      '#080807',  // page background — deep warm black
         surfaceDarkMuted: '#1C1B19',  // alternate section bg
         cardDark:         '#222220',  // card background
         borderDark:       '#706E6C',  // border
