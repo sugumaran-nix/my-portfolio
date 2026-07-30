@@ -368,15 +368,40 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 .footer-inner { display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
 
+/* ── Availability badge — subtle glow pulse ─────────────────────────────── */
+@keyframes badge-glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,74,71,0.0); }
+  50%      { box-shadow: 0 0 14px 3px rgba(74,74,71,0.09); }
+}
+@keyframes badge-glow-dark {
+  0%,100% { box-shadow: 0 0 0 0 rgba(192,189,184,0.0); }
+  50%      { box-shadow: 0 0 14px 3px rgba(192,189,184,0.12); }
+}
+.avail-badge { animation: badge-glow 3.5s ease-in-out infinite; }
+html.dark .avail-badge { animation: badge-glow-dark 3.5s ease-in-out infinite; }
+
+/* ── Magic Card — hover shadow lift ────────────────────────────────────── */
+.magic-card-wrap {
+  transition: box-shadow 0.25s ease;
+}
+.magic-card-wrap:hover {
+  box-shadow: 0 12px 40px -8px rgba(13,13,11,0.16), 0 4px 16px -4px rgba(13,13,11,0.10);
+}
+html.dark .magic-card-wrap:hover {
+  box-shadow: 0 12px 40px -8px rgba(0,0,0,0.55), 0 4px 16px -4px rgba(0,0,0,0.38);
+}
+
 /* ── Reduced motion ─────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .avail-dot { animation: none; }
+  .avail-badge { animation: none; }
   .magic-border::before { animation: none; }
   .shimmer-text { animation: none; }
   .uiverse-btn::before { animation: none; }
   .hero-aurora::before,
   .hero-aurora::after { animation: none; }
+  .magic-card-wrap { transition: none; }
 }
 
 /* ── Toast notification ─────────────────────────────────────────────────── */
