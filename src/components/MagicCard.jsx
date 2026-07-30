@@ -44,7 +44,7 @@ export default function MagicCard({ children, className = "", delay = 0 }) {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(16,185,129,0.10) 0%, transparent 55%)",
+            "radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(74,74,71,0.07) 0%, transparent 55%)",
           pointerEvents: "none",
           zIndex: 0,
           transition: "none",

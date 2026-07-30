@@ -28,7 +28,7 @@ function ProjectImage({ src, alt, title }) {
   }, [src]);
 
   return (
-    <div className="w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden rounded-t-2xl">
+    <div className="w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden rounded-t-2xl group">
       {status === "loading" && <div className="absolute inset-0 img-skeleton" />}
 
       {status === "error" && (
@@ -38,7 +38,7 @@ function ProjectImage({ src, alt, title }) {
       )}
 
       {status === "loaded" && (
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <img src={src} alt={alt} className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
       )}
     </div>
   );
