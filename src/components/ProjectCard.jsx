@@ -10,10 +10,10 @@ const projectMeta = {
 };
 
 const FALLBACK = {
-  "ML-Powered Fake Job Detector":                   "from-slate-700 to-slate-900",
-  "AI-Generated Text Detector":                     "from-zinc-800 to-violet-900",
-  "Sketchline — Real-Time Collaborative Whiteboard":"from-neutral-800 to-teal-900",
-  "ProjectScope — Eisenhower Matrix Task Manager":  "from-stone-800 to-amber-900",
+  "ML-Powered Fake Job Detector":                   "from-stone-700 to-stone-900",
+  "AI-Generated Text Detector":                     "from-zinc-700 to-zinc-900",
+  "Sketchline — Real-Time Collaborative Whiteboard":"from-neutral-700 to-neutral-900",
+  "ProjectScope — Eisenhower Matrix Task Manager":  "from-stone-600 to-stone-900",
 };
 
 // Eagerly loads image via JS Image object — avoids lazy-load / Astro SSR mismatch
@@ -32,7 +32,7 @@ function ProjectImage({ src, alt, title }) {
       {status === "loading" && <div className="absolute inset-0 img-skeleton" />}
 
       {status === "error" && (
-        <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK[title] ?? "from-zinc-800 to-zinc-900"} flex items-center justify-center`}>
+        <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK[title] ?? "from-zinc-700 to-zinc-900"} flex items-center justify-center`}>
           <span className="text-white/30 text-xs font-mono">screenshot coming soon</span>
         </div>
       )}
@@ -64,19 +64,19 @@ export default function ProjectCard({ title, desc, tags, href, demoHref, delay =
         </div>
 
         <div className="flex items-center gap-2 pt-1 flex-wrap">
-  {demoHref && (
-    <a href={demoHref} target="_blank" rel="noopener"
-      className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border border-ink/20 dark:border-white/20 text-ink dark:text-white hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition-all">
-      <ExternalLink className="w-3 h-3" /> View Demo
-    </a>
-  )}
-  {href && (
-    <a href={href} target="_blank" rel="noopener"
-      className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1.5 rounded-full border border-black/[.07] dark:border-white/[.07] text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white hover:border-ink/20 dark:hover:border-white/20 transition-all">
-      <GitBranch className="w-3 h-3" /> GitHub
-    </a>
-  )}
-</div>
+          {demoHref && (
+            <a href={demoHref} target="_blank" rel="noopener"
+              className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border border-ink/20 dark:border-white/20 text-ink dark:text-white hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition-all">
+              <ExternalLink className="w-3 h-3" /> View Demo
+            </a>
+          )}
+          {href && (
+            <a href={href} target="_blank" rel="noopener"
+              className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1.5 rounded-full border border-black/[.07] dark:border-white/[.07] text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white hover:border-ink/20 dark:hover:border-white/20 transition-all">
+              <GitBranch className="w-3 h-3" /> GitHub
+            </a>
+          )}
+        </div>
       </div>
     </MagicCard>
   );

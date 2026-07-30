@@ -1,11 +1,7 @@
 import { useEffect, useRef } from "react";
 
-// LottieFiles — free coding/developer animation
-// src: https://lottiefiles.com/free-animations/developers
-// Using dotLottie-web (official LottieFiles player, no React dep needed)
 const LOTTIE_SRC = "https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie";
 
-// Fallback: inline SVG animated coder if lottie fails
 export default function LottieHero({ className = "" }) {
   const canvasRef = useRef(null);
   const playerRef = useRef(null);
@@ -40,10 +36,10 @@ export default function LottieHero({ className = "" }) {
         className="w-full h-full"
         style={{ maxWidth: 340, maxHeight: 340 }}
       />
-      {/* Fallback visible while Lottie loads — animated SVG coder (unDraw style) */}
+      {/* Fallback visible while Lottie loads — monochrome warm graphite */}
       <noscript>
         <svg viewBox="0 0 200 200" className="w-48 h-48 opacity-60" fill="none">
-          <circle cx="100" cy="100" r="90" stroke="#10b981" strokeWidth="2" strokeDasharray="8 4"/>
+          <circle cx="100" cy="100" r="90" stroke="#4A4A47" strokeWidth="2" strokeDasharray="8 4"/>
           <text x="100" y="108" textAnchor="middle" fontSize="48">👨‍💻</text>
         </svg>
       </noscript>
