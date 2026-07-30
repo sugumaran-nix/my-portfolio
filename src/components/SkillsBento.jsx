@@ -66,7 +66,7 @@ function SkillCard({ title, Icon, skills, span = "", delay = 0, featured = false
         {skills.map((skill) => (
           <span
             key={skill}
-            className="text-[12px] sm:text-[13px] px-2.5 py-1 rounded-lg font-medium text-inkMuted dark:text-white/65 bg-black/[.04] dark:bg-white/[.07] border border-borderLight dark:border-borderDark"
+            className="text-[12px] sm:text-[13px] px-2.5 py-1 rounded-lg font-medium text-inkMuted dark:text-white/65 bg-black/[.04] dark:bg-white/[.07] border border-borderLight dark:border-borderDark transition-all duration-150 hover:-translate-y-0.5 hover:bg-black/[.08] dark:hover:bg-white/[.12] hover:border-ink/20 dark:hover:border-white/25 cursor-default"
           >
             {skill}
           </span>

@@ -12,7 +12,7 @@ const inputBase = [
   "border border-borderLight dark:border-borderDark",
   "text-ink dark:text-white/90",
   "placeholder:text-inkMuted/60 dark:placeholder:text-white/40",
-  "focus:outline-none focus:border-ink/60 dark:focus:border-white/50",
+  "focus:outline-none focus:border-ink/60 dark:focus:border-white/50 focus:shadow-[0_0_0_3px_rgba(13,13,11,0.07)] dark:focus:shadow-[0_0_0_3px_rgba(255,255,255,0.05)]",
   "transition-colors duration-200",
 ].join(" ");
 
