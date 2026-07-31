@@ -485,7 +485,7 @@ html.dark .btn-outline-pill:hover { background: #F8F8F8; color: #050505; border-
 /* ── Button 5: filled pill ──────────────────────────────────────────────── */
 .btn-filled-pill {
   display: inline-flex; align-items: center; justify-content: center;
-  gap: 0.5rem; padding: 12px 28px; border: 0; border-radius: 100px;
+  gap: 0.5rem; height: 50px; padding: 0 28px; border: 0; border-radius: 100px;
   background-color: #0D0D0B; color: #F7F5F2;
   font-weight: 700; font-size: 0.875rem; text-decoration: none; cursor: pointer;
   transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
