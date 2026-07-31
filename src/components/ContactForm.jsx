@@ -95,7 +95,7 @@ export default function ContactForm() {
       {/* Message */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="cf-message" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Message</label>
-        <textarea id="cf-message" name="message" rows={5} placeholder="What are you working on?"
+        <textarea id="cf-message" name="message" rows={5}placeholder="Your message..."
           maxLength={2000}
           className={`${inputBase} resize-none`} value={form.message} onChange={handleChange} />
         {errors.message && <p className="text-xs font-medium text-ink/70 dark:text-white/65 italic">{errors.message}</p>}
