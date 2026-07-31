@@ -8,7 +8,7 @@ const EMAILJS_KEY      = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY  || "public_k
 
 const inputBase = [
   "w-full rounded-xl px-4 py-3 text-sm",
-  "bg-surfaceMuted dark:bg-[#1C1B19]",
+  "bg-surfaceMuted dark:bg-[#0A0A0A]",
   "border border-borderLight dark:border-borderDark",
   "text-ink dark:text-white/90",
   "placeholder:text-inkMuted/60 dark:placeholder:text-white/40",
@@ -25,7 +25,7 @@ export default function ContactForm() {
   const validate = () => {
     const e = {};
     if (!form.name.trim() || form.name.trim().length < 2) e.name = "Name must be at least 2 characters";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email address";
+    if (!/^[a-zA-Z0-9._%+\-]{2,}@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(form.email)) e.email = "Enter a valid email address";
     if (!form.message.trim() || form.message.trim().length < 10) e.message = "Message must be at least 10 characters";
     return e;
   };
@@ -41,15 +41,24 @@ export default function ContactForm() {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE, EMAILJS_TEMPLATE,
-        { from_name: form.name, from_email: form.email, message: form.message },
-        EMAILJS_KEY
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), 10000)
       );
+      await Promise.race([
+        emailjs.send(
+          EMAILJS_SERVICE, EMAILJS_TEMPLATE,
+          { from_name: form.name, from_email: form.email, message: form.message },
+          EMAILJS_KEY
+        ),
+        timeout,
+      ]);
       setSent(true);
       window.dispatchEvent(new CustomEvent('form-sent'));
-    } catch {
-      setErrors({ submit: "Something went wrong. Email me directly at sugumarankugan@gmail.com" });
+    } catch (err) {
+      const msg = err?.message === "timeout"
+        ? "Request timed out. Try emailing me directly at sugumarankugan@gmail.com"
+        : "Something went wrong. Email me directly at sugumarankugan@gmail.com";
+      setErrors({ submit: msg });
     } finally { setLoading(false); }
   };
 
@@ -69,6 +78,7 @@ export default function ContactForm() {
       <div className="flex flex-col gap-1.5">
         <label htmlFor="cf-name" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Name</label>
         <input id="cf-name" name="name" type="text" autoComplete="name" placeholder="Your name"
+          maxLength={80}
           className={inputBase} value={form.name} onChange={handleChange} />
         {errors.name && <p className="text-xs font-medium text-ink/70 dark:text-white/65 italic">{errors.name}</p>}
       </div>
@@ -77,6 +87,7 @@ export default function ContactForm() {
       <div className="flex flex-col gap-1.5">
         <label htmlFor="cf-email" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Email</label>
         <input id="cf-email" name="email" type="email" autoComplete="email" placeholder="your@email.com"
+          maxLength={120}
           className={inputBase} value={form.email} onChange={handleChange} />
         {errors.email && <p className="text-xs font-medium text-ink/70 dark:text-white/65 italic">{errors.email}</p>}
       </div>
@@ -85,6 +96,7 @@ export default function ContactForm() {
       <div className="flex flex-col gap-1.5">
         <label htmlFor="cf-message" className="text-xs font-semibold text-inkMuted dark:text-white/40 uppercase tracking-wider">Message</label>
         <textarea id="cf-message" name="message" rows={5} placeholder="What are you working on?"
+          maxLength={2000}
           className={`${inputBase} resize-none`} value={form.message} onChange={handleChange} />
         {errors.message && <p className="text-xs font-medium text-ink/70 dark:text-white/65 italic">{errors.message}</p>}
       </div>

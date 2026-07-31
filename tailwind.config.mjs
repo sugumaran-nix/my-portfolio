@@ -10,7 +10,7 @@
  *
  * Color Tokens — Warm Graphite, WCAG AA compliant:
  *   Light: #F7F5F2 base → #0D0D0B darkest
- *   Dark:  #141412 base → #F0EDE8 lightest
+ *   Dark:  #050505 base → #F8F8F8 lightest
  *   Zero chromatic accent — no blue, green, violet, or any hue.
  */
 
@@ -28,10 +28,10 @@ export default {
         borderLight:    '#868380',   // solid border
 
         // Dark surfaces
-        surfaceDark:      '#080807',  // page background — deep warm black
-        surfaceDarkMuted: '#1C1B19',  // alternate section bg
-        cardDark:         '#222220',  // card background
-        borderDark:       '#706E6C',  // border
+        surfaceDark:      '#050505',  // page background — deep warm black
+        surfaceDarkMuted: '#0A0A0A',  // alternate section bg
+        cardDark:         '#0E0E0E',  // card background
+        borderDark:       '#202020',  // border
 
         // Text tokens
         ink:       '#0D0D0B',  // primary text light mode
@@ -40,7 +40,7 @@ export default {
         // Accent system — purely monochrome
         accent:        '#1A1A18',   // primary CTA light mode
         accentHover:   '#2E2D2B',   // CTA hover light mode
-        accentDark:    '#EDEBE6',   // primary CTA dark mode
+        accentDark:    '#F8F8F8',   // primary CTA dark mode
         accentMid:     '#4A4A47',   // mid-tone for shimmer/hover
       },
 
