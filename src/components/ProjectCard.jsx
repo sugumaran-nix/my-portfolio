@@ -3,14 +3,14 @@ import MagicCard from "./MagicCard.jsx";
 import { ExternalLink, GitBranch } from "lucide-react";
 
 const projectMeta = {
-  "ML-Powered Fake Job Detector":                   { img: "/images/project-fake-job.png",    alt: "ML Fake Job Detector" },
+  "JobGuard — AI Job Fraud Detector": { img: "/images/project-fake-job.png", alt: "JobGuard AI Job Fraud Detector" },
   "AI-Generated Text Detector":                     { img: "/images/project-ai-detector.png", alt: "AI Text Detector" },
   "Sketchline — Real-Time Collaborative Whiteboard":{ img: "/images/project-sketchline.png",  alt: "Sketchline Whiteboard" },
   "ProjectScope — Eisenhower Matrix Task Manager":  { img: "/images/project-scope.png",       alt: "ProjectScope Task Manager" },
 };
 
 const FALLBACK = {
-  "ML-Powered Fake Job Detector":                   "from-stone-700 to-stone-900",
+  "JobGuard — AI Job Fraud Detector": "from-stone-700 to-stone-900",
   "AI-Generated Text Detector":                     "from-zinc-700 to-zinc-900",
   "Sketchline — Real-Time Collaborative Whiteboard":"from-neutral-700 to-neutral-900",
   "ProjectScope — Eisenhower Matrix Task Manager":  "from-stone-600 to-stone-900",
