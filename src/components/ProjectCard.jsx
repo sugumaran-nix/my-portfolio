@@ -45,7 +45,7 @@ function ProjectImage({ src, alt, title }) {
 }
 
 export default function ProjectCard({ title, desc, tags, href, demoHref, delay = 0 }) {
-  const meta = projectMeta[title] ?? { img: "/images/project-fake-job.png", alt: "Project" };
+ const meta = projectMeta[title] ?? { img: "/images/project-fake-job.png", alt: title };
 
   return (
     <MagicCard delay={delay} className="glass-card flex flex-col h-full">
