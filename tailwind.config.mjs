@@ -31,7 +31,7 @@ export default {
         surfaceDark:      '#050505',  // page background — deep warm black
         surfaceDarkMuted: '#0A0A0A',  // alternate section bg
         cardDark:         '#0E0E0E',  // card background
-        borderDark:       '#202020',  // border
+        borderDark: '#2E2E2E',  // border
 
         // Text tokens
         ink:       '#0D0D0B',  // primary text light mode
