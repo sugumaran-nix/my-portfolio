@@ -57,8 +57,8 @@ export default {
       // ── Font Families ──────────────────────────────────────────────────
       fontFamily: {
         sans:    ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"DM Serif Display"', 'Georgia', 'serif'],
-        mono:    ['"JetBrains Mono"', 'Menlo', 'monospace'],
+        display: ['Georgia', 'Times New Roman', 'serif'],
+        mono:    ['Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
 
       // ── Spacing Extensions (8-point grid) ─────────────────────────────

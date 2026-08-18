@@ -43,9 +43,9 @@
   --accent: #1A1A18;
   --accent-hover: #2E2D2B;
   --accent-subtle: rgba(26,26,24,.06);
-  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-display: Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', Menlo, monospace;
+  --font-mono: Menlo, Monaco, Consolas, monospace;
 }
 html.dark {
   --accent: #F8F8F8;
@@ -214,16 +214,17 @@ html.dark .section-eyebrow { color: #9C9890; }
 
 /* ── Scroll reveal ──────────────────────────────────────────────────────── */
 .reveal {
-  opacity: 0; transform: translateY(20px); will-change: transform, opacity;
+  opacity: 0; transform: translateY(20px);
   transition: opacity .65s cubic-bezier(0.16,1,0.3,1), transform .65s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.reveal:not(.is-visible) { will-change: opacity, transform; }
+.reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 
 /* ── CSS flip/fade text ──────────────────────────────────────────────────── */
-.flip-fade-text { transform-origin: center bottom; transition: opacity .22s ease, transform .22s cubic-bezier(.23,1,.32,1), filter .22s ease; }
-.flip-fade-text--out { opacity: 0; transform: translateY(-8px) rotateX(70deg); filter: blur(6px); }
+.flip-fade-text { transform-origin: center bottom; transition: opacity .22s ease, transform .22s cubic-bezier(.23,1,.32,1); }
+.flip-fade-text--out { opacity: 0; transform: translateY(-8px) rotateX(70deg); }
 .flip-fade-text--in { animation: flip-fade-in .42s cubic-bezier(.23,1,.32,1) both; }
-@keyframes flip-fade-in { from { opacity: 0; transform: translateY(8px) rotateX(-55deg); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes flip-fade-in { from { opacity: 0; transform: translateY(8px) rotateX(-55deg); } to { opacity: 1; transform: none; } }
 
 /* ── Link hover ─────────────────────────────────────────────────────────── */
 .line-hover {
@@ -344,33 +345,10 @@ html.dark .glow-border-card::before {
 .project-img-wrap img { transition: transform .4s ease; }
 
 /* ── Availability pulse dot — monochrome warm white ─────────────────────── */
-@keyframes avail-pulse {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(13,13,11,.9); }
-  50%      { opacity: .5; box-shadow: 0 0 0 7px rgba(13,13,11,0); }
-}
-@keyframes avail-pulse-dark {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(192,189,184,.7); }
-  50%      { opacity: .5; box-shadow: 0 0 0 6px rgba(192,189,184,0); }
-}
-.avail-dot { animation: avail-pulse 2.4s ease-in-out infinite; }
-html.dark .avail-dot { animation: avail-pulse-dark 2.4s ease-in-out infinite; }
+.avail-dot { background: var(--text-primary); box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ── Shimmer text ───────────────────────────────────────────────────────── */
-@keyframes shimmer-move {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
-}
-.shimmer-text {
-  background: linear-gradient(90deg, #0D0D0B 30%, #4A4A47 50%, #0D0D0B 70%);
-  background-size: 200% auto;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  animation: shimmer-move 3.5s linear infinite;
-}
-html.dark .shimmer-text {
-  background: linear-gradient(90deg, #F8F8F8 30%, #C0BDB8 50%, #F8F8F8 70%);
-  background-size: 200% auto;
-  -webkit-background-clip: text; background-clip: text;
-}
+.shimmer-text { color: var(--text-primary); }
 
 /* ── Copy email box ─────────────────────────────────────────────────────── */
 .copy-box {
@@ -399,23 +377,13 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
 .footer-inner { display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
 
 /* ── Availability badge — subtle glow pulse ─────────────────────────────── */
-@keyframes badge-glow {
-  0%,100% { box-shadow: 0 0 0 0 rgba(74,74,71,0.0); }
-  50%      { box-shadow: 0 0 14px 3px rgba(74,74,71,0.09); }
-}
-@keyframes badge-glow-dark {
-  0%,100% { box-shadow: 0 0 0 0 rgba(192,189,184,0.0); }
-  50%      { box-shadow: 0 0 14px 3px rgba(192,189,184,0.12); }
-}
-.avail-badge { animation: badge-glow 3.5s ease-in-out infinite; }
-html.dark .avail-badge { animation: badge-glow-dark 3.5s ease-in-out infinite; }
+.avail-badge { box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ── Magic Card — hover shadow lift ────────────────────────────────────── */
 .magic-card-wrap {
   position: relative;
   contain: layout style;
   transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(.23,1,.32,1);
-  will-change: transform;
 }
 .magic-card-spotlight {
   background: radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(74,74,71,.10), transparent 70%);
