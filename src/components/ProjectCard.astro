@@ -10,9 +10,11 @@ interface Props {
   imgLight: string;
   imgDark: string;
   delay?: number;
+  role?: string;
+  outcome?: string;
 }
 
-const { title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0 } = Astro.props;
+const { title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0, role = 'Full-stack build', outcome } = Astro.props;
 const imgLightSmall = imgLight.replace('.webp', '-640.webp');
 const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
 ---
@@ -54,8 +56,13 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
   </div>
 
   <div class="flex flex-1 flex-col gap-3 p-5">
+    <div class="project-meta">
+      <span>Role</span>
+      <span>{role}</span>
+    </div>
     <h3 class="text-[15px] font-semibold leading-snug text-ink dark:text-white">{title}</h3>
     <p class="line-clamp-3 text-[14px] leading-[1.75] text-inkMuted dark:text-white/55">{desc}</p>
+    {outcome && <p class="project-outcome">{outcome}</p>}
 
     <div class="mt-auto flex flex-wrap gap-1.5 pt-2">
       {tags.map((tag) => (

@@ -12,7 +12,9 @@ import SkillsBento from '../components/SkillsBento.astro';
 const projects = [
   {
     title: 'JobGuard — Fake Job Posting Detector',
-    desc: 'DistilBERT fine-tuned on 17,880 EMSCAD listings, ONNX INT8-quantized — 87.57% F1 on a 4.8:1 class-imbalanced dataset. A model router hot-swaps between BertPredictor and LinearSVC at runtime without restart. Paired with a 10-signal URL fraud scorer and token-level prediction explainability.',
+    desc: 'Trained and shipped an ONNX-optimized classifier for fake job listings, combining text classification, URL risk signals, and token-level explanations in one practical screening workflow.',
+    role: 'ML model + inference pipeline',
+    outcome: '87.57% F1 on 17,880 EMSCAD listings with runtime model switching and INT8 quantization.',
     tags: ['Python', 'DistilBERT', 'ONNX', 'Flask', 'NLP'],
     href: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
     demoHref: 'https://jobguard-8vur.onrender.com',
@@ -21,7 +23,9 @@ const projects = [
   },
   {
     title: 'Sketchline — Real-Time Collaborative Whiteboard',
-    desc: 'Point-by-point WebSocket sync with sub-100ms latency via FastAPI. Board state replays fully on reconnect — late joiners see the complete canvas. Supports 9 brush types, 64-step undo/redo synced across all clients, and auto-reconnect with exponential backoff (500ms → 8s).',
+    desc: 'Designed a collaborative canvas with resilient WebSocket synchronization, reconnect-safe state replay, and shared undo/redo so teams can draw together without losing board history.',
+    role: 'Realtime systems + frontend',
+    outcome: 'Sub-100ms sync with full late-join replay, nine brush types, and 64-step shared undo/redo.',
     tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'Canvas'],
     href: 'https://github.com/sugumaran-nix/whiteboard-frontend',
     demoHref: 'https://whiteboard-frontend-nine-smoky.vercel.app',
@@ -30,7 +34,9 @@ const projects = [
   },
   {
     title: 'AI Shopping Agent — Multi-Source Product Search',
-    desc: 'Concurrently scrapes multiple e-commerce sources with tenacity-backed retries, deduplicates results, then passes top candidates to Gemini 2.0 Flash for ranked AI recommendations. Disk-cached with a 30-minute TTL to keep p95 response times acceptable on Render\'s free tier.',
+    desc: 'Built a fault-tolerant product search pipeline that gathers multiple sources, removes duplicate listings, and turns the best candidates into ranked Gemini recommendations.',
+    role: 'AI product architecture',
+    outcome: 'Retries, deduplication, and 30-minute caching keep ranked search usable on a constrained deployment tier.',
     tags: ['Next.js', 'FastAPI', 'Gemini', 'Python', 'ScraperAPI'],
     href: 'https://github.com/sugumaran-nix/ai-shopping-agent',
     demoHref: 'https://ai-shopping-agent-theta.vercel.app',
@@ -39,7 +45,9 @@ const projects = [
   },
   {
     title: 'AI Content Detector',
-    desc: 'Detects AI-generated text using a DistilBERT ONNX model (94.15% accuracy, 0.991 AUC) running fully in the browser via @xenova/transformers — no server-side inference. Sub-second results with span-level highlighting and per-sentence confidence scores.',
+    desc: 'Moved AI-text detection into the browser with an ONNX model, confidence scoring, and span-level highlighting so users get useful feedback without sending writing to a server.',
+    role: 'Browser ML + UX',
+    outcome: '94.15% accuracy and 0.991 AUC with sub-second client-side results and sentence confidence scores.',
     tags: ['DistilBERT', 'ONNX', 'Transformers.js', 'FastAPI', 'NLP'],
     href: 'https://github.com/sugumaran-nix/ai-content-detector',
     demoHref: 'https://ai-content-detector-nine.vercel.app',
@@ -65,8 +73,9 @@ const flipWords = [
   <ScrollToTop />
 
   <!-- ── HERO ──────────────────────────────────────────────────────────── -->
-  <section id="home" class="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 pt-16 pb-6 md:py-0 overflow-hidden">
-
+  <section id="home" class="hero-section relative min-h-[100dvh] flex flex-col items-center justify-center px-6 pt-16 pb-6 md:py-0 overflow-hidden">
+    <div class="hero-ambient hero-ambient-one" aria-hidden="true"></div>
+    <div class="hero-ambient hero-ambient-two" aria-hidden="true"></div>
 
     <div class="reveal relative z-10 max-w-[760px] mx-auto w-full flex flex-col items-center text-center px-4">
 
@@ -87,7 +96,7 @@ const flipWords = [
       </div>
 
       <p class="max-w-[540px] text-[16px] text-inkMuted dark:text-white/55 leading-[1.8] mb-10">
-        I build full-stack AI apps — from model to frontend.
+        I build AI products, browser ML tools, and resilient full-stack systems — from model to frontend.
       </p>
 
       <!-- CTAs -->
@@ -165,7 +174,7 @@ const flipWords = [
         <!-- Text -->
         <div class="reveal order-last md:order-first flex flex-col gap-5 text-[16px] text-inkMuted dark:text-white/60 leading-[1.8]">
             <p>MCA '26 from Anna University, Coimbatore. I've been building across AI/ML, full-stack, and real-time systems throughout my degree — training models, wiring APIs, shipping frontends.</p>
-            <p>Looking for my first role as an AI/ML Engineer or Full-Stack Developer. Strong in Python and Next.js, comfortable working across the full stack.</p>
+            <p>My strongest work sits where applied ML meets dependable product engineering: Python services, browser inference, real-time APIs, and polished Next.js interfaces.</p>
             <div class="flex flex-col gap-4 mt-1 pt-5 border-t border-borderLight dark:border-borderDark">
             <p class="text-[11px] font-bold text-ink dark:text-white uppercase tracking-widest">Education</p>
             <div>
@@ -192,6 +201,7 @@ const flipWords = [
         <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">
           Skills &amp; <em>Technologies</em>
         </h2>
+        <p class="section-lede">A practical stack for taking intelligent products from experiment to reliable interface.</p>
       </div>
 
       <div class="reveal" style="transition-delay:.1s">
@@ -210,6 +220,7 @@ const flipWords = [
         <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">
           Featured <em>Projects</em>
         </h2>
+        <p class="section-lede">Selected builds across AI/ML, browser inference, realtime collaboration, and full-stack product systems.</p>
       </div>
 
       <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10" style="transition-delay:.05s">
@@ -244,7 +255,7 @@ const flipWords = [
   Say hello —&nbsp;<em>let's talk.</em>
 </h2>
 <p class="text-[16px] text-inkMuted dark:text-white/65 mt-3 max-w-[440px] leading-[1.8]">
-  Full-time roles and internships. I read everything.
+  Open to AI/ML and full-stack roles, internships, and thoughtful collaborations. I read everything.
 </p>
       </div>
 
