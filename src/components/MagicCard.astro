@@ -8,7 +8,7 @@ const { className = '', delay = 0 } = Astro.props;
 ---
 
 <div
-  class={`magic-card-wrap reveal relative overflow-hidden rounded-2xl ${className}`}
+  class={`magic-card-wrap reveal relative overflow-hidden ${className}`}
   style={`transition-delay: ${delay}s`}
 >
   <div class="magic-card-spotlight pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-200"></div>

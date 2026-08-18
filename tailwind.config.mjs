@@ -56,7 +56,7 @@ export default {
 
       // ── Font Families ──────────────────────────────────────────────────
       fontFamily: {
-        sans:    ['Satoshi', 'Inter', 'system-ui', 'sans-serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
         display: ['"DM Serif Display"', 'Georgia', 'serif'],
         mono:    ['"JetBrains Mono"', 'Menlo', 'monospace'],
       },
