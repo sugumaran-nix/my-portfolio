@@ -1,0 +1,130 @@
+---
+import MagicCard from './MagicCard.astro';
+
+interface Props {
+  title: string;
+  desc: string;
+  tags: string[];
+  href: string;
+  demoHref?: string;
+  imgLight: string;
+  imgDark: string;
+  delay?: number;
+}
+
+const { title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0 } = Astro.props;
+const imgLightSmall = imgLight.replace('.webp', '-640.webp');
+const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
+---
+
+<MagicCard class="glass-card flex h-full flex-col" delay={delay}>
+  <div class="project-image-shell w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden rounded-t-2xl group img-skeleton">
+    <img
+      data-src={imgLight}
+      data-srcset={`${imgLightSmall} 640w, ${imgLight} 1280w`}
+      sizes="(max-width: 640px) calc(100vw - 48px), 560px"
+      width="1280"
+      height="607"
+      alt={`${title} screenshot`}
+      loading="lazy"
+      decoding="async"
+      class="project-img-light absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-200"
+    />
+    <img
+      data-src={imgDark}
+      data-srcset={`${imgDarkSmall} 640w, ${imgDark} 1280w`}
+      sizes="(max-width: 640px) calc(100vw - 48px), 560px"
+      width="1280"
+      height="607"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      class="project-img-dark absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-200"
+    />
+    <div class="project-image-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-stone-700 to-stone-900">
+      <span class="text-xs font-mono text-white/30">screenshot coming soon</span>
+    </div>
+    <a href={demoHref || href} target="_blank" rel="noopener noreferrer" class="project-img-overlay">
+      View project
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4">
+        <path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-3 p-5">
+    <h3 class="text-[15px] font-semibold leading-snug text-ink dark:text-white">{title}</h3>
+    <p class="line-clamp-3 text-[14px] leading-[1.75] text-inkMuted dark:text-white/55">{desc}</p>
+
+    <div class="mt-auto flex flex-wrap gap-1.5 pt-2">
+      {tags.map((tag) => (
+        <span class="rounded-full border border-borderLight bg-black/[.04] px-2.5 py-1 text-[11px] text-ink dark:border-borderDark dark:bg-white/[.07] dark:text-white/80">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2 pt-1">
+      {demoHref && (
+        <a href={demoHref} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-3 py-1.5 text-[11px] font-semibold text-ink transition-all hover:bg-ink hover:text-white dark:border-white/20 dark:text-white dark:hover:bg-white dark:hover:text-ink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3">
+            <path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          View Live
+        </a>
+      )}
+      {href && (
+        <a href={href} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full border border-black/[.07] px-3 py-1.5 text-[11px] font-medium text-inkMuted transition-all hover:border-ink/20 hover:text-ink dark:border-white/[.07] dark:text-white/50 dark:hover:border-white/20 dark:hover:text-white">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3">
+            <path d="M8 12h8M12 8v8M5 5h5M14 5h5v5M19 14v5h-5M5 14v5h5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          GitHub
+        </a>
+      )}
+    </div>
+  </div>
+</MagicCard>
+
+<script>
+  const projectShells = Array.from(document.querySelectorAll<HTMLElement>('.project-image-shell'));
+
+  const syncProjectImages = () => {
+    const dark = document.documentElement.classList.contains('dark');
+    projectShells.forEach((shell) => {
+      const light = shell.querySelector<HTMLImageElement>('.project-img-light');
+      const darkImage = shell.querySelector<HTMLImageElement>('.project-img-dark');
+      const active = dark ? darkImage : light;
+      const inactive = dark ? light : darkImage;
+      if (active) {
+        if (!active.getAttribute('src')) active.setAttribute('src', active.dataset.src ?? '');
+        if (!active.getAttribute('srcset')) active.setAttribute('srcset', active.dataset.srcset ?? '');
+      }
+      inactive?.removeAttribute('src');
+      inactive?.removeAttribute('srcset');
+      light?.classList.toggle('opacity-0', dark);
+      light?.classList.toggle('opacity-100', !dark);
+      darkImage?.classList.toggle('opacity-0', !dark);
+      darkImage?.classList.toggle('opacity-100', dark);
+    });
+  };
+
+  projectShells.forEach((shell) => {
+    const fallback = shell.querySelector<HTMLElement>('.project-image-fallback');
+    const images = Array.from(shell.querySelectorAll<HTMLImageElement>('img'));
+    images.forEach((image) => {
+      image.addEventListener('load', () => shell.classList.remove('img-skeleton'), { once: true });
+      image.addEventListener('error', () => {
+        image.classList.add('hidden');
+        shell.classList.remove('img-skeleton');
+        fallback?.classList.replace('hidden', 'flex');
+      }, { once: true });
+    });
+  });
+
+  syncProjectImages();
+  new MutationObserver(syncProjectImages).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  });
+</script>

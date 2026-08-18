@@ -2,13 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import ProjectCard from '../components/ProjectCard.jsx';
-import ContactForm from '../components/ContactForm.jsx';
-import FlipFadeText from '../components/FlipFadeText.jsx';
-import GlowBorderCard from '../components/GlowBorderCard.jsx';
-import ScrollProgress from '../components/ScrollProgress.jsx';
-import ScrollToTop from '../components/ScrollToTop.jsx';
-import SkillsBento from '../components/SkillsBento.jsx';
+import ProjectCard from '../components/ProjectCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FlipFadeText from '../components/FlipFadeText.astro';
+import GlowBorderCard from '../components/GlowBorderCard.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
+import SkillsBento from '../components/SkillsBento.astro';
 
 const projects = [
   {
@@ -17,8 +16,8 @@ const projects = [
     tags: ['Python', 'DistilBERT', 'ONNX', 'Flask', 'NLP'],
     href: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
     demoHref: 'https://jobguard-8vur.onrender.com',
-    imgLight: 'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/JobGuard.png',
-    imgDark:  'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/JobGuard-dark.png',
+    imgLight: '/projects/jobguard-light.webp',
+    imgDark:  '/projects/jobguard-dark.webp',
   },
   {
     title: 'Sketchline — Real-Time Collaborative Whiteboard',
@@ -26,8 +25,8 @@ const projects = [
     tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'Canvas'],
     href: 'https://github.com/sugumaran-nix/whiteboard-frontend',
     demoHref: 'https://whiteboard-frontend-nine-smoky.vercel.app',
-    imgLight: 'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/Sketchline.png',
-    imgDark:  'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/Sketchline-dark.png',
+    imgLight: '/projects/sketchline-light.webp',
+    imgDark:  '/projects/sketchline-dark.webp',
   },
   {
     title: 'AI Shopping Agent — Multi-Source Product Search',
@@ -35,8 +34,8 @@ const projects = [
     tags: ['Next.js', 'FastAPI', 'Gemini', 'Python', 'ScraperAPI'],
     href: 'https://github.com/sugumaran-nix/ai-shopping-agent',
     demoHref: 'https://ai-shopping-agent-theta.vercel.app',
-    imgLight: 'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/AI-Shopping-Agent.png',
-    imgDark:  'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/AI-Shopping-Agent-dark.png',
+    imgLight: '/projects/shopping-agent-light.webp',
+    imgDark:  '/projects/shopping-agent-dark.webp',
   },
   {
     title: 'AI Content Detector',
@@ -44,8 +43,8 @@ const projects = [
     tags: ['DistilBERT', 'ONNX', 'Transformers.js', 'FastAPI', 'NLP'],
     href: 'https://github.com/sugumaran-nix/ai-content-detector',
     demoHref: 'https://ai-content-detector-nine.vercel.app',
-    imgLight: 'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/ai-content-detector.png',
-    imgDark:  'https://raw.githubusercontent.com/sugumaran-nix/sugumaran-nix/main/assets/ai-content-detector-dark.png',
+    imgLight: '/projects/content-detector-light.webp',
+    imgDark:  '/projects/content-detector-dark.webp',
   },
 ];
 
@@ -63,7 +62,7 @@ const flipWords = [
 
 <Layout>
   <Navbar />
-  <ScrollToTop client:load />
+  <ScrollToTop />
 
   <!-- ── HERO ──────────────────────────────────────────────────────────── -->
   <section id="home" class="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 pt-16 pb-6 md:py-0 overflow-hidden">
@@ -84,7 +83,7 @@ const flipWords = [
 
       <!-- FlipFade — whole phrase -->
       <div class="text-[18px] sm:text-[21px] md:text-[23px] font-semibold text-ink dark:text-white mb-6 h-9 flex items-center justify-center">
-        <FlipFadeText client:load words={flipWords} interval={2600} className="text-ink dark:text-white" />
+        <FlipFadeText words={flipWords} interval={2600} class="text-ink dark:text-white" />
       </div>
 
       <p class="max-w-[540px] text-[16px] text-inkMuted dark:text-white/55 leading-[1.8] mb-10">
@@ -144,11 +143,11 @@ const flipWords = [
 
         <!-- Profile card -->
         <div class="reveal order-first md:order-last" style="transition-delay:.1s">
-          <GlowBorderCard client:visible className="magic-border glass-card p-6 text-center flex flex-col items-center">
+          <GlowBorderCard class="magic-border glass-card p-6 text-center flex flex-col items-center">
             <div class="w-36 h-36 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-4 shadow-md">
               <div class="w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('/profile.webp')"></div>
             </div>
-            <h4 class="text-lg font-semibold mb-0.5 shimmer-text">Sugumaran S.</h4>
+            <h3 class="text-lg font-semibold mb-0.5 shimmer-text">Sugumaran S.</h3>
             <p class="text-sm text-inkMuted dark:text-white/55 mb-0.5 font-display italic">AI/ML & Full-Stack Engineer</p>
             <p class="text-xs text-inkMuted/60 dark:text-white/35 mb-5">Coimbatore, Tamil Nadu · India</p>
             <div class="flex flex-wrap justify-center gap-2">
@@ -196,7 +195,7 @@ const flipWords = [
       </div>
 
       <div class="reveal" style="transition-delay:.1s">
-        <SkillsBento client:visible />
+        <SkillsBento />
       </div>
 
     </div>
@@ -215,7 +214,7 @@ const flipWords = [
 
       <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10" style="transition-delay:.05s">
         {projects.map((p, i) => (
-          <ProjectCard client:visible {...p} delay={i * 0.07} />
+          <ProjectCard {...p} delay={i * 0.07} />
         ))}
       </div>
 
@@ -319,7 +318,7 @@ const flipWords = [
 
         <!-- Form -->
         <div class="reveal" style="transition-delay:.1s">
-          <ContactForm client:visible />
+          <ContactForm />
         </div>
 
       </div>

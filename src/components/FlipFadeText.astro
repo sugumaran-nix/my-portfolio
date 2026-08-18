@@ -1,0 +1,37 @@
+---
+interface Props {
+  words: string[];
+  interval?: number;
+  class?: string;
+}
+
+const { words, interval = 2600, class: className = '' } = Astro.props;
+---
+
+<span
+  class={`flip-fade-text inline-block ${className}`}
+  data-words={JSON.stringify(words)}
+  data-interval={interval}
+  aria-live="polite"
+>{words[0]}</span>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.flip-fade-text').forEach((element) => {
+    const words = JSON.parse(element.dataset.words ?? '[]') as string[];
+    if (words.length < 2) return;
+
+    let index = 0;
+    const interval = Number(element.dataset.interval ?? 2600);
+
+    window.setInterval(() => {
+      element.classList.add('flip-fade-text--out');
+      window.setTimeout(() => {
+        index = (index + 1) % words.length;
+        element.textContent = words[index];
+        element.classList.remove('flip-fade-text--out');
+        element.classList.add('flip-fade-text--in');
+        window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 420);
+      }, 220);
+    }, interval);
+  });
+</script>

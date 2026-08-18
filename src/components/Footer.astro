@@ -8,11 +8,11 @@ const socials = [
 ---
 <footer class="border-t border-borderLight dark:border-borderDark px-6 py-4">
   <div class="max-w-[1100px] mx-auto flex items-center justify-between">
-    <p class="text-[12px] font-medium text-inkMuted/50 dark:text-white/25">© {year} Sugumaran</p>
+    <p class="text-[12px] font-medium text-inkMuted dark:text-white/55">© {year} Sugumaran</p>
     <div class="flex items-center gap-4">
       {socials.map((s) => (
         <a href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'noopener' : undefined} aria-label={s.label}
-          class="text-inkMuted/40 dark:text-white/25 hover:text-ink dark:hover:text-white transition-all hover:scale-110">
+          class="text-inkMuted/75 dark:text-white/55 hover:text-ink dark:hover:text-white transition-all hover:scale-110">
           <svg viewBox="0 0 24 24" class="w-[16px] h-[16px] fill-current"><path d={s.path}/></svg>
         </a>
       ))}

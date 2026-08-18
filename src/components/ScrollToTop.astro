@@ -1,0 +1,28 @@
+<button
+  id="scroll-to-top"
+  type="button"
+  aria-label="Scroll to top"
+  class="fixed bottom-6 right-6 z-40 flex h-10 w-10 translate-y-4 items-center justify-center rounded-full border border-borderLight bg-surface/90 text-ink opacity-0 shadow-lg backdrop-blur-md transition-all duration-200 pointer-events-none dark:border-borderDark dark:bg-surfaceDark/90 dark:text-white"
+>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+</button>
+
+<script>
+  const button = document.getElementById('scroll-to-top');
+  const footer = document.querySelector('footer');
+  const update = () => {
+    if (!button) return;
+    const visible = window.scrollY > 300;
+    button.classList.toggle('opacity-0', !visible);
+    button.classList.toggle('translate-y-4', !visible);
+    button.classList.toggle('pointer-events-none', !visible);
+    if (footer) {
+      const distanceToFooter = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+      button.style.bottom = `${Math.max(24, Math.min(24 + Math.max(0, 57 - distanceToFooter), 90))}px`;
+    }
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  button?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  update();
+</script>

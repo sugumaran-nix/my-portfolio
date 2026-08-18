@@ -4,11 +4,6 @@
  * Zero chromatic color. WCAG AA/AAA verified.
  */
 
-/* Fontshare — Satoshi */
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
-/* Google Fonts — DM Serif Display + JetBrains Mono */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,8 +92,18 @@ html.dark .section-eyebrow { color: #9C9890; }
 }
 
 /* ── Scroll progress bar ────────────────────────────────────────────────── */
+.scroll-progress-track {
+  position: fixed; inset: 0 0 auto; z-index: 9999; height: 2px; pointer-events: none;
+  transform-origin: left; animation: scroll-progress linear both;
+  animation-timeline: scroll();
+}
 .scroll-progress-bar {
+  height: 100%;
   background: linear-gradient(90deg, #1A1A18 0%, #4A4A47 100%);
+}
+@keyframes scroll-progress { to { transform: scaleX(1); } }
+@supports not (animation-timeline: scroll()) {
+  .scroll-progress-track { transform: scaleX(0); animation: none; }
 }
 html.dark .scroll-progress-bar {
   background: linear-gradient(90deg, #F8F8F8 0%, #C0BDB8 100%);
@@ -106,10 +111,16 @@ html.dark .scroll-progress-bar {
 
 /* ── Scroll reveal ──────────────────────────────────────────────────────── */
 .reveal {
-  opacity: 0; transform: translateY(20px);
+  opacity: 0; transform: translateY(20px); will-change: transform, opacity;
   transition: opacity .65s cubic-bezier(0.16,1,0.3,1), transform .65s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
+
+/* ── CSS flip/fade text ──────────────────────────────────────────────────── */
+.flip-fade-text { transform-origin: center bottom; transition: opacity .22s ease, transform .22s cubic-bezier(.23,1,.32,1), filter .22s ease; }
+.flip-fade-text--out { opacity: 0; transform: translateY(-8px) rotateX(70deg); filter: blur(6px); }
+.flip-fade-text--in { animation: flip-fade-in .42s cubic-bezier(.23,1,.32,1) both; }
+@keyframes flip-fade-in { from { opacity: 0; transform: translateY(8px) rotateX(-55deg); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
 
 /* ── Link hover ─────────────────────────────────────────────────────────── */
 .line-hover {
@@ -298,8 +309,19 @@ html.dark .avail-badge { animation: badge-glow-dark 3.5s ease-in-out infinite; }
 
 /* ── Magic Card — hover shadow lift ────────────────────────────────────── */
 .magic-card-wrap {
-  transition: box-shadow 0.25s ease;
+  position: relative;
+  contain: layout style;
+  transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(.23,1,.32,1);
+  will-change: transform;
 }
+.magic-card-spotlight {
+  background: radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(74,74,71,.10), transparent 70%);
+}
+@media (hover: hover) and (pointer: fine) {
+  .magic-card-wrap:hover { transform: translateY(-4px); }
+  .magic-card-wrap:hover .magic-card-spotlight { opacity: 1; }
+}
+html.dark .magic-card-spotlight { background: radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(192,189,184,.10), transparent 70%); }
 .magic-card-wrap:hover {
   box-shadow: 0 12px 40px -8px rgba(13,13,11,0.16), 0 4px 16px -4px rgba(13,13,11,0.10);
 }
@@ -309,7 +331,9 @@ html.dark .magic-card-wrap:hover {
 
 /* ── Reduced motion ─────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { opacity: 1; transform: none; transition: none; will-change: auto; }
+  .flip-fade-text { animation: none; transition: none; }
+  .scroll-progress-track { animation: none; transform: scaleX(1); }
   .avail-dot { animation: none; }
   .avail-badge { animation: none; }
   .magic-border::before { animation: none; }
@@ -408,6 +432,7 @@ html.dark .git-btn {
 }
 
 /* ── Skills Bento Grid ──────────────────────────────────────────────────── */
+.skills-grid { contain: layout style; }
 .bento-card {
   box-shadow: 0 1px 4px rgba(13,13,11,.05);
   transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;

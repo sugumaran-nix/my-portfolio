@@ -1,148 +1,100 @@
 ---
-import ThemeToggle from './ThemeToggle.jsx';
-import ScrollProgress from './ScrollProgress.jsx';
+import ScrollProgress from './ScrollProgress.astro';
 
 const links = [
-  { href: '#home',     label: 'Home'     },
-  { href: '#about',    label: 'About'    },
-  { href: '#skills',   label: 'Skills'   },
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
-  { href: '#contact',  label: 'Contact'  },
+  { href: '#contact', label: 'Contact' },
 ];
 ---
 
-<!-- Scroll progress bar (Motion Primitives style) -->
-<ScrollProgress client:load />
-
+<ScrollProgress />
 
 <nav id="site-nav" aria-label="Main navigation" class="sticky top-0 z-50 bg-surface/80 dark:bg-surfaceDark/80 backdrop-blur-xl transition-shadow duration-300">
   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 md:px-10 py-3 md:py-4">
+    <a href="#home" class="font-display italic text-[18px] tracking-tight text-ink dark:text-white line-hover">Sugumaran.</a>
 
-    <!-- Logo / wordmark -->
-    <a href="#home" class="font-display italic text-[18px] tracking-tight text-ink dark:text-white line-hover">
-      Sugumaran.
-    </a>
-
-    <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-8 list-none">
       {links.map((link) => (
         <li>
-          <a
-            href={link.href}
-            data-section={link.href.replace('#', '')}
-            class="nav-link line-hover text-sm text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors duration-150"
-          >
-            {link.label}
-          </a>
+          <a href={link.href} data-section={link.href.replace('#', '')} class="nav-link line-hover text-sm text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors duration-150">{link.label}</a>
         </li>
       ))}
     </ul>
 
     <div class="flex items-center gap-3">
-      <ThemeToggle client:load />
-      <a
-        href="/sugumaran-s-resume.pdf"
-        download
-        class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all hover:scale-105"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
-          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode" class="flex h-9 w-9 items-center justify-center rounded-full text-ink transition-colors hover:bg-black/5 dark:text-white dark:hover:bg-white/5">
+        <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="hidden h-4 w-4"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round" /></svg>
+        <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+
+      <a href="/sugumaran-s-resume.pdf" download class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all hover:scale-105">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round" /></svg>
         Resume
       </a>
 
-      <!-- Mobile hamburger -->
-      <button
-        id="mobile-menu-btn"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-        class="md:hidden flex items-center justify-center w-9 h-9 rounded-full text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-      >
-        <svg id="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
-        </svg>
-        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 hidden">
-          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/>
-        </svg>
+      <button id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+        <svg id="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" /></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 hidden"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" /></svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile menu -->
   <ul id="mobile-menu" class="hidden md:hidden flex-col list-none border-t border-borderLight dark:border-borderDark px-6 py-3">
     {links.map((link) => (
       <li>
-        <a
-          href={link.href}
-          data-section={link.href.replace('#', '')}
-          class="mobile-nav-link mobile-menu-link block py-3 pl-3 text-base text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-all border-l-2 border-transparent"
-        >
-          {link.label}
-        </a>
+        <a href={link.href} data-section={link.href.replace('#', '')} class="mobile-nav-link mobile-menu-link block py-3 pl-3 text-base text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-all border-l-2 border-transparent">{link.label}</a>
       </li>
     ))}
-    <li class="pt-2 pb-1">
-      <a href="/sugumaran-s-resume.pdf" download class="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all">
-        Download Resume
-      </a>
-    </li>
+    <li class="pt-2 pb-1"><a href="/sugumaran-s-resume.pdf" download class="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all">Download Resume</a></li>
   </ul>
 </nav>
 
 <script>
-  const menuBtn   = document.getElementById('mobile-menu-btn');
+  const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const iconHamburger = document.getElementById('icon-hamburger');
   const iconClose = document.getElementById('icon-close');
-
-  function closeMenu() {
-    mobileMenu?.classList.add('hidden');
-    mobileMenu?.classList.remove('flex');
-    iconHamburger?.classList.remove('hidden');
-    iconClose?.classList.add('hidden');
+  const closeMenu = () => {
+    mobileMenu?.classList.add('hidden'); mobileMenu?.classList.remove('flex');
+    iconHamburger?.classList.remove('hidden'); iconClose?.classList.add('hidden');
     menuBtn?.setAttribute('aria-expanded', 'false');
-  }
-  function toggleMenu() {
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    if (isOpen) { closeMenu(); }
+  };
+  menuBtn?.addEventListener('click', () => {
+    const open = !mobileMenu?.classList.contains('hidden');
+    if (open) closeMenu();
     else {
-      mobileMenu?.classList.remove('hidden');
-      mobileMenu?.classList.add('flex');
-      iconHamburger?.classList.add('hidden');
-      iconClose?.classList.remove('hidden');
+      mobileMenu?.classList.remove('hidden'); mobileMenu?.classList.add('flex');
+      iconHamburger?.classList.add('hidden'); iconClose?.classList.remove('hidden');
       menuBtn?.setAttribute('aria-expanded', 'true');
     }
-  }
-  menuBtn?.addEventListener('click', toggleMenu);
-  document.querySelectorAll('.mobile-menu-link').forEach((l) => l.addEventListener('click', closeMenu));
+  });
+  document.querySelectorAll('.mobile-menu-link').forEach((link) => link.addEventListener('click', closeMenu));
 
-  // Shadow on scroll
   const nav = document.getElementById('site-nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      nav?.classList.add('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]');
-    } else {
-      nav?.classList.remove('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]');
-    }
-  }, { passive: true });
+  window.addEventListener('scroll', () => nav?.classList.toggle('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]', window.scrollY > 10), { passive: true });
 
-  // Active nav via IntersectionObserver
+  const setThemeIcon = () => {
+    const dark = document.documentElement.classList.contains('dark');
+    document.getElementById('theme-icon-sun')?.classList.toggle('hidden', !dark);
+    document.getElementById('theme-icon-moon')?.classList.toggle('hidden', dark);
+  };
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const dark = !document.documentElement.classList.contains('dark');
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    setThemeIcon();
+  });
+  setThemeIcon();
+
   const sections = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-link');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-  function setActive(id) {
-    [...navLinks, ...mobileNavLinks].forEach((link) => {
-      const isActive = link.getAttribute('data-section') === id;
-      link.classList.toggle('!text-ink', isActive);
-      link.classList.toggle('dark:!text-white', isActive);
-      link.classList.toggle('font-semibold', isActive);
-    });
-  }
-
-  const sectionObserver = new IntersectionObserver(
-    (entries) => { entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }); },
-    { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
-  );
-  sections.forEach((s) => sectionObserver.observe(s));
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  const setActive = (id: string) => navLinks.forEach((link) => {
+    const active = link.getAttribute('data-section') === id;
+    link.classList.toggle('!text-ink', active); link.classList.toggle('dark:!text-white', active); link.classList.toggle('font-semibold', active);
+  });
+  const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && setActive(entry.target.id)), { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  sections.forEach((section) => sectionObserver.observe(section));
 </script>
