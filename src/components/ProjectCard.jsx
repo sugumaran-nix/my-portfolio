@@ -2,25 +2,39 @@ import { useEffect, useRef, useState } from "react";
 import MagicCard from "./MagicCard.jsx";
 import { ExternalLink, GitBranch } from "lucide-react";
 
-const projectMeta = {
-  "JobGuard — AI Job Fraud Detector": { img: "/images/project-fake-job.png", alt: "JobGuard AI Job Fraud Detector" },
-  "AI-Generated Text Detector":                     { img: "/images/project-ai-detector.png", alt: "AI Text Detector" },
-  "Sketchline — Real-Time Collaborative Whiteboard":{ img: "/images/project-sketchline.png",  alt: "Sketchline Whiteboard" },
-  "ProjectScope — Eisenhower Matrix Task Manager":  { img: "/images/project-scope.png",       alt: "ProjectScope Task Manager" },
-};
-
-const FALLBACK = {
-  "JobGuard — AI Job Fraud Detector": "from-stone-700 to-stone-900",
-  "AI-Generated Text Detector":                     "from-zinc-700 to-zinc-900",
-  "Sketchline — Real-Time Collaborative Whiteboard":"from-neutral-700 to-neutral-900",
-  "ProjectScope — Eisenhower Matrix Task Manager":  "from-stone-600 to-stone-900",
-};
-
-// Eagerly loads image via JS Image object — avoids lazy-load / Astro SSR mismatch
-function ProjectImage({ src, alt, title }) {
-  const [status, setStatus] = useState("loading");
+// Watches for Tailwind's class-based dark mode on <html>
+function useDarkMode() {
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    setIsDark(document.documentElement.classList.contains("dark"));
+
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return isDark;
+}
+
+function ProjectImage({ imgLight, imgDark, alt }) {
+  const isDark = useDarkMode();
+  const src = isDark ? imgDark : imgLight;
+  const [status, setStatus] = useState("loading");
+  const prevSrc = useRef(null);
+
+  useEffect(() => {
+    if (prevSrc.current === src) return;
+    prevSrc.current = src;
+    setStatus("loading");
+
     const img = new Image();
     img.onload  = () => setStatus("loaded");
     img.onerror = () => setStatus("error");
@@ -32,24 +46,26 @@ function ProjectImage({ src, alt, title }) {
       {status === "loading" && <div className="absolute inset-0 img-skeleton" />}
 
       {status === "error" && (
-        <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK[title] ?? "from-zinc-700 to-zinc-900"} flex items-center justify-center`}>
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-700 to-stone-900 flex items-center justify-center">
           <span className="text-white/30 text-xs font-mono">screenshot coming soon</span>
         </div>
       )}
 
       {status === "loaded" && (
-        <img src={src} alt={alt} className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        />
       )}
     </div>
   );
 }
 
-export default function ProjectCard({ title, desc, tags, href, demoHref, delay = 0 }) {
- const meta = projectMeta[title] ?? { img: "/images/project-fake-job.png", alt: title };
-
+export default function ProjectCard({ title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0 }) {
   return (
     <MagicCard delay={delay} className="glass-card flex flex-col h-full">
-      <ProjectImage src={meta.img} alt={meta.alt} title={title} />
+      <ProjectImage imgLight={imgLight} imgDark={imgDark} alt={title} />
 
       <div className="p-5 flex flex-col gap-3 flex-1">
         <h3 className="text-[15px] font-semibold leading-snug text-ink dark:text-white">{title}</h3>
