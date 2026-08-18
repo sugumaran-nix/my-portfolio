@@ -112,7 +112,7 @@ const flipWords = [
             target={s.href.startsWith('http') ? '_blank' : undefined}
             rel={s.href.startsWith('http') ? 'noopener' : undefined}
             aria-label={s.label}
-            class="text-inkMuted/60 dark:text-white/40 hover:text-ink dark:hover:text-white transition-all duration-200 hover:scale-110"
+            class="text-inkMuted dark:text-white/60 hover:text-ink dark:hover:text-white transition-all duration-200 hover:scale-110"
           >
             <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d={s.path}></path></svg>
           </a>
@@ -120,7 +120,7 @@ const flipWords = [
       </div>
 
       <!-- Scroll cue — inside flex column so it sits naturally BELOW social icons -->
-      <div class="hidden md:flex flex-col items-center gap-1.5 mt-12 text-inkMuted/35 dark:text-white/20 animate-bounce pointer-events-none select-none">
+      <div class="hidden md:flex flex-col items-center gap-1.5 mt-12 text-inkMuted/70 dark:text-white/50 animate-bounce pointer-events-none select-none">
         <span class="text-[9px] font-bold uppercase tracking-[.2em]">scroll</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4">
           <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -143,7 +143,7 @@ const flipWords = [
 
         <!-- Profile card -->
         <div class="reveal order-first md:order-last" style="transition-delay:.1s">
-          <GlowBorderCard class="magic-border glass-card p-6 text-center flex flex-col items-center">
+          <GlowBorderCard class="p-6 text-center flex flex-col items-center">
             <div class="w-36 h-36 mx-auto rounded-full overflow-hidden ring-2 ring-borderLight dark:ring-borderDark mb-4 shadow-md">
               <div class="w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('/profile.webp')"></div>
             </div>
@@ -170,11 +170,11 @@ const flipWords = [
             <p class="text-[11px] font-bold text-ink dark:text-white uppercase tracking-widest">Education</p>
             <div>
               <p class="text-[15px] font-semibold text-ink dark:text-white">MCA — Anna University</p>
-              <p class="text-[13px] font-medium text-inkMuted/70 dark:text-white/35 mt-0.5">Sri Venkateshwara College · 2024–2026 · 80%</p>
+              <p class="text-[13px] font-medium text-inkMuted dark:text-white/60 mt-0.5">Sri Venkateshwara College · 2024–2026 · 80%</p>
             </div>
             <div>
               <p class="text-[15px] font-semibold text-ink dark:text-white">BCA — Bharathiar University</p>
-              <p class="text-[13px] font-medium text-inkMuted/70 dark:text-white/35 mt-0.5">Govt Arts & Science College, Gudalur · 2021–2024 · 83.71%</p>
+              <p class="text-[13px] font-medium text-inkMuted dark:text-white/60 mt-0.5">Govt Arts & Science College, Gudalur · 2021–2024 · 83.71%</p>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ const flipWords = [
   </section>
 
   <!-- ── SKILLS ─────────────────────────────────────────────────────────── -->
-  <section id="skills" class="section-divider bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-20 md:py-28">
+  <section id="skills" class="section-divider section-muted px-6 md:px-10 py-20 md:py-28">
     <div class="max-w-[1100px] mx-auto">
 
       <div class="reveal mb-2">
@@ -235,7 +235,7 @@ const flipWords = [
   </section>
 
   <!-- ── CONTACT ────────────────────────────────────────────────────────── -->
-  <section id="contact" class="section-divider bg-surfaceMuted dark:bg-surfaceDarkMuted px-6 md:px-10 py-20 md:py-28">
+  <section id="contact" class="section-divider section-muted px-6 md:px-10 py-20 md:py-28">
     <div class="max-w-[1100px] mx-auto">
 
       <div class="reveal mb-2">
@@ -243,7 +243,7 @@ const flipWords = [
         <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">
   Say hello —&nbsp;<em>let's talk.</em>
 </h2>
-<p class="text-[16px] text-inkMuted dark:text-white/45 mt-3 max-w-[440px] leading-[1.8]">
+<p class="text-[16px] text-inkMuted dark:text-white/65 mt-3 max-w-[440px] leading-[1.8]">
   Full-time roles and internships. I read everything.
 </p>
       </div>
@@ -317,7 +317,7 @@ const flipWords = [
         </div>
 
         <!-- Form -->
-        <div class="reveal" style="transition-delay:.1s">
+        <div class="card-surface reveal p-6" style="transition-delay:.1s">
           <ContactForm />
         </div>
 

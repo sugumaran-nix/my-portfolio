@@ -43,7 +43,7 @@ const categories = [
 <div class="skills-grid mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
   {categories.map((category, index) => (
     <div
-      class={`bento-card glass-card reveal flex cursor-default flex-col gap-3.5 p-5 sm:p-6 ${category.span} ${category.featured ? 'bento-featured' : ''}`}
+      class={`card-surface reveal flex cursor-default flex-col gap-3.5 p-5 sm:p-6 ${category.span}`}
       style={`transition-delay: ${index * 0.07}s`}
     >
       <div class="flex items-center gap-2.5">
@@ -54,7 +54,7 @@ const categories = [
       </div>
       <div class="flex flex-wrap gap-2">
         {category.skills.map((skill) => (
-          <span class="cursor-default rounded-lg border border-borderLight bg-black/[.04] px-2.5 py-1 text-[12px] font-medium text-inkMuted transition-all duration-150 hover:-translate-y-0.5 hover:border-ink/20 hover:bg-black/[.08] dark:border-borderDark dark:bg-white/[.07] dark:text-white/65 dark:hover:border-white/25 dark:hover:bg-white/[.12] sm:text-[13px]">
+          <span class="card-chip">
             {skill}
           </span>
         ))}

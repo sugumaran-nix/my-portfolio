@@ -3,7 +3,7 @@ const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'service_id';
 const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'template_id';
 const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || 'public_key';
 
-const inputBase = 'w-full rounded-xl px-4 py-3 text-sm bg-surfaceMuted dark:bg-[#0A0A0A] border border-borderLight dark:border-borderDark text-ink dark:text-white/90 placeholder:text-inkMuted/60 dark:placeholder:text-white/40 focus:outline-none focus:border-ink/60 dark:focus:border-white/50 focus:shadow-[0_0_0_3px_rgba(13,13,11,0.07)] dark:focus:shadow-[0_0_0_3px_rgba(255,255,255,0.05)] transition-colors duration-200';
+const inputBase = 'control-input';
 ---
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
@@ -17,19 +17,19 @@ const inputBase = 'w-full rounded-xl px-4 py-3 text-sm bg-surfaceMuted dark:bg-[
   noValidate
 >
   <div class="flex flex-col gap-1.5">
-    <label for="cf-name" class="text-xs font-semibold uppercase tracking-wider text-inkMuted dark:text-white/40">Name</label>
+    <label for="cf-name" class="text-xs font-semibold uppercase tracking-wider text-inkMuted dark:text-white/60">Name</label>
     <input id="cf-name" name="name" type="text" autoComplete="name" placeholder="Your name" maxlength="80" class={inputBase} />
     <p id="cf-name-error" class="hidden text-xs font-medium italic text-ink/70 dark:text-white/65"></p>
   </div>
 
   <div class="flex flex-col gap-1.5">
-    <label for="cf-email" class="text-xs font-semibold uppercase tracking-wider text-inkMuted dark:text-white/40">Email</label>
+    <label for="cf-email" class="text-xs font-semibold uppercase tracking-wider text-inkMuted dark:text-white/60">Email</label>
     <input id="cf-email" name="email" type="email" autoComplete="email" placeholder="your@email.com" maxlength="120" class={inputBase} />
     <p id="cf-email-error" class="hidden text-xs font-medium italic text-ink/70 dark:text-white/65"></p>
   </div>
 
   <div class="flex flex-col gap-1.5">
-    <label for="cf-message" class="text-xs font-semibold uppercase tracking-wider text-inkMuted dark:text-white/40">Message</label>
+    <label for="cf-message" class="text-xs font-semibold uppercase tracking-wider text-inkMuted dark:text-white/60">Message</label>
     <textarea id="cf-message" name="message" rows="5" placeholder="Your message..." maxlength="2000" class={`${inputBase} resize-none`}></textarea>
     <p id="cf-message-error" class="hidden text-xs font-medium italic text-ink/70 dark:text-white/65"></p>
   </div>

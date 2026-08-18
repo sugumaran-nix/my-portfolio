@@ -7,19 +7,6 @@ interface Props {
 const { class: className = '', delay = 0 } = Astro.props;
 ---
 
-<div
-  class={`glow-border-card reveal ${className}`}
-  style={`transition-delay: ${delay}s`}
->
+<div class={`card-surface reveal ${className}`} style={`transition-delay: ${delay}s`}>
   <slot />
 </div>
-
-<script>
-  document.querySelectorAll<HTMLElement>('.glow-border-card').forEach((card) => {
-    card.addEventListener('mousemove', (event) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--glow-x', `${event.clientX - rect.left}px`);
-      card.style.setProperty('--glow-y', `${event.clientY - rect.top}px`);
-    });
-  });
-</script>
