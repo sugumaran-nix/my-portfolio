@@ -1283,3 +1283,19 @@ html.dark .project-card .project-image-shell img {
   width: calc(100% - clamp(2px, .3vw, 4px)) !important;
   height: calc(100% - clamp(2px, .3vw, 4px)) !important;
 }
+
+/* ── Final project-card hover refinement ──────────────────────────────────── */
+.project-card {
+  transition: transform .18s cubic-bezier(.23, 1, .32, 1), background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover {
+    transform: translateY(-2px) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card:hover {
+    transform: none !important;
+  }
+}
