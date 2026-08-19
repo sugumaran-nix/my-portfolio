@@ -399,10 +399,10 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
 }
 html.dark .magic-card-spotlight { background: radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(192,189,184,.10), transparent 70%); }
 .magic-card-wrap:hover {
-  box-shadow: 0 12px 40px -8px rgba(13,13,11,0.16), 0 4px 16px -4px rgba(13,13,11,0.10);
+  box-shadow: var(--card-shadow-hover) !important;
 }
 html.dark .magic-card-wrap:hover {
-  box-shadow: 0 12px 40px -8px rgba(0,0,0,0.55), 0 4px 16px -4px rgba(0,0,0,0.38);
+  box-shadow: var(--card-shadow-hover) !important;
 }
 
 /* ── Reduced motion ─────────────────────────────────────────────────────── */

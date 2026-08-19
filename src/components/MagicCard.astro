@@ -1,14 +1,16 @@
 ---
 interface Props {
+  class?: string;
   className?: string;
   delay?: number;
 }
 
-const { className = '', delay = 0 } = Astro.props;
+const { class: classProp = '', className = '', delay = 0 } = Astro.props;
+const wrapperClass = classProp || className;
 ---
 
 <div
-  class={`magic-card-wrap reveal relative overflow-hidden ${className}`}
+  class={`magic-card-wrap reveal relative overflow-hidden ${wrapperClass}`}
   style={`transition-delay: ${delay}s`}
 >
   <div class="magic-card-spotlight pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-200"></div>
