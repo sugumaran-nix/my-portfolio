@@ -86,7 +86,7 @@ export function Navbar() {
               )}
             </button>
 
-            <a href="/sugumaran-s-resume.pdf" download className="btn-ghost-pill hidden items-center gap-1.5 text-xs md:inline-flex">
+            <a href="/sugumaran-s-resume.pdf" download className="navbar-resume btn-ghost-pill hidden items-center gap-1.5 text-xs md:inline-flex">
               <DownloadIcon />
               Resume
             </a>
