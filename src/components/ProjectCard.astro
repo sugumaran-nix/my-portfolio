@@ -1,6 +1,4 @@
 ---
-import MagicCard from './MagicCard.astro';
-
 interface Props {
   title: string;
   desc: string;
@@ -9,17 +7,16 @@ interface Props {
   demoHref?: string;
   imgLight: string;
   imgDark: string;
-  delay?: number;
   outcome?: string;
 }
 
-const { title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0, outcome } = Astro.props;
+const { title, desc, tags, href, demoHref, imgLight, imgDark, outcome } = Astro.props;
 const imgLightSmall = imgLight.replace('.webp', '-640.webp');
 const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
 ---
 
-<MagicCard class="project-card card-surface flex h-full flex-col" delay={delay}>
-  <div class="project-image-shell w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden group img-skeleton" aria-busy="true">
+<article class="project-card card-surface flex h-full flex-col">
+  <div class="project-image-shell w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden img-skeleton" aria-busy="true">
     <img
       data-src={imgLight}
       data-srcset={`${imgLightSmall} 640w, ${imgLight} 1280w`}
@@ -29,7 +26,7 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
       alt={`${title} screenshot`}
       loading="lazy"
       decoding="async"
-      class="project-img-light absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-200"
+      class="project-img-light absolute inset-0 w-full h-full object-cover opacity-100"
     />
     <img
       data-src={imgDark}
@@ -41,36 +38,28 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
       aria-hidden="true"
       loading="lazy"
       decoding="async"
-      class="project-img-dark absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-200"
+      class="project-img-dark absolute inset-0 w-full h-full object-cover opacity-0"
     />
     <div class="project-image-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-stone-700 to-stone-900">
       <span class="text-xs font-mono text-white/30">screenshot coming soon</span>
     </div>
-    <a href={demoHref || href} target="_blank" rel="noopener noreferrer" class="project-img-overlay">
-      View project
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4">
-        <path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </a>
   </div>
 
-  <div class="flex flex-1 flex-col gap-3 px-2 pb-2 pt-4 sm:px-2 sm:pb-2 sm:pt-5">
+  <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
     <h3 class="text-[15px] font-semibold leading-snug text-ink dark:text-white">{title}</h3>
-    <p class="line-clamp-3 text-[14px] leading-[1.75] text-inkMuted dark:text-white/55">{desc}</p>
+    <p class="line-clamp-2 text-[14px] leading-[1.6] text-inkMuted dark:text-white/55">{desc}</p>
     {outcome && <p class="project-outcome">{outcome}</p>}
 
-    <div class="mt-auto flex flex-wrap gap-1.5 pt-2">
+    <div class="mt-auto flex flex-wrap gap-1.5 pt-1">
       {tags.map((tag) => (
-        <span class="card-chip">
-          {tag}
-        </span>
+        <span class="card-chip">{tag}</span>
       ))}
     </div>
 
     <div class="flex flex-wrap items-center gap-2 pt-1">
       {demoHref && (
         <a href={demoHref} target="_blank" rel="noopener noreferrer" class="btn-ghost-pill project-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3" aria-hidden="true">
             <path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           View Live
@@ -86,7 +75,7 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
       )}
     </div>
   </div>
-</MagicCard>
+</article>
 
 <script>
   const projectShells = Array.from(document.querySelectorAll<HTMLElement>('.project-image-shell'));
