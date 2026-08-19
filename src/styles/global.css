@@ -56,13 +56,13 @@ html.dark {
 /* ── Shared visual system ──────────────────────────────────────────────── */
 :root {
   --page-bg: #FFFFFF;
-  --section-bg: #FAFAFA;
-  --card-bg: rgba(255,255,255,.68);
-  --card-bg-hover: rgba(255,255,255,.82);
-  --card-border: rgba(255,255,255,.78);
-  --card-border-strong: rgba(255,255,255,.98);
-  --card-shadow: 0 12px 32px -18px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.78);
-  --card-shadow-hover: 0 20px 42px -20px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.9);
+  --section-bg: #F7F7F7;
+  --card-bg: rgba(255,255,255,.86);
+  --card-bg-hover: rgba(255,255,255,.94);
+  --card-border: rgba(17,17,17,.12);
+  --card-border-strong: rgba(17,17,17,.26);
+  --card-shadow: 0 14px 34px -18px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.88);
+  --card-shadow-hover: 0 22px 46px -20px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.96);
   --chip-bg: #F5F5F5;
   --chip-border: #D4D4D4;
   --control-bg: #FFFFFF;
@@ -142,9 +142,12 @@ html.dark .site-shell {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   min-height: 42px; padding: 0 1rem; border: 1px solid var(--control-border); border-radius: var(--radius-pill);
   background: transparent; color: var(--text-primary); font-size: .75rem; font-weight: 600; text-decoration: none;
-  transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .18s cubic-bezier(.23,1,.32,1);
 }
-.btn-ghost-pill:hover { background: var(--card-bg-hover); border-color: var(--text-primary); transform: translateY(-1px); }
+.btn-ghost-pill:hover {
+  background: var(--text-primary); border-color: var(--text-primary); color: var(--page-bg);
+  box-shadow: var(--card-shadow-hover); transform: translateY(-1px);
+}
 .btn-ghost-pill:active { transform: scale(.97); }
 .scroll-top-control {
   background: var(--card-bg); border: 1px solid var(--card-border-strong); color: var(--accent);
@@ -418,6 +421,8 @@ html.dark .magic-card-wrap:hover {
   .shimmer-text { animation: none; }
   .uiverse-btn::before { animation: none; }
   .magic-card-wrap { transition: none; }
+  .img-skeleton,
+  .project-card .project-image-shell.img-skeleton { animation: none; }
 }
 
 /* ── Toast notification ─────────────────────────────────────────────────── */
@@ -446,7 +451,7 @@ html.dark .toast { background: #F8F8F8; color: #0D0D0B; }
   animation: img-shimmer 1.4s ease-in-out infinite;
 }
 html.dark .img-skeleton {
-  background: linear-gradient(90deg, #0E0E0E 25%, #141414 50%, #0E0E0E 75%);
+  background: linear-gradient(90deg, #0E0E0E 25%, #1A1A1A 50%, #0E0E0E 75%);
   background-size: 800px 100%;
 }
 
@@ -628,8 +633,9 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
 }
 .btn-outline-pill:hover {
   border-color: var(--text-primary);
-  background: var(--card-bg-hover);
-  color: var(--text-primary);
+  background: var(--text-primary);
+  color: var(--page-bg);
+  box-shadow: var(--card-shadow-hover);
 }
 .btn-filled-pill {
   background: var(--text-primary);
@@ -640,8 +646,16 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
   background: var(--text-primary);
   color: var(--page-bg);
   box-shadow: var(--card-shadow-hover);
+  transform: translateY(-1px);
 }
-.btn-filled-pill:active { background: var(--text-primary); color: var(--page-bg); }
+.btn-outline-pill:active,
+.btn-ghost-pill:active,
+.btn-filled-pill:active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--page-bg);
+  transform: scale(.97);
+}
 
 /* ── Shared section geometry ───────────────────────────────────────────── */
 .section-divider { border-top: 1px solid var(--card-border); }
@@ -793,7 +807,7 @@ body { line-height: 1.6; overflow-x: hidden; }
 /* ── Mobbin-inspired editorial product-library layer ────────────────────── */
 :root {
   --library-grid: rgba(0,0,0,.07);
-  --library-muted: #F7F7F7;
+  --library-muted: #F3F3F3;
 }
 html.dark {
   --library-grid: rgba(255,255,255,.09);
@@ -871,6 +885,15 @@ body {
 .project-card .project-outcome {
   background: var(--library-muted);
   border-left: 2px solid var(--card-border-strong);
+}
+.project-card .project-image-shell.img-skeleton {
+  background: linear-gradient(90deg, #868380 25%, #EDEAE6 50%, #868380 75%) !important;
+  background-size: 800px 100% !important;
+  animation: img-shimmer 1.4s ease-in-out infinite;
+}
+html.dark .project-card .project-image-shell.img-skeleton {
+  background: linear-gradient(90deg, #0E0E0E 25%, #1A1A1A 50%, #0E0E0E 75%) !important;
+  background-size: 800px 100% !important;
 }
 .skills-grid .card-surface {
   background: var(--card-bg) !important;

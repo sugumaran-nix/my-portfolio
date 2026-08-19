@@ -30,7 +30,7 @@ const links = [
         <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
 
-      <a href="/sugumaran-s-resume.pdf" download class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all hover:scale-105">
+      <a href="/sugumaran-s-resume.pdf" download class="btn-ghost-pill hidden md:inline-flex items-center gap-1.5 text-xs">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round" /></svg>
         Resume
       </a>
@@ -48,7 +48,7 @@ const links = [
         <a href={link.href} data-section={link.href.replace('#', '')} class="mobile-nav-link mobile-menu-link block py-3 pl-3 text-base text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-all border-l-2 border-transparent">{link.label}</a>
       </li>
     ))}
-    <li class="pt-2 pb-1"><a href="/sugumaran-s-resume.pdf" download class="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-borderLight dark:border-borderDark text-ink dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all">Download Resume</a></li>
+    <li class="pt-2 pb-1"><a href="/sugumaran-s-resume.pdf" download class="btn-ghost-pill inline-flex items-center gap-1.5 text-sm">Download Resume</a></li>
   </ul>
 </nav>
 

@@ -19,7 +19,7 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
 ---
 
 <MagicCard class="project-card card-surface flex h-full flex-col" delay={delay}>
-  <div class="project-image-shell w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden group img-skeleton">
+  <div class="project-image-shell w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden group img-skeleton" aria-busy="true">
     <img
       data-src={imgLight}
       data-srcset={`${imgLightSmall} 640w, ${imgLight} 1280w`}
@@ -114,10 +114,14 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
     const fallback = shell.querySelector<HTMLElement>('.project-image-fallback');
     const images = Array.from(shell.querySelectorAll<HTMLImageElement>('img'));
     images.forEach((image) => {
-      image.addEventListener('load', () => shell.classList.remove('img-skeleton'), { once: true });
+      image.addEventListener('load', () => {
+        shell.classList.remove('img-skeleton');
+        shell.setAttribute('aria-busy', 'false');
+      }, { once: true });
       image.addEventListener('error', () => {
         image.classList.add('hidden');
         shell.classList.remove('img-skeleton');
+        shell.setAttribute('aria-busy', 'false');
         fallback?.classList.replace('hidden', 'flex');
       }, { once: true });
     });
