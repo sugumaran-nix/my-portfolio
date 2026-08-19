@@ -10,16 +10,15 @@ interface Props {
   imgLight: string;
   imgDark: string;
   delay?: number;
-  role?: string;
   outcome?: string;
 }
 
-const { title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0, role = 'Full-stack build', outcome } = Astro.props;
+const { title, desc, tags, href, demoHref, imgLight, imgDark, delay = 0, outcome } = Astro.props;
 const imgLightSmall = imgLight.replace('.webp', '-640.webp');
 const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
 ---
 
-<MagicCard class="project-card card-surface flex h-full flex-col p-3 sm:p-4" delay={delay}>
+<MagicCard class="project-card card-surface flex h-full flex-col" delay={delay}>
   <div class="project-image-shell w-full aspect-[16/8] flex-shrink-0 relative overflow-hidden group img-skeleton">
     <img
       data-src={imgLight}
@@ -56,10 +55,6 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
   </div>
 
   <div class="flex flex-1 flex-col gap-3 px-2 pb-2 pt-4 sm:px-2 sm:pb-2 sm:pt-5">
-    <div class="project-meta">
-      <span>Role</span>
-      <span>{role}</span>
-    </div>
     <h3 class="text-[15px] font-semibold leading-snug text-ink dark:text-white">{title}</h3>
     <p class="line-clamp-3 text-[14px] leading-[1.75] text-inkMuted dark:text-white/55">{desc}</p>
     {outcome && <p class="project-outcome">{outcome}</p>}
@@ -82,11 +77,10 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
         </a>
       )}
       {href && (
-        <a href={href} target="_blank" rel="noopener noreferrer" class="btn-ghost-pill project-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3">
-            <path d="M8 12h8M12 8v8M5 5h5M14 5h5v5M19 14v5h-5M5 14v5h5" stroke-linecap="round" stroke-linejoin="round" />
+        <a href={href} target="_blank" rel="noopener noreferrer" class="btn-ghost-pill project-action project-action-icon" aria-label={`Open ${title} GitHub repository`} title="GitHub repository">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-4 w-4">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
           </svg>
-          GitHub
         </a>
       )}
     </div>

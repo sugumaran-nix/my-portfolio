@@ -13,7 +13,6 @@ const projects = [
   {
     title: 'JobGuard — Fake Job Posting Detector',
     desc: 'Trained and shipped an ONNX-optimized classifier for fake job listings, combining text classification, URL risk signals, and token-level explanations in one practical screening workflow.',
-    role: 'ML model + inference pipeline',
     outcome: '87.57% F1 on 17,880 EMSCAD listings with runtime model switching and INT8 quantization.',
     tags: ['Python', 'DistilBERT', 'ONNX', 'Flask', 'NLP'],
     href: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
@@ -24,7 +23,6 @@ const projects = [
   {
     title: 'Sketchline — Real-Time Collaborative Whiteboard',
     desc: 'Designed a collaborative canvas with resilient WebSocket synchronization, reconnect-safe state replay, and shared undo/redo so teams can draw together without losing board history.',
-    role: 'Realtime systems + frontend',
     outcome: 'Sub-100ms sync with full late-join replay, nine brush types, and 64-step shared undo/redo.',
     tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'Canvas'],
     href: 'https://github.com/sugumaran-nix/whiteboard-frontend',
@@ -35,7 +33,6 @@ const projects = [
   {
     title: 'AI Shopping Agent — Multi-Source Product Search',
     desc: 'Built a fault-tolerant product search pipeline that gathers multiple sources, removes duplicate listings, and turns the best candidates into ranked Gemini recommendations.',
-    role: 'AI product architecture',
     outcome: 'Retries, deduplication, and 30-minute caching keep ranked search usable on a constrained deployment tier.',
     tags: ['Next.js', 'FastAPI', 'Gemini', 'Python', 'ScraperAPI'],
     href: 'https://github.com/sugumaran-nix/ai-shopping-agent',
@@ -46,7 +43,6 @@ const projects = [
   {
     title: 'AI Content Detector',
     desc: 'Moved AI-text detection into the browser with an ONNX model, confidence scoring, and span-level highlighting so users get useful feedback without sending writing to a server.',
-    role: 'Browser ML + UX',
     outcome: '94.15% accuracy and 0.991 AUC with sub-second client-side results and sentence confidence scores.',
     tags: ['DistilBERT', 'ONNX', 'Transformers.js', 'FastAPI', 'NLP'],
     href: 'https://github.com/sugumaran-nix/ai-content-detector',
@@ -225,16 +221,6 @@ const flipWords = [
         <p class="section-lede">Selected builds across AI/ML, browser inference, realtime collaboration, and full-stack product systems.</p>
       </div>
 
-      <div class="project-toolbar reveal" style="transition-delay:.04s">
-        <span class="project-toolbar-label">Browse selected work</span>
-        <div class="project-filters" aria-label="Project categories">
-          <span class="project-filter is-active">All builds</span>
-          <span class="project-filter">AI / ML</span>
-          <span class="project-filter">Realtime</span>
-          <span class="project-filter">Full-stack</span>
-        </div>
-      </div>
-
       <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8" style="transition-delay:.05s">
         {projects.map((p, i) => (
           <ProjectCard {...p} delay={i * 0.07} />
@@ -246,7 +232,7 @@ const flipWords = [
           href="https://github.com/sugumaran-nix"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-outline-pill"
+          class="btn-ghost-pill project-all-link"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 flex-shrink-0">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
