@@ -60,7 +60,7 @@ const themeInit = `
   try {
     const stored = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if ((stored || (prefersDark ? 'dark' : 'light')) === 'dark') {
+    if ((stored || 'dark') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   } catch (_) {}
