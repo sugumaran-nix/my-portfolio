@@ -1251,3 +1251,35 @@ html.dark .project-card .project-image-shell img {
   object-position: center !important;
   border-radius: 16px !important;
 }
+
+/* ── Final shared visual parity pass ─────────────────────────────────────── */
+.hero-spline-layer {
+  background:
+    radial-gradient(ellipse 42% 34% at 50% 18%, rgba(255, 255, 255, .075), transparent 72%),
+    radial-gradient(ellipse 60% 48% at 14% 28%, rgba(83, 63, 255, .18), transparent 72%),
+    radial-gradient(ellipse 54% 46% at 86% 24%, rgba(0, 184, 255, .12), transparent 72%),
+    radial-gradient(ellipse 52% 44% at 52% 88%, rgba(79, 255, 171, .08), transparent 72%);
+}
+html:not(.dark) .hero-spline-layer {
+  background:
+    radial-gradient(ellipse 42% 34% at 50% 18%, rgba(255, 255, 255, .42), transparent 72%),
+    radial-gradient(ellipse 60% 48% at 14% 28%, rgba(83, 63, 255, .12), transparent 72%),
+    radial-gradient(ellipse 54% 46% at 86% 24%, rgba(0, 184, 255, .08), transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(246, 247, 250, .92));
+}
+.project-card,
+html.dark .project-card,
+.project-card .project-image-shell,
+html.dark .project-card .project-image-shell {
+  box-sizing: border-box;
+}
+.project-card .project-image-shell,
+html.dark .project-card .project-image-shell {
+  padding: clamp(1px, .15vw, 2px) !important;
+}
+.project-card .project-image-shell img,
+html.dark .project-card .project-image-shell img {
+  inset: clamp(1px, .15vw, 2px) !important;
+  width: calc(100% - clamp(2px, .3vw, 4px)) !important;
+  height: calc(100% - clamp(2px, .3vw, 4px)) !important;
+}
