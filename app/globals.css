@@ -271,41 +271,35 @@ html.dark .section-eyebrow { color: #A3A3A8; }
   .motion-reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* ── CSS complete-word flip/fade text ─────────────────────────────────────── */
+/* ── Motion-style letter flip/fade text ───────────────────────────────────── */
 .flip-fade-text {
   min-width: 22ch;
-  min-height: 1.5rem;
-  perspective: 900px;
+  min-height: 1.75rem;
+  perspective: 1000px;
   overflow: visible;
 }
 .flip-stage {
-  position: relative;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 100%;
   white-space: nowrap;
+  overflow: visible;
   transform-style: preserve-3d;
 }
 .flip-word {
-  grid-area: 1 / 1;
-  display: inline-block;
+  display: inline-flex;
+  gap: .04em;
   white-space: nowrap;
-  backface-visibility: hidden;
+  transform-style: preserve-3d;
   transform-origin: center center;
+  backface-visibility: hidden;
+}
+.flip-letter {
+  backface-visibility: hidden;
   will-change: transform, opacity, filter;
 }
-.flip-word-current { opacity: 1; transform: translate3d(0, 0, 0) rotateX(0deg); }
-.flip-word-next { opacity: 0; transform: translate3d(0, 14px, 0) rotateX(-48deg); }
-.flip-word--exit { animation: flip-word-current-out .46s cubic-bezier(.22,.61,.36,1) both; }
-.flip-word-next { animation: flip-word-next-in .46s cubic-bezier(.22,.61,.36,1) both; }
-@keyframes flip-word-current-out {
-  0% { opacity: 1; filter: blur(0); transform: translate3d(0,0,0) rotateX(0deg); }
-  100% { opacity: 0; filter: blur(3px); transform: translate3d(0,-10px,0) rotateX(48deg); }
-}
-@keyframes flip-word-next-in {
-  0% { opacity: 0; filter: blur(3px); transform: translate3d(0,14px,0) rotateX(-48deg); }
-  100% { opacity: 1; filter: blur(0); transform: translate3d(0,0,0) rotateX(0deg); }
-}
+
 
 /* ── Link hover ─────────────────────────────────────────────────────────── */
 .line-hover {
@@ -1052,4 +1046,54 @@ html:not(.dark) .site-nav::before {
   .site-nav .menu-toggle:hover,
   .project-card .project-action:hover,
   .social-link:hover { transform: none; }
+}
+
+/* ── Final frosted navbar and project image cleanup ──────────────────────── */
+.site-nav {
+  background: rgba(10, 10, 12, .62) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .10) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+}
+.site-nav::before {
+  display: none !important;
+}
+.site-nav > div:first-child {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.site-nav .mobile-menu {
+  background: rgba(10, 10, 12, .82) !important;
+  border-top: 1px solid rgba(255, 255, 255, .10) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+}
+html:not(.dark) .site-nav {
+  background: rgba(255, 255, 255, .68) !important;
+  border-bottom-color: rgba(20, 20, 20, .10) !important;
+}
+html:not(.dark) .site-nav .mobile-menu {
+  background: rgba(255, 255, 255, .82) !important;
+  border-top-color: rgba(20, 20, 20, .10) !important;
+}
+.project-card .project-image-shell {
+  width: 100% !important;
+  height: clamp(220px, 25vw, 290px);
+  margin: 0 !important;
+  background: var(--card-bg) !important;
+  border: 0 !important;
+  border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+  overflow: hidden;
+}
+.project-card .project-image-shell img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 !important;
+  object-fit: contain;
 }
