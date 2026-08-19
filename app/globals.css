@@ -1228,3 +1228,26 @@ body {
 .scroll-progress-bar {
   display: none !important;
 }
+
+/* ── Unified project preview box model ───────────────────────────────────── */
+.project-card,
+html.dark .project-card {
+  padding: 0 !important;
+}
+.project-card .project-image-shell,
+html.dark .project-card .project-image-shell {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(2px, .25vw, 4px) !important;
+  border-radius: var(--radius-card) !important;
+  background: var(--card-bg) !important;
+}
+.project-card .project-image-shell img,
+html.dark .project-card .project-image-shell img {
+  inset: clamp(2px, .25vw, 4px) !important;
+  width: calc(100% - clamp(4px, .5vw, 8px)) !important;
+  height: calc(100% - clamp(4px, .5vw, 8px)) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 16px !important;
+}
