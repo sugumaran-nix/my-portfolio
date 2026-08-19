@@ -143,9 +143,10 @@ html.dark .site-shell {
 .btn-ghost-pill:hover { background: var(--card-bg-hover); border-color: var(--text-primary); transform: translateY(-1px); }
 .btn-ghost-pill:active { transform: scale(.97); }
 .scroll-top-control {
-  background: var(--card-bg); border: 1px solid var(--card-border-strong); color: var(--text-primary);
+  background: var(--card-bg); border: 1px solid var(--card-border-strong); color: var(--accent);
   box-shadow: var(--card-shadow); backdrop-filter: blur(12px);
 }
+.scroll-top-control svg { stroke: currentColor; }
 .scroll-top-control:hover { background: var(--card-bg-hover); border-color: var(--text-primary); box-shadow: var(--card-shadow-hover); transform: translateY(-2px); }
 .status-chip {
   display: inline-flex; align-items: center; gap: .4rem; min-height: 32px; padding: .35rem .75rem;
