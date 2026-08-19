@@ -915,7 +915,7 @@ html.dark .site-footer {
   html.dark .card-surface,
   html.dark .project-card,
   html.dark .bento-card { padding: 24px; }
-  html.dark .project-card .project-image-shell { margin: -24px -24px 0; width: calc(100% + 48px); border-radius: 24px 24px 0 0; }
+
 }
 /* ── Latest interaction refinements ─────────────────────────────────────── */
 .site-footer { padding-block: .9rem !important; }
@@ -1103,4 +1103,20 @@ html:not(.dark) .site-nav .mobile-menu {
 }
 @media (prefers-reduced-motion: reduce) {
   .scroll-top-control:active { transform: none; }
+}
+
+/* ── Full project preview fit ────────────────────────────────────────────── */
+.project-card .project-image-shell {
+  padding: clamp(10px, 1.4vw, 16px) !important;
+  background: var(--card-bg) !important;
+}
+.project-card .project-image-shell img {
+  inset: clamp(10px, 1.4vw, 16px) !important;
+  width: calc(100% - clamp(20px, 2.8vw, 32px)) !important;
+  height: calc(100% - clamp(20px, 2.8vw, 32px)) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+.project-card .project-image-fallback {
+  inset: 0 !important;
 }
