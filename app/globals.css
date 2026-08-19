@@ -316,12 +316,15 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 .site-footer { border-top: 1px solid var(--card-border); background: color-mix(in srgb, var(--page-bg) 82%, var(--section-bg)); }
-.footer-inner { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 1rem; text-align: left; }
-.footer-inner > p { margin: 0; color: var(--text-secondary); }
+.site-footer .footer-inner { display: grid !important; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem; width: 100%; text-align: left; }
+.site-footer .footer-inner > p { margin: 0; justify-self: start; color: var(--text-secondary); }
+.site-footer .footer-inner > div { justify-self: end; }
 .footer-inner > div a { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; min-height: 32px; border-radius: 999px; }
 .footer-inner > div a:hover { background: var(--chip-bg); }
 @media (max-width: 639px) {
-  .footer-inner { flex-direction: column; align-items: center; gap: .75rem; text-align: center; }
+  .site-footer .footer-inner { grid-template-columns: 1fr; justify-items: center; gap: .75rem; text-align: center; }
+  .site-footer .footer-inner > p,
+  .site-footer .footer-inner > div { justify-self: center; }
 }
 
 /* ── Availability badge — subtle glow pulse ─────────────────────────────── */
