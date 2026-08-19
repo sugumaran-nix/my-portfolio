@@ -1152,3 +1152,61 @@ html:not(.dark) .site-nav .mobile-menu {
     display: inline-flex !important;
   }
 }
+
+/* ── Final navbar and project preview scale correction ───────────────────── */
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.scroll-progress-track {
+  background: transparent !important;
+  height: 2px;
+  opacity: 1;
+}
+.site-nav > div:first-child {
+  min-height: 62px !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+.project-card .project-image-shell {
+  padding: clamp(4px, .65vw, 8px) !important;
+}
+.project-card .project-image-shell img {
+  inset: clamp(4px, .65vw, 8px) !important;
+  width: calc(100% - clamp(8px, 1.3vw, 16px)) !important;
+  height: calc(100% - clamp(8px, 1.3vw, 16px)) !important;
+}
+@media (max-width: 767px) {
+  .site-nav > div:first-child {
+    min-height: 60px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+/* ── Screenshot-driven final alignment ───────────────────────────────────── */
+.scroll-progress-track {
+  display: none !important;
+}
+.site-nav > div:first-child {
+  min-height: 66px !important;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+.project-card .project-image-shell {
+  padding: clamp(2px, .25vw, 4px) !important;
+}
+.project-card .project-image-shell img {
+  inset: clamp(2px, .25vw, 4px) !important;
+  width: calc(100% - clamp(4px, .5vw, 8px)) !important;
+  height: calc(100% - clamp(4px, .5vw, 8px)) !important;
+  box-shadow: 0 0 0 1px var(--card-border-strong);
+}
+@media (max-width: 767px) {
+  .site-nav > div:first-child {
+    min-height: 60px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
