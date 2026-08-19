@@ -78,6 +78,8 @@ html.dark {
   --radius-pill: 999px;
   --glass-blur: 18px;
   --glass-saturate: 140%;
+  --control-shadow: 0 6px 18px -12px rgba(0,0,0,.22);
+  --control-shadow-hover: 0 10px 24px -12px rgba(0,0,0,.32);
 }
 html.dark {
   --page-bg: #000000;
@@ -98,6 +100,8 @@ html.dark {
   --text-primary: #EDEDED;
   --text-secondary: #A1A1A1;
   --focus-ring: rgba(255,255,255,.22);
+  --control-shadow: 0 8px 20px -12px rgba(0,0,0,.68);
+  --control-shadow-hover: 0 12px 26px -12px rgba(0,0,0,.86);
 }
 .site-shell {
   background: var(--page-bg);
@@ -117,7 +121,7 @@ html.dark .site-shell {
   box-shadow: var(--card-shadow) !important;
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition: background-color .22s ease, border-color .22s ease, box-shadow .22s ease, transform .22s cubic-bezier(.23,1,.32,1);
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s cubic-bezier(.23,1,.32,1);
 }
 .card-surface:hover {
   background: var(--card-bg-hover) !important;
@@ -142,19 +146,19 @@ html.dark .site-shell {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   min-height: 42px; padding: 0 1rem; border: 1px solid var(--control-border); border-radius: var(--radius-pill);
   background: transparent; color: var(--text-primary); font-size: .75rem; font-weight: 600; text-decoration: none;
-  transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .18s cubic-bezier(.23,1,.32,1);
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s cubic-bezier(.23,1,.32,1);
 }
 .btn-ghost-pill:hover {
   background: var(--text-primary); border-color: var(--text-primary); color: var(--page-bg);
-  box-shadow: var(--card-shadow-hover); transform: translateY(-1px);
+  box-shadow: var(--control-shadow-hover); transform: translateY(-1px);
 }
 .btn-ghost-pill:active { transform: scale(.97); }
 .scroll-top-control {
   background: var(--card-bg); border: 1px solid var(--card-border-strong); color: var(--accent);
-  box-shadow: var(--card-shadow); backdrop-filter: blur(12px);
+  box-shadow: var(--control-shadow); backdrop-filter: blur(12px);
 }
 .scroll-top-control svg { stroke: currentColor; }
-.scroll-top-control:hover { background: var(--card-bg-hover); border-color: var(--text-primary); box-shadow: var(--card-shadow-hover); transform: translateY(-2px); }
+.scroll-top-control:hover {   background: var(--card-bg-hover); border-color: var(--text-primary); box-shadow: var(--control-shadow-hover); transform: translateY(-2px); }
 .status-chip {
   display: inline-flex; align-items: center; gap: .4rem; min-height: 32px; padding: .35rem .75rem;
   border: 1px solid var(--chip-border); border-radius: var(--radius-pill); background: var(--chip-bg); color: var(--text-secondary);
@@ -223,7 +227,7 @@ html.dark .section-eyebrow { color: #9C9890; }
 /* ── Scroll reveal ──────────────────────────────────────────────────────── */
 .reveal {
   opacity: 0; transform: translateY(20px);
-  transition: opacity .65s cubic-bezier(0.16,1,0.3,1), transform .65s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity .42s cubic-bezier(0.16,1,0.3,1), transform .42s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal:not(.is-visible) { will-change: opacity, transform; }
 .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
@@ -231,7 +235,7 @@ html.dark .section-eyebrow { color: #9C9890; }
 /* ── CSS flip/fade text ──────────────────────────────────────────────────── */
 .flip-fade-text { transform-origin: center bottom; transition: opacity .22s ease, transform .22s cubic-bezier(.23,1,.32,1); }
 .flip-fade-text--out { opacity: 0; transform: translateY(-8px) rotateX(70deg); }
-.flip-fade-text--in { animation: flip-fade-in .42s cubic-bezier(.23,1,.32,1) both; }
+.flip-fade-text--in { animation: flip-fade-in .28s cubic-bezier(.23,1,.32,1) both; }
 @keyframes flip-fade-in { from { opacity: 0; transform: translateY(8px) rotateX(-55deg); } to { opacity: 1; transform: none; } }
 
 /* ── Link hover ─────────────────────────────────────────────────────────── */
@@ -391,13 +395,13 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
 .magic-card-wrap {
   position: relative;
   contain: layout style;
-  transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(.23,1,.32,1);
+  transition: box-shadow .18s ease, transform .18s cubic-bezier(.23,1,.32,1);
 }
 .magic-card-spotlight {
   background: radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(74,74,71,.10), transparent 70%);
 }
 @media (hover: hover) and (pointer: fine) {
-  .magic-card-wrap:hover { transform: translateY(-4px); }
+  .magic-card-wrap:hover { transform: translateY(-3px); }
   .magic-card-wrap:hover .magic-card-spotlight { opacity: 1; }
 }
 html.dark .magic-card-spotlight { background: radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(192,189,184,.10), transparent 70%); }
@@ -582,7 +586,7 @@ html.dark .neu-btn:active {
   border: 2px solid #0D0D0B; border-radius: 45px;
   background: transparent; color: #0D0D0B;
   font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s cubic-bezier(.23,1,.32,1);
   white-space: nowrap;
 }
 .btn-outline-pill:hover { background: #0D0D0B; color: #F7F5F2; transform: scale(1.03); }
@@ -596,7 +600,7 @@ html.dark .btn-outline-pill:hover { background: #F8F8F8; color: #050505; border-
   gap: 0.5rem; height: 50px; padding: 0 28px; border: 0; border-radius: 100px;
   background-color: #0D0D0B; color: #F7F5F2;
   font-weight: 700; font-size: 0.875rem; text-decoration: none; cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s cubic-bezier(.23,1,.32,1);
   white-space: nowrap;
 }
 .btn-filled-pill:hover {
@@ -612,7 +616,7 @@ html.dark .btn-outline-pill:hover { background: #F8F8F8; color: #050505; border-
 html.dark .btn-filled-pill { background-color: #F8F8F8; color: #050505; }
 html.dark .btn-filled-pill:hover {
   background-color: #F8F8F8;
-  box-shadow: 0 0 18px rgba(237,235,230,.20);
+  box-shadow: var(--control-shadow-hover);
 }
 html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
 
@@ -625,6 +629,7 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
   border-radius: var(--radius-pill);
   border-width: 1px;
   font-size: .8rem;
+  line-height: 1;
 }
 .btn-outline-pill {
   border-color: var(--control-border);
@@ -635,17 +640,17 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
   border-color: var(--text-primary);
   background: var(--text-primary);
   color: var(--page-bg);
-  box-shadow: var(--card-shadow-hover);
+  box-shadow: var(--control-shadow-hover);
 }
 .btn-filled-pill {
   background: var(--text-primary);
   color: var(--page-bg);
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--control-shadow);
 }
 .btn-filled-pill:hover {
   background: var(--text-primary);
   color: var(--page-bg);
-  box-shadow: var(--card-shadow-hover);
+  box-shadow: var(--control-shadow-hover);
   transform: translateY(-1px);
 }
 .btn-outline-pill:active,
@@ -715,7 +720,7 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
 html.dark .hero-ambient { opacity: .72; }
 .project-image-shell img {
   transform: scale(1);
-  transition: opacity .22s ease, transform .55s cubic-bezier(.23,1,.32,1);
+  transition: opacity .18s ease, transform .28s cubic-bezier(.23,1,.32,1);
 }
 .project-image-shell:hover img { transform: scale(1.015); }
 .card-surface:focus-within { border-color: var(--card-border-strong) !important; box-shadow: 0 0 0 3px var(--focus-ring), var(--card-shadow-hover) !important; }
@@ -751,10 +756,6 @@ html.dark .hero-ambient { opacity: .72; }
 .project-card .project-image-fallback,
 .project-card .project-img-overlay {
   border-radius: inherit;
-}
-.project-action-icon {
-  width: 44px;
-  padding-inline: 0;
 }
 .project-all-link {
   min-width: 0;

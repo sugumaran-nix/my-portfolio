@@ -12,8 +12,8 @@ import SkillsBento from '../components/SkillsBento.astro';
 const projects = [
   {
     title: 'JobGuard — Fake Job Posting Detector',
-    desc: 'Trained and shipped an ONNX-optimized classifier for fake job listings, combining text classification, URL risk signals, and token-level explanations in one practical screening workflow.',
-    outcome: '87.57% F1 on 17,880 EMSCAD listings with runtime model switching and INT8 quantization.',
+    desc: 'Shipped an ONNX-optimized fake-job detector that combines text classification, URL risk signals, and token-level explanations into one screening flow.',
+    outcome: '87.57% F1 on 17,880 EMSCAD listings; runtime model switching and INT8 quantization.',
     tags: ['Python', 'DistilBERT', 'ONNX', 'Flask', 'NLP'],
     href: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
     demoHref: 'https://jobguard-8vur.onrender.com',
@@ -22,8 +22,8 @@ const projects = [
   },
   {
     title: 'Sketchline — Real-Time Collaborative Whiteboard',
-    desc: 'Designed a collaborative canvas with resilient WebSocket synchronization, reconnect-safe state replay, and shared undo/redo so teams can draw together without losing board history.',
-    outcome: 'Sub-100ms sync with full late-join replay, nine brush types, and 64-step shared undo/redo.',
+    desc: 'Built a collaborative canvas with resilient WebSocket sync, reconnect-safe replay, and shared undo/redo for teams drawing together.',
+    outcome: 'Sub-100ms sync, late-join replay, nine brush types, and 64-step shared undo/redo.',
     tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'Canvas'],
     href: 'https://github.com/sugumaran-nix/whiteboard-frontend',
     demoHref: 'https://whiteboard-frontend-nine-smoky.vercel.app',
@@ -32,8 +32,8 @@ const projects = [
   },
   {
     title: 'AI Shopping Agent — Multi-Source Product Search',
-    desc: 'Built a fault-tolerant product search pipeline that gathers multiple sources, removes duplicate listings, and turns the best candidates into ranked Gemini recommendations.',
-    outcome: 'Retries, deduplication, and 30-minute caching keep ranked search usable on a constrained deployment tier.',
+    desc: 'Built a fault-tolerant product search pipeline that aggregates sources, deduplicates listings, and ranks candidates with Gemini recommendations.',
+    outcome: 'Retries, deduplication, and 30-minute caching keep results reliable on constrained hosting.',
     tags: ['Next.js', 'FastAPI', 'Gemini', 'Python', 'ScraperAPI'],
     href: 'https://github.com/sugumaran-nix/ai-shopping-agent',
     demoHref: 'https://ai-shopping-agent-theta.vercel.app',
@@ -42,8 +42,8 @@ const projects = [
   },
   {
     title: 'AI Content Detector',
-    desc: 'Moved AI-text detection into the browser with an ONNX model, confidence scoring, and span-level highlighting so users get useful feedback without sending writing to a server.',
-    outcome: '94.15% accuracy and 0.991 AUC with sub-second client-side results and sentence confidence scores.',
+    desc: 'Moved AI-text detection into the browser with ONNX inference, confidence scoring, and span highlighting—useful feedback without sending writing to a server.',
+    outcome: '94.15% accuracy, 0.991 AUC, and sub-second client-side results.',
     tags: ['DistilBERT', 'ONNX', 'Transformers.js', 'FastAPI', 'NLP'],
     href: 'https://github.com/sugumaran-nix/ai-content-detector',
     demoHref: 'https://ai-content-detector-nine.vercel.app',
@@ -77,12 +77,6 @@ const flipWords = [
 
       <p class="hero-kicker">AI / ML · PRODUCT ENGINEERING · FULL-STACK</p>
 
-      <!-- Availability badge -->
-      <div class="avail-badge status-chip mb-8 text-xs font-semibold">
-        <span class="avail-dot w-1.5 h-1.5 rounded-full bg-ink dark:bg-white/70 inline-block flex-shrink-0"></span>
-        Available for full-time roles · Coimbatore, TN
-      </div>
-
       <!-- Name -->
       <h1 class="hero-name-display text-[42px] sm:text-[56px] md:text-[68px] tracking-tight mb-4 text-ink dark:text-white leading-[1.1]">
         Hi, I'm <em>Sugumaran</em>
@@ -90,7 +84,7 @@ const flipWords = [
 
       <!-- FlipFade — whole phrase -->
       <div class="text-[18px] sm:text-[21px] md:text-[23px] font-semibold text-ink dark:text-white mb-6 h-9 flex items-center justify-center">
-        <FlipFadeText words={flipWords} interval={2600} class="text-ink dark:text-white" />
+        <FlipFadeText words={flipWords} interval={2200} class="text-ink dark:text-white" />
       </div>
 
       <p class="max-w-[540px] text-[16px] text-inkMuted dark:text-white/55 leading-[1.8] mb-10">
@@ -218,7 +212,7 @@ const flipWords = [
         <h2 class="text-2xl sm:text-3xl md:text-[48px] font-bold tracking-tight section-heading">
           Featured <em>Projects</em>
         </h2>
-        <p class="section-lede">Selected builds across AI/ML, browser inference, realtime collaboration, and full-stack product systems.</p>
+        <p class="section-lede">A selection of shipped work across applied ML, browser inference, real-time collaboration, and product systems.</p>
       </div>
 
       <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8" style="transition-delay:.05s">
@@ -257,10 +251,10 @@ const flipWords = [
 </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-stretch mt-12">
 
         <!-- Info -->
-        <div class="reveal flex flex-col gap-6">
+        <div class="card-surface reveal flex h-full flex-col justify-between gap-8 p-6">
           <div class="flex flex-col gap-5">
             <div class="flex items-start gap-4">
               <div class="icon-box flex-shrink-0">
@@ -326,7 +320,7 @@ const flipWords = [
         </div>
 
         <!-- Form -->
-        <div class="card-surface reveal p-6" style="transition-delay:.1s">
+        <div class="card-surface reveal flex h-full flex-col p-6" style="transition-delay:.1s">
           <ContactForm />
         </div>
 

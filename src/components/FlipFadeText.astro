@@ -30,8 +30,8 @@ const { words, interval = 2600, class: className = '' } = Astro.props;
         element.textContent = words[index];
         element.classList.remove('flip-fade-text--out');
         element.classList.add('flip-fade-text--in');
-        window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 420);
-      }, 220);
+        window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 280);
+      }, 160);
     }, interval);
   });
 </script>
