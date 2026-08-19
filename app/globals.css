@@ -610,33 +610,51 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
   line-height: 1.55;
 }
 
-/* ── Signature motion ────────────────────────────────────────────────────── */
+/* ── Signature hero background ───────────────────────────────────────────── */
 .hero-section { isolation: isolate; }
-.hero-aurora {
+.hero-spline-layer {
   position: absolute;
   z-index: -1;
-  width: min(52vw, 38rem);
-  aspect-ratio: 1.25;
-  border-radius: 999px;
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
-  opacity: .18;
-  filter: blur(38px) saturate(105%);
-  transform: none;
+  background:
+    radial-gradient(ellipse 60% 48% at 14% 28%, rgba(83, 63, 255, .18), transparent 72%),
+    radial-gradient(ellipse 54% 46% at 86% 24%, rgba(0, 184, 255, .12), transparent 72%),
+    radial-gradient(ellipse 52% 44% at 52% 88%, rgba(79, 255, 171, .08), transparent 72%);
 }
-.hero-aurora-one {
-  top: 4%; left: -10%;
-  background: radial-gradient(ellipse at 35% 50%, rgba(110, 126, 255, .34), transparent 70%);
+.hero-spline-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .14), rgba(0, 0, 0, .38)),
+    radial-gradient(ellipse at center, transparent 24%, rgba(0, 0, 0, .22) 100%);
+  pointer-events: none;
 }
-.hero-aurora-two {
-  right: -12%; bottom: 14%;
-  background: radial-gradient(ellipse at 50% 50%, rgba(211, 112, 255, .26), transparent 70%);
+.hero-spline-layer iframe {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  border: 0;
+  opacity: .30;
+  filter: saturate(118%) contrast(106%);
+  transform: translateZ(0);
 }
-.hero-aurora-three {
-  left: 30%; bottom: -22%;
-  width: min(38vw, 28rem);
-  background: radial-gradient(ellipse at 50% 50%, rgba(63, 206, 191, .22), transparent 70%);
+html:not(.dark) .hero-spline-layer {
+  background:
+    radial-gradient(ellipse 60% 48% at 14% 28%, rgba(83, 63, 255, .12), transparent 72%),
+    radial-gradient(ellipse 54% 46% at 86% 24%, rgba(0, 184, 255, .08), transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(246, 247, 250, .92));
 }
-html.dark .hero-aurora { opacity: .30; }
+html:not(.dark) .hero-spline-layer::after {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, .62));
+}
+html:not(.dark) .hero-spline-layer iframe { opacity: .18; mix-blend-mode: multiply; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-spline-layer iframe { opacity: .14; }
+}
 .project-image-shell {
   background: var(--section-bg);
 }
@@ -648,7 +666,6 @@ html.dark .hero-aurora { opacity: .30; }
 :where(a, button, input, textarea):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero-aurora { animation: none; opacity: .18; }
   .project-image-shell img { transition: none; }
 }
 
@@ -890,19 +907,6 @@ html.dark .social-link {
   border-color: rgba(255,255,255,.10);
   color: #FFFFFF;
 }
-html.dark .hero-aurora {
-  opacity: .46;
-  filter: blur(54px) saturate(120%);
-}
-html.dark .hero-aurora-one {
-  background: radial-gradient(ellipse at 35% 50%, rgba(92,68,255,.38), transparent 70%);
-}
-html.dark .hero-aurora-two {
-  background: radial-gradient(ellipse at 50% 50%, rgba(0,184,255,.25), transparent 70%);
-}
-html.dark .hero-aurora-three {
-  background: radial-gradient(ellipse at 50% 50%, rgba(79,255,171,.18), transparent 70%);
-}
 html.dark .site-footer {
   background: #050506;
   border-top-color: rgba(255,255,255,.08);
@@ -913,10 +917,6 @@ html.dark .site-footer {
   html.dark .bento-card { padding: 24px; }
   html.dark .project-card .project-image-shell { margin: -24px -24px 0; width: calc(100% + 48px); border-radius: 24px 24px 0 0; }
 }
-@media (prefers-reduced-motion: reduce) {
-  html.dark .hero-aurora { filter: blur(42px); }
-}
-
 /* ── Latest interaction refinements ─────────────────────────────────────── */
 .site-footer { padding-block: .9rem !important; }
 .project-card .project-action {
@@ -1096,4 +1096,11 @@ html:not(.dark) .site-nav .mobile-menu {
   height: 100%;
   border-radius: 0 !important;
   object-fit: contain;
+}
+
+.scroll-top-control:active {
+  transform: translateY(0) scale(.94);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-top-control:active { transform: none; }
 }

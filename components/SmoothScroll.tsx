@@ -3,6 +3,13 @@
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 
+type PortfolioLenis = {
+  scrollTo: (target: number | string, options?: { duration?: number; easing?: (value: number) => number; immediate?: boolean }) => void;
+  destroy: () => void;
+};
+
+type PortfolioWindow = Window & { __portfolioLenis?: PortfolioLenis };
+
 export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -10,7 +17,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     let disposed = false;
     let initialized = false;
-    let lenis: { destroy: () => void } | undefined;
+    let lenis: PortfolioLenis | undefined;
     let idleHandle: number | undefined;
     let timeoutHandle: number | undefined;
 
@@ -20,6 +27,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       const { default: Lenis } = await import('lenis');
       if (disposed) return;
       lenis = new Lenis({ autoRaf: true, lerp: 0.1, smoothWheel: true, syncTouch: false });
+      (window as PortfolioWindow).__portfolioLenis = lenis;
     };
 
     const idleWindow = window as Window & {
@@ -48,6 +56,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       window.removeEventListener('touchstart', startOnInteraction);
       window.removeEventListener('scroll', startOnInteraction);
       lenis?.destroy();
+      const portfolioWindow = window as PortfolioWindow;
+      if (portfolioWindow.__portfolioLenis === lenis) delete portfolioWindow.__portfolioLenis;
     };
   }, []);
 

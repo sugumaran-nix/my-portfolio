@@ -6,6 +6,7 @@ import { Navbar } from '@/components/Navbar';
 import { ProjectCard } from '@/components/ProjectCard';
 import { Reveal } from '@/components/Reveal';
 import { ScrollToTop } from '@/components/ScrollToTop';
+import { SplineHeroBackground } from '@/components/SplineHeroBackground';
 import { SkillsBento } from '@/components/SkillsBento';
 import { projects, socials } from '@/lib/content';
 
@@ -35,9 +36,7 @@ export default function HomePage() {
 
       <main>
         <section id="home" className="hero-section relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6 pb-6 pt-16 md:py-0">
-          <div className="hero-aurora hero-aurora-one" aria-hidden="true" />
-          <div className="hero-aurora hero-aurora-two" aria-hidden="true" />
-          <div className="hero-aurora hero-aurora-three" aria-hidden="true" />
+          <SplineHeroBackground />
 
           <div className="relative z-10 mx-auto flex w-full max-w-[760px] flex-col items-center px-4 text-center">
             <p className="hero-kicker">AI/ML &amp; FULL-STACK ENGINEER</p>
