@@ -1299,3 +1299,28 @@ html.dark .project-card .project-image-shell img {
     transform: none !important;
   }
 }
+
+/* ── Edge-to-edge project screenshots ────────────────────────────────────── */
+.project-card .project-image-shell,
+html.dark .project-card .project-image-shell {
+  aspect-ratio: 1280 / 607 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: var(--card-bg) !important;
+}
+.project-card .project-image-shell img,
+html.dark .project-card .project-image-shell img {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  box-shadow: none !important;
+}
+.project-card .project-image-fallback {
+  inset: 0 !important;
+  border-radius: 0 !important;
+}
