@@ -1,42 +1,89 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-const roles = [
+const defaultWords = [
   'AI/ML ENGINEER',
   'FULL-STACK ENGINEER',
   'REAL-TIME SYSTEMS',
   'SOFTWARE ENGINEER',
 ];
 
-export function FlipFadeText({ className = '', interval = 3000 }: { className?: string; interval?: number }) {
+type FlipFadeTextProps = {
+  words?: string[];
+  interval?: number;
+  className?: string;
+  textClassName?: string;
+  letterDuration?: number;
+  staggerDelay?: number;
+  exitStaggerDelay?: number;
+};
+
+export function FlipFadeText({
+  words = defaultWords,
+  interval = 3000,
+  className = '',
+  textClassName = '',
+  letterDuration = 0.6,
+  staggerDelay = 0.1,
+  exitStaggerDelay = 0.05,
+}: FlipFadeTextProps) {
+  const safeWords = words.length > 0 ? words : defaultWords;
   const [index, setIndex] = useState(0);
-  const [phase, setPhase] = useState<'idle' | 'out' | 'in'>('idle');
+  const [phase, setPhase] = useState<'visible' | 'exit' | 'enter'>('visible');
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const currentWord = safeWords[index % safeWords.length];
+  const letters = useMemo(() => currentWord.split(''), [currentWord]);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reducedMotion.matches) return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotion = () => setReducedMotion(media.matches);
+    updateMotion();
+    media.addEventListener('change', updateMotion);
+    return () => media.removeEventListener('change', updateMotion);
+  }, []);
 
-    let enterTimer = 0;
+  useEffect(() => {
+    if (reducedMotion || safeWords.length < 2) return;
+
+    let enterTimer: number | undefined;
     const timer = window.setInterval(() => {
-      setPhase('out');
+      setPhase('exit');
       enterTimer = window.setTimeout(() => {
-        setIndex((current) => (current + 1) % roles.length);
-        setPhase('in');
-        enterTimer = window.setTimeout(() => setPhase('idle'), 420);
-      }, 220);
+        setIndex((current) => (current + 1) % safeWords.length);
+        setPhase('enter');
+        enterTimer = window.setTimeout(() => setPhase('visible'), letterDuration * 1000 + staggerDelay * 1000 + 40);
+      }, Math.max(240, letterDuration * 670));
     }, interval);
 
     return () => {
       window.clearInterval(timer);
-      window.clearTimeout(enterTimer);
+      if (enterTimer) window.clearTimeout(enterTimer);
     };
-  }, [interval]);
+  }, [interval, letterDuration, reducedMotion, safeWords.length, staggerDelay]);
 
-  const role = roles[index];
   return (
-    <span role="status" aria-live="polite" aria-atomic="true" aria-label={role} className={`flip-fade-text inline-flex items-center justify-center ${className}`}>
-      <span aria-hidden="true" className={`flip-word ${phase === 'out' ? 'flip-fade-text--out' : phase === 'in' ? 'flip-fade-text--in' : ''}`}>{role}</span>
+    <span role="status" aria-live="polite" aria-atomic="true" className={`flip-fade-text inline-flex items-center justify-center ${className}`}>
+      <span className="sr-only">{currentWord}</span>
+      <span
+        aria-hidden="true"
+        className={`flip-word ${phase === 'exit' ? 'flip-fade-text--out' : phase === 'enter' ? 'flip-fade-text--in' : ''} ${textClassName}`}
+        style={{
+          '--letter-duration': `${letterDuration}s`,
+          '--letter-stagger': `${staggerDelay}s`,
+          '--letter-exit-stagger': `${exitStaggerDelay}s`,
+        } as React.CSSProperties}
+      >
+        {letters.map((char, letterIndex) => (
+          <span
+            key={`${currentWord}-${letterIndex}`}
+            className="flip-letter inline-block"
+            style={{ '--letter-index': letterIndex } as React.CSSProperties}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }

@@ -119,6 +119,25 @@ html.dark .site-shell {
 .site-nav { background: transparent; border-bottom: 0; box-shadow: none; padding: .6rem 1rem 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .site-nav > div:first-child { background: rgba(237,237,237,.64); border: 1px solid rgba(20,20,20,.06); border-radius: 30px; box-shadow: 0 12px 34px -28px rgba(20,20,20,.28); backdrop-filter: blur(28px) saturate(140%); -webkit-backdrop-filter: blur(28px) saturate(140%); }
 html.dark .site-nav > div:first-child { background: rgba(22,22,24,.78); border-color: rgba(255,255,255,.08); box-shadow: 0 18px 48px -28px rgba(0,0,0,.92); }
+.site-nav > div:first-child,
+.site-nav .theme-toggle,
+.site-nav .menu-toggle,
+.site-nav .mobile-menu {
+  border: 1px solid var(--card-border);
+  background: color-mix(in srgb, var(--card-bg) 76%, transparent);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+}
+.site-nav .theme-toggle,
+.site-nav .menu-toggle { border-radius: 999px; }
+.site-nav .mobile-menu {
+  margin: .45rem 1rem 0;
+  border-radius: 20px;
+  box-shadow: 0 18px 44px -26px rgba(0,0,0,.78);
+}
+html.dark .site-nav .mobile-menu { background: rgba(22,22,24,.86); border-color: rgba(255,255,255,.10); }
+html.dark .site-nav .theme-toggle,
+html.dark .site-nav .menu-toggle { background: rgba(22,22,24,.72); border-color: rgba(255,255,255,.10); }
 
 .card-surface {
   background: var(--card-bg) !important;
@@ -252,30 +271,39 @@ html.dark .section-eyebrow { color: #A3A3A8; }
   .motion-reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* ── CSS flip/fade text ──────────────────────────────────────────────────── */
+/* ── CSS letter-level flip/fade text ─────────────────────────────────────── */
 .flip-fade-text {
   min-width: 22ch;
-  perspective: 700px;
+  min-height: 1.5rem;
+  perspective: 1000px;
   transform-origin: center bottom;
 }
 .flip-word {
-  display: inline-block;
+  display: inline-flex;
+  gap: .1em;
+  transform-style: preserve-3d;
   transform-origin: center bottom;
   backface-visibility: hidden;
 }
-.flip-fade-text--out .flip-word {
-  animation: flip-word-out .22s cubic-bezier(.23,1,.32,1) both;
+.flip-letter {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
-.flip-fade-text--in .flip-word {
-  animation: flip-word-in .42s cubic-bezier(.23,1,.32,1) both;
+.flip-fade-text--out .flip-letter {
+  animation: flip-letter-out calc(var(--letter-duration) * .67) ease-in both;
+  animation-delay: calc(var(--letter-index) * var(--letter-exit-stagger));
 }
-@keyframes flip-word-in {
-  from { opacity: 0; transform: translateY(14px) rotateX(-70deg); }
-  to { opacity: 1; transform: none; }
+.flip-fade-text--in .flip-letter {
+  animation: flip-letter-in var(--letter-duration) cubic-bezier(.2,.65,.3,.9) both;
+  animation-delay: calc(var(--letter-index) * var(--letter-stagger));
 }
-@keyframes flip-word-out {
-  from { opacity: 1; transform: none; }
-  to { opacity: 0; transform: translateY(-14px) rotateX(70deg); }
+@keyframes flip-letter-in {
+  from { opacity: 0; filter: blur(8px); transform: translateY(20px) rotateX(90deg); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+@keyframes flip-letter-out {
+  from { opacity: 1; filter: blur(0); transform: none; }
+  to { opacity: 0; filter: blur(8px); transform: translateY(-20px) rotateX(-90deg); }
 }
 
 /* ── Link hover ─────────────────────────────────────────────────────────── */
@@ -892,4 +920,30 @@ html.dark .site-footer {
 }
 @media (prefers-reduced-motion: reduce) {
   html.dark .hero-aurora { filter: blur(42px); }
+}
+
+/* ── Latest interaction refinements ─────────────────────────────────────── */
+.site-footer { padding-block: .9rem !important; }
+.project-card .project-action {
+  min-width: 0;
+  min-height: 34px;
+  height: 34px;
+  padding-inline: .72rem;
+  gap: .35rem;
+  font-size: .68rem;
+  font-weight: 650;
+}
+.project-card .project-action svg { flex: 0 0 auto; }
+@media (max-width: 639px) {
+  .site-footer { padding-block: .75rem !important; }
+  .project-card .project-action { min-height: 36px; height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-letter,
+  .flip-fade-text--out .flip-letter,
+  .flip-fade-text--in .flip-letter {
+    animation: none !important;
+    filter: none !important;
+    transform: none !important;
+  }
 }
