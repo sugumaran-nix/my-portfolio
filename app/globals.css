@@ -1088,7 +1088,7 @@ html:not(.dark) .site-nav .mobile-menu {
   margin: 0 !important;
   background: var(--card-bg) !important;
   border: 0 !important;
-  border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+  border-radius: var(--radius-card) !important;
   overflow: hidden;
 }
 .project-card .project-image-shell img {
@@ -1116,6 +1116,7 @@ html:not(.dark) .site-nav .mobile-menu {
   height: calc(100% - clamp(20px, 2.8vw, 32px)) !important;
   object-fit: contain !important;
   object-position: center !important;
+  border-radius: 16px !important;
 }
 .project-card .project-image-fallback {
   inset: 0 !important;
