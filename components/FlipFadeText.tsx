@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const defaultWords = [
   'AI/ML ENGINEER',
@@ -13,27 +13,17 @@ type FlipFadeTextProps = {
   words?: string[];
   interval?: number;
   className?: string;
-  textClassName?: string;
-  letterDuration?: number;
-  staggerDelay?: number;
-  exitStaggerDelay?: number;
 };
 
-export function FlipFadeText({
-  words = defaultWords,
-  interval = 3000,
-  className = '',
-  textClassName = '',
-  letterDuration = 0.6,
-  staggerDelay = 0.1,
-  exitStaggerDelay = 0.05,
-}: FlipFadeTextProps) {
+export function FlipFadeText({ words = defaultWords, interval = 3000, className = '' }: FlipFadeTextProps) {
   const safeWords = words.length > 0 ? words : defaultWords;
   const [index, setIndex] = useState(0);
-  const [phase, setPhase] = useState<'visible' | 'exit' | 'enter'>('visible');
+  const [nextIndex, setNextIndex] = useState<number | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const timerRef = useRef<number | null>(null);
+  const finishRef = useRef<number | null>(null);
   const currentWord = safeWords[index % safeWords.length];
-  const letters = useMemo(() => currentWord.split(''), [currentWord]);
+  const nextWord = nextIndex === null ? '' : safeWords[nextIndex];
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -46,43 +36,33 @@ export function FlipFadeText({
   useEffect(() => {
     if (reducedMotion || safeWords.length < 2) return;
 
-    let enterTimer: number | undefined;
-    const timer = window.setInterval(() => {
-      setPhase('exit');
-      enterTimer = window.setTimeout(() => {
-        setIndex((current) => (current + 1) % safeWords.length);
-        setPhase('enter');
-        enterTimer = window.setTimeout(() => setPhase('visible'), letterDuration * 1000 + staggerDelay * 1000 + 40);
-      }, Math.max(240, letterDuration * 670));
+    timerRef.current = window.setInterval(() => {
+      setNextIndex((index + 1) % safeWords.length);
+      finishRef.current = window.setTimeout(() => {
+        setIndex((value) => (value + 1) % safeWords.length);
+        setNextIndex(null);
+      }, 460);
     }, interval);
 
     return () => {
-      window.clearInterval(timer);
-      if (enterTimer) window.clearTimeout(enterTimer);
+      if (timerRef.current) window.clearInterval(timerRef.current);
+      if (finishRef.current) window.clearTimeout(finishRef.current);
     };
-  }, [interval, letterDuration, reducedMotion, safeWords.length, staggerDelay]);
+  }, [index, interval, reducedMotion, safeWords.length]);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setIndex(0);
+      setNextIndex(null);
+    }
+  }, [reducedMotion]);
 
   return (
-    <span role="status" aria-live="polite" aria-atomic="true" className={`flip-fade-text inline-flex items-center justify-center ${className}`}>
+    <span role="status" aria-live="polite" aria-atomic="true" className={`flip-fade-text inline-grid items-center justify-center ${className}`}>
       <span className="sr-only">{currentWord}</span>
-      <span
-        aria-hidden="true"
-        className={`flip-word ${phase === 'exit' ? 'flip-fade-text--out' : phase === 'enter' ? 'flip-fade-text--in' : ''} ${textClassName}`}
-        style={{
-          '--letter-duration': `${letterDuration}s`,
-          '--letter-stagger': `${staggerDelay}s`,
-          '--letter-exit-stagger': `${exitStaggerDelay}s`,
-        } as React.CSSProperties}
-      >
-        {letters.map((char, letterIndex) => (
-          <span
-            key={`${currentWord}-${letterIndex}`}
-            className="flip-letter inline-block"
-            style={{ '--letter-index': letterIndex } as React.CSSProperties}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </span>
-        ))}
+      <span aria-hidden="true" className="flip-stage">
+        <span className={`flip-word flip-word-current ${nextIndex !== null ? 'flip-word--exit' : ''}`}>{currentWord}</span>
+        {nextIndex !== null && <span className="flip-word flip-word-next" key={`${nextIndex}-${nextWord}`}>{nextWord}</span>}
       </span>
     </span>
   );

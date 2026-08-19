@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const links = [
   { href: '#home', label: 'Home' },
@@ -22,6 +22,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('home');
   const [isDark, setIsDark] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsDark(document.documentElement.classList.contains('dark'));
@@ -31,7 +32,14 @@ export function Navbar() {
       { rootMargin: '-40% 0px -55% 0px', threshold: 0 },
     );
     sections.forEach((section) => observer.observe(section));
+
     return () => observer.disconnect();
+  }, []);
+
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    nav?.style.setProperty('backdrop-filter', 'blur(18px) saturate(130%)');
+    nav?.style.setProperty('-webkit-backdrop-filter', 'blur(18px) saturate(130%)');
   }, []);
 
   const toggleTheme = () => {
@@ -46,7 +54,13 @@ export function Navbar() {
   return (
     <>
       <div className="scroll-progress-track" aria-hidden="true"><div className="scroll-progress-bar" /></div>
-      <nav id="site-nav" aria-label="Main navigation" className="site-nav sticky top-0 z-50">
+      <nav
+        id="site-nav"
+        ref={navRef}
+        aria-label="Main navigation"
+        className="site-nav sticky top-0 z-50"
+        style={{ backdropFilter: 'blur(18px) saturate(130%)', WebkitBackdropFilter: 'blur(18px) saturate(130%)' }}
+      >
         <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-3 md:px-10 md:py-4">
           <a href="#home" className="font-display line-hover text-[18px] italic tracking-tight text-ink dark:text-white">Sugumaran.</a>
 
