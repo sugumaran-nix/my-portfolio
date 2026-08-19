@@ -56,10 +56,10 @@ export default function HomePage() {
             </div>
 
             <SocialLinks />
-            <div className="mt-12 hidden select-none flex-col items-center gap-1.5 text-inkMuted/70 dark:text-white/50 md:flex" aria-hidden="true">
+            <a href="#about" className="hero-scroll-cue mt-12 flex select-none flex-col items-center gap-1.5 text-inkMuted/70 dark:text-white/60" aria-label="Scroll to About section">
               <span className="text-[9px] font-bold uppercase tracking-[.2em]">scroll</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="hero-scroll-arrow h-4 w-4" aria-hidden="true"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </a>
           </div>
         </section>
 
