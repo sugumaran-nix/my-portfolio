@@ -1324,3 +1324,33 @@ html.dark .project-card .project-image-shell img {
   inset: 0 !important;
   border-radius: 0 !important;
 }
+
+/* ── Hero-integrated frosted navbar ──────────────────────────────────────── */
+.site-nav {
+  margin-bottom: -68px !important;
+  background: rgba(6, 8, 12, .46) !important;
+  border-bottom-color: rgba(255, 255, 255, .08) !important;
+  backdrop-filter: blur(18px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+}
+.hero-spline-layer::after {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .74) 0%, rgba(0, 0, 0, .42) 14%, rgba(0, 0, 0, .12) 38%, transparent 64%),
+    radial-gradient(ellipse at center, transparent 24%, rgba(0, 0, 0, .22) 100%);
+}
+html:not(.dark) .site-nav {
+  margin-bottom: -68px !important;
+  background: rgba(255, 255, 255, .58) !important;
+  border-bottom-color: rgba(20, 20, 20, .08) !important;
+}
+html:not(.dark) .hero-spline-layer::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, .52) 14%, rgba(255, 255, 255, .16) 38%, transparent 64%),
+    radial-gradient(ellipse at center, transparent 24%, rgba(255, 255, 255, .20) 100%);
+}
+@media (max-width: 767px) {
+  .site-nav,
+  html:not(.dark) .site-nav {
+    margin-bottom: -62px !important;
+  }
+}
