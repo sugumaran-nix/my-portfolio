@@ -729,3 +729,21 @@ html.dark .hero-ambient { opacity: .72; }
   .project-image-shell img { transition: opacity .01ms linear; }
   .project-image-shell:hover img { transform: none; }
 }
+
+/* ── Project cards use the same raised surface as Skills ──────────────────── */
+.project-card {
+  gap: 0;
+}
+.project-card .project-image-shell {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  background: var(--section-bg);
+}
+.project-card .project-img-overlay {
+  border-radius: inherit;
+}
+@media (max-width: 639px) {
+  .project-card {
+    border-radius: var(--radius-card);
+  }
+}
