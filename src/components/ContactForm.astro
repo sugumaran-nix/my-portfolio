@@ -8,7 +8,7 @@ const inputBase = 'control-input';
 
 <form
   id="contact-form"
-  class="flex flex-col gap-4"
+  class="flex h-full flex-col gap-4"
   data-service-id={serviceId}
   data-template-id={templateId}
   data-public-key={publicKey}
@@ -34,7 +34,7 @@ const inputBase = 'control-input';
 
   <p id="cf-submit-error" class="hidden text-xs font-medium italic text-ink/70 dark:text-white/65"></p>
 
-  <button id="cf-submit" type="submit" class="btn-filled-pill mt-1 w-full">
+  <button id="cf-submit" type="submit" class="btn-filled-pill contact-send-action mt-auto w-full">
     <span class="cf-submit-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round" /></svg>
     </span>

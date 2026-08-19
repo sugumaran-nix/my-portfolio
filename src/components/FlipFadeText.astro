@@ -5,7 +5,7 @@ interface Props {
   class?: string;
 }
 
-const { words, interval = 2400, class: className = '' } = Astro.props;
+const { words, interval = 3000, class: className = '' } = Astro.props;
 const initialWord = words[0] ?? '';
 ---
 
@@ -15,49 +15,54 @@ const initialWord = words[0] ?? '';
   data-interval={interval}
   aria-live="polite"
   aria-atomic="true"
->{initialWord}</span>
+  aria-label={initialWord}
+><span class="flip-word" aria-hidden="true">{initialWord}</span></span>
 
 <script>
-  document.querySelectorAll<HTMLElement>('.flip-fade-text').forEach((element) => {
-    const words = JSON.parse(element.dataset.words ?? '[]') as string[];
-    if (words.length < 2) return;
+  const initFlipFades = () => {
+    document.querySelectorAll<HTMLElement>('.flip-fade-text').forEach((element) => {
+      const words = JSON.parse(element.dataset.words ?? '[]') as string[];
+      if (words.length < 2 || element.dataset.flipReady === 'true') return;
+      element.dataset.flipReady = 'true';
 
-    const interval = Number(element.dataset.interval ?? 2400);
-    let index = 0;
-    let swapTimer: number | undefined;
-    let enterTimer: number | undefined;
+      const interval = Number(element.dataset.interval ?? 3000);
+      let index = 0;
+      let exitTimer: number | undefined;
+      let enterTimer: number | undefined;
 
-    const renderWord = (word: string) => {
-      element.setAttribute('aria-label', word);
-      element.textContent = '';
-      Array.from(word).forEach((character, letterIndex) => {
-        const letter = document.createElement('span');
-        letter.className = 'flip-letter';
-        letter.textContent = character === ' ' ? '\u00a0' : character;
-        letter.style.setProperty('--letter-index', String(letterIndex));
-        letter.setAttribute('aria-hidden', 'true');
-        element.appendChild(letter);
-      });
-    };
+      const renderWord = (word: string) => {
+        element.setAttribute('aria-label', word);
+        const span = document.createElement('span');
+        span.className = 'flip-word';
+        span.setAttribute('aria-hidden', 'true');
+        span.textContent = word;
+        element.replaceChildren(span);
+      };
 
-    const cycle = () => {
-      element.classList.remove('flip-fade-text--in');
-      element.classList.add('flip-fade-text--out');
-      swapTimer = window.setTimeout(() => {
-        index = (index + 1) % words.length;
-        renderWord(words[index]);
-        element.classList.remove('flip-fade-text--out');
-        element.classList.add('flip-fade-text--in');
-        enterTimer = window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 360);
-      }, 160);
-    };
+      const cycle = () => {
+        element.classList.remove('flip-fade-text--in');
+        element.classList.add('flip-fade-text--out');
+        exitTimer = window.setTimeout(() => {
+          index = (index + 1) % words.length;
+          renderWord(words[index]);
+          element.classList.remove('flip-fade-text--out');
+          element.classList.add('flip-fade-text--in');
+          enterTimer = window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 420);
+        }, 220);
+      };
 
-    renderWord(initialWord);
-    const timer = window.setInterval(cycle, interval);
-    window.addEventListener('pagehide', () => {
-      window.clearInterval(timer);
-      if (swapTimer) window.clearTimeout(swapTimer);
-      if (enterTimer) window.clearTimeout(enterTimer);
-    }, { once: true });
-  });
+      const timer = window.setInterval(cycle, interval);
+      window.addEventListener('pagehide', () => {
+        window.clearInterval(timer);
+        if (exitTimer) window.clearTimeout(exitTimer);
+        if (enterTimer) window.clearTimeout(enterTimer);
+      }, { once: true });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlipFades, { once: true });
+  } else {
+    initFlipFades();
+  }
 </script>

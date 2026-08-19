@@ -8,12 +8,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Modern self-hosted typography ───────────────────────────────────────── */
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-latin-wght-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-latin-wght-italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/geist-mono-latin-wght-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/geist-mono-latin-wght-italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 /* ── Base Reset ─────────────────────────────────────────────────────────── */
 @layer base {
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
@@ -32,7 +62,7 @@
   :focus:not(:focus-visible) { outline: none; }
 
   h1, h2, h3 {
-    font-family: 'DM Serif Display', Georgia, serif;
+    font-family: var(--font-sans);
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
@@ -43,9 +73,9 @@
   --accent: #1A1A18;
   --accent-hover: #2E2D2B;
   --accent-subtle: rgba(26,26,24,.06);
-  --font-display: Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: Menlo, Monaco, Consolas, monospace;
+  --font-display: 'Geist', system-ui, sans-serif;
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 html.dark {
   --accent: #F8F8F8;
@@ -153,9 +183,18 @@ html.dark .site-shell {
   box-shadow: var(--control-shadow-hover); transform: translateY(-1px);
 }
 .btn-ghost-pill:active { transform: scale(.97); }
+.contact-download-action,
+.contact-send-action {
+  min-height: 44px;
+  gap: .5rem;
+  white-space: nowrap;
+  line-height: 1;
+}
+.contact-download-action { padding-inline: 1.1rem; }
 .scroll-top-control {
   background: var(--text-primary); border: 1px solid var(--text-primary); color: var(--page-bg);
   box-shadow: var(--control-shadow); backdrop-filter: blur(12px);
+  transition: opacity .18s ease, transform .18s cubic-bezier(.23,1,.32,1), background-color .16s ease, color .16s ease;
 }
 .scroll-top-control svg { stroke: currentColor; }
 .scroll-top-control:hover { background: var(--text-primary); border-color: var(--text-primary); color: var(--page-bg); box-shadow: var(--control-shadow-hover); transform: translateY(-2px); }
@@ -180,7 +219,7 @@ html.dark .site-shell {
 .font-mono    { font-family: var(--font-mono); }
 
 /* ── Hero name — italic gradient ────────────────────────────────────────── */
-.hero-name-display { font-family: var(--font-display); line-height: 1.04; }
+.hero-name-display { font-family: var(--font-display); font-weight: 650; line-height: 1.04; }
 .hero-name-display em {
   font-style: italic;
   background: linear-gradient(135deg, #0D0D0B 0%, #4A4A47 55%, #0D0D0B 100%);
@@ -205,7 +244,7 @@ html.dark .section-divider { border-top-color: #202020; }
 }
 html.dark .section-eyebrow { color: #9C9890; }
 
-/* ── Section heading — DM Serif italic accent ───────────────────────────── */
+/* ── Section heading — modern italic accent ─────────────────────────────── */
 .section-heading em {
   font-style: italic;
   font-family: var(--font-display);
@@ -226,38 +265,34 @@ html.dark .section-eyebrow { color: #9C9890; }
 
 /* ── Scroll reveal ──────────────────────────────────────────────────────── */
 .reveal {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .42s cubic-bezier(0.16,1,0.3,1), transform .42s cubic-bezier(0.16,1,0.3,1);
+  opacity: 1;
+  transform: none;
 }
-.reveal:not(.is-visible) { will-change: opacity, transform; }
-.reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 
 /* ── CSS flip/fade text ──────────────────────────────────────────────────── */
 .flip-fade-text {
-  min-width: 16ch;
+  min-width: 22ch;
   perspective: 700px;
   transform-origin: center bottom;
-  transition: opacity .16s ease, transform .16s cubic-bezier(.23,1,.32,1);
 }
-.flip-letter {
+.flip-word {
   display: inline-block;
   transform-origin: center bottom;
+  backface-visibility: hidden;
 }
-.flip-fade-text--out .flip-letter {
-  animation: flip-letter-out .16s cubic-bezier(.23,1,.32,1) both;
-  animation-delay: calc(var(--letter-index) * 10ms);
+.flip-fade-text--out .flip-word {
+  animation: flip-word-out .22s cubic-bezier(.23,1,.32,1) both;
 }
-.flip-fade-text--in .flip-letter {
-  animation: flip-letter-in .28s cubic-bezier(.23,1,.32,1) both;
-  animation-delay: calc(var(--letter-index) * 18ms);
+.flip-fade-text--in .flip-word {
+  animation: flip-word-in .42s cubic-bezier(.23,1,.32,1) both;
 }
-@keyframes flip-letter-in {
-  from { opacity: 0; transform: translateY(7px) rotateX(-55deg); }
+@keyframes flip-word-in {
+  from { opacity: 0; transform: translateY(14px) rotateX(-70deg); }
   to { opacity: 1; transform: none; }
 }
-@keyframes flip-letter-out {
+@keyframes flip-word-out {
   from { opacity: 1; transform: none; }
-  to { opacity: 0; transform: translateY(-7px) rotateX(55deg); }
+  to { opacity: 0; transform: translateY(-14px) rotateX(70deg); }
 }
 
 /* ── Link hover ─────────────────────────────────────────────────────────── */
@@ -405,7 +440,7 @@ html.dark .skill-row:hover { background: rgba(192,189,184,.04); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; will-change: auto; }
   .flip-fade-text,
-  .flip-letter { animation: none !important; transition: none !important; transform: none !important; }
+  .flip-word { animation: none !important; transition: none !important; transform: none !important; }
   .scroll-progress-bar { transition: none; }
   .card-surface, .card-chip, .btn-ghost-pill, .scroll-top-control { transition: none; }
   .card-chip:hover, .btn-ghost-pill:hover, .scroll-top-control:hover { transform: none; }
@@ -693,11 +728,9 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
   aspect-ratio: 1.25;
   border-radius: 999px;
   pointer-events: none;
-  opacity: .24;
-  filter: blur(54px) saturate(115%);
-  transform: translate3d(0, 0, 0);
-  animation: aurora-drift 18s ease-in-out infinite alternate;
-  will-change: transform;
+  opacity: .18;
+  filter: blur(38px) saturate(105%);
+  transform: none;
 }
 .hero-aurora-one {
   top: 4%; left: -10%;
@@ -706,31 +739,23 @@ html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
 .hero-aurora-two {
   right: -12%; bottom: 14%;
   background: radial-gradient(ellipse at 50% 50%, rgba(211, 112, 255, .26), transparent 70%);
-  animation-delay: -6s;
 }
 .hero-aurora-three {
   left: 30%; bottom: -22%;
   width: min(38vw, 28rem);
   background: radial-gradient(ellipse at 50% 50%, rgba(63, 206, 191, .22), transparent 70%);
-  animation-delay: -11s;
 }
-html.dark .hero-aurora { opacity: .42; }
-@keyframes aurora-drift {
-  0% { transform: translate3d(-2%, -1%, 0) rotate(-4deg) scale(1); }
-  100% { transform: translate3d(3%, 2%, 0) rotate(4deg) scale(1.04); }
-}
+html.dark .hero-aurora { opacity: .30; }
 .project-image-shell img {
-  transform: scale(1);
-  transition: opacity .18s ease, transform .28s cubic-bezier(.23,1,.32,1);
+  transform: none;
+  transition: opacity .16s ease;
 }
-.project-image-shell:hover img { transform: scale(1.015); }
 .card-surface:focus-within { border-color: var(--card-border-strong) !important; box-shadow: 0 0 0 3px var(--focus-ring), var(--card-shadow-hover) !important; }
 :where(a, button, input, textarea):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-aurora { animation: none; opacity: .18; }
-  .project-image-shell img { transition: opacity .01ms linear; }
-  .project-image-shell:hover img { transform: none; }
+  .project-image-shell img { transition: none; }
 }
 
 /* ── Responsive type and layout scale ───────────────────────────────────── */
@@ -825,6 +850,8 @@ body {
 .project-card {
   background: var(--card-bg) !important;
   box-shadow: var(--card-shadow) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transition: none !important;
 }
 .project-card:hover {

@@ -59,10 +59,10 @@ const socials = [
 ];
 
 const flipWords = [
-  'AI / ML ENGINEER',
-  'FULL-STACK BUILDER',
-  'PRODUCT ENGINEER',
+  'AI/ML ENGINEER',
+  'FULL-STACK ENGINEER',
   'REAL-TIME SYSTEMS',
+  'SOFTWARE ENGINEER',
 ];
 ---
 
@@ -87,7 +87,7 @@ const flipWords = [
 
       <!-- FlipFade — whole phrase -->
       <div class="text-[18px] sm:text-[21px] md:text-[23px] font-semibold text-ink dark:text-white mb-6 h-9 flex items-center justify-center">
-        <FlipFadeText words={flipWords} interval={2200} class="text-ink dark:text-white" />
+        <FlipFadeText words={flipWords} interval={3000} class="text-ink dark:text-white" />
       </div>
 
       <p class="max-w-[540px] text-[16px] text-inkMuted dark:text-white/55 leading-[1.8] mb-10">
@@ -116,7 +116,7 @@ const flipWords = [
             target={s.href.startsWith('http') ? '_blank' : undefined}
             rel={s.href.startsWith('http') ? 'noopener' : undefined}
             aria-label={s.label}
-            class="text-inkMuted dark:text-white/60 hover:text-ink dark:hover:text-white transition-all duration-200 hover:scale-110"
+            class="text-inkMuted dark:text-white/60 hover:text-ink dark:hover:text-white transition-colors duration-150"
           >
             <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d={s.path}></path></svg>
           </a>
@@ -124,7 +124,7 @@ const flipWords = [
       </div>
 
       <!-- Scroll cue — inside flex column so it sits naturally BELOW social icons -->
-      <div class="hidden md:flex flex-col items-center gap-1.5 mt-12 text-inkMuted/70 dark:text-white/50 animate-bounce pointer-events-none select-none">
+      <div class="hidden md:flex flex-col items-center gap-1.5 mt-12 text-inkMuted/70 dark:text-white/50 pointer-events-none select-none">
         <span class="text-[9px] font-bold uppercase tracking-[.2em]">scroll</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4">
           <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -257,7 +257,7 @@ const flipWords = [
       <div class="contact-grid grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-8 md:gap-12 items-stretch mt-12">
 
         <!-- Info -->
-        <div class="reveal flex h-full flex-col justify-between gap-8">
+        <div class="reveal contact-info-column flex h-full flex-col justify-between gap-8 pb-6">
           <div class="flex flex-col gap-5">
             <div class="flex items-start gap-4">
               <div class="icon-box flex-shrink-0">
@@ -313,7 +313,7 @@ const flipWords = [
           <a
             href="/sugumaran-s-resume.pdf"
             download
-            class="btn-filled-pill w-fit"
+            class="btn-filled-pill contact-download-action w-fit"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round"/>

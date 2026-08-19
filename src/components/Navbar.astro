@@ -45,7 +45,7 @@ const links = [
   <ul id="mobile-menu" class="hidden md:hidden flex-col list-none border-t border-borderLight dark:border-borderDark px-6 py-3">
     {links.map((link) => (
       <li>
-        <a href={link.href} data-section={link.href.replace('#', '')} class="mobile-nav-link mobile-menu-link block py-3 pl-3 text-base text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-all border-l-2 border-transparent">{link.label}</a>
+        <a href={link.href} data-section={link.href.replace('#', '')} class="mobile-nav-link mobile-menu-link block py-3 pl-3 text-base text-inkMuted dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors duration-150 border-l-2 border-transparent">{link.label}</a>
       </li>
     ))}
     <li class="pt-2 pb-1"><a href="/sugumaran-s-resume.pdf" download class="btn-ghost-pill inline-flex items-center gap-1.5 text-sm">Download Resume</a></li>
@@ -72,9 +72,6 @@ const links = [
     }
   });
   document.querySelectorAll('.mobile-menu-link').forEach((link) => link.addEventListener('click', closeMenu));
-
-  const nav = document.getElementById('site-nav');
-  window.addEventListener('scroll', () => nav?.classList.toggle('shadow-[0_1px_0_0_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)]', window.scrollY > 10), { passive: true });
 
   const setThemeIcon = () => {
     const dark = document.documentElement.classList.contains('dark');

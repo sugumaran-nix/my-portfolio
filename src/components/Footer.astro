@@ -12,7 +12,7 @@ const socials = [
     <div class="flex items-center gap-4">
       {socials.map((s) => (
         <a href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'noopener' : undefined} aria-label={s.label}
-          class="text-inkMuted/75 dark:text-white/55 hover:text-ink dark:hover:text-white transition-all hover:scale-110">
+          class="text-inkMuted/75 dark:text-white/55 hover:text-ink dark:hover:text-white transition-colors duration-150">
           <svg viewBox="0 0 24 24" class="w-[16px] h-[16px] fill-current"><path d={s.path}/></svg>
         </a>
       ))}
