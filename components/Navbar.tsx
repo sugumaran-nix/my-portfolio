@@ -53,7 +53,6 @@ export function Navbar() {
 
   return (
     <>
-      <div className="scroll-progress-track" aria-hidden="true"><div className="scroll-progress-bar" /></div>
       <nav
         id="site-nav"
         ref={navRef}
