@@ -13,6 +13,7 @@ const initialWord = words[0] ?? '';
   class={`flip-fade-text inline-flex items-center justify-center ${className}`}
   data-words={JSON.stringify(words)}
   data-interval={interval}
+  role="status"
   aria-live="polite"
   aria-atomic="true"
   aria-label={initialWord}
