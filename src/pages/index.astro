@@ -79,6 +79,8 @@ const flipWords = [
 
     <div class="reveal relative z-10 max-w-[760px] mx-auto w-full flex flex-col items-center text-center px-4">
 
+      <p class="hero-kicker">AI / ML · PRODUCT ENGINEERING · FULL-STACK</p>
+
       <!-- Availability badge -->
       <div class="avail-badge status-chip mb-8 text-xs font-semibold">
         <span class="avail-dot w-1.5 h-1.5 rounded-full bg-ink dark:bg-white/70 inline-block flex-shrink-0"></span>
@@ -223,7 +225,17 @@ const flipWords = [
         <p class="section-lede">Selected builds across AI/ML, browser inference, realtime collaboration, and full-stack product systems.</p>
       </div>
 
-      <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10" style="transition-delay:.05s">
+      <div class="project-toolbar reveal" style="transition-delay:.04s">
+        <span class="project-toolbar-label">Browse selected work</span>
+        <div class="project-filters" aria-label="Project categories">
+          <span class="project-filter is-active">All builds</span>
+          <span class="project-filter">AI / ML</span>
+          <span class="project-filter">Realtime</span>
+          <span class="project-filter">Full-stack</span>
+        </div>
+      </div>
+
+      <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8" style="transition-delay:.05s">
         {projects.map((p, i) => (
           <ProjectCard {...p} delay={i * 0.07} />
         ))}
