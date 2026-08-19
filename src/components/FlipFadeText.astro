@@ -5,33 +5,59 @@ interface Props {
   class?: string;
 }
 
-const { words, interval = 2600, class: className = '' } = Astro.props;
+const { words, interval = 2400, class: className = '' } = Astro.props;
+const initialWord = words[0] ?? '';
 ---
 
 <span
-  class={`flip-fade-text inline-block ${className}`}
+  class={`flip-fade-text inline-flex items-center justify-center ${className}`}
   data-words={JSON.stringify(words)}
   data-interval={interval}
   aria-live="polite"
->{words[0]}</span>
+  aria-atomic="true"
+>{initialWord}</span>
 
 <script>
   document.querySelectorAll<HTMLElement>('.flip-fade-text').forEach((element) => {
     const words = JSON.parse(element.dataset.words ?? '[]') as string[];
     if (words.length < 2) return;
 
+    const interval = Number(element.dataset.interval ?? 2400);
     let index = 0;
-    const interval = Number(element.dataset.interval ?? 2600);
+    let swapTimer: number | undefined;
+    let enterTimer: number | undefined;
 
-    window.setInterval(() => {
+    const renderWord = (word: string) => {
+      element.setAttribute('aria-label', word);
+      element.textContent = '';
+      Array.from(word).forEach((character, letterIndex) => {
+        const letter = document.createElement('span');
+        letter.className = 'flip-letter';
+        letter.textContent = character === ' ' ? '\u00a0' : character;
+        letter.style.setProperty('--letter-index', String(letterIndex));
+        letter.setAttribute('aria-hidden', 'true');
+        element.appendChild(letter);
+      });
+    };
+
+    const cycle = () => {
+      element.classList.remove('flip-fade-text--in');
       element.classList.add('flip-fade-text--out');
-      window.setTimeout(() => {
+      swapTimer = window.setTimeout(() => {
         index = (index + 1) % words.length;
-        element.textContent = words[index];
+        renderWord(words[index]);
         element.classList.remove('flip-fade-text--out');
         element.classList.add('flip-fade-text--in');
-        window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 280);
+        enterTimer = window.setTimeout(() => element.classList.remove('flip-fade-text--in'), 360);
       }, 160);
-    }, interval);
+    };
+
+    renderWord(initialWord);
+    const timer = window.setInterval(cycle, interval);
+    window.addEventListener('pagehide', () => {
+      window.clearInterval(timer);
+      if (swapTimer) window.clearTimeout(swapTimer);
+      if (enterTimer) window.clearTimeout(enterTimer);
+    }, { once: true });
   });
 </script>
