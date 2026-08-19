@@ -16,7 +16,7 @@
 
 export default {
   darkMode: 'class',
-  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}'],
+  content: ['./app/**/*.{js,jsx,ts,tsx,mdx}', './components/**/*.{js,jsx,ts,tsx,mdx}', './lib/**/*.{js,jsx,ts,tsx,mdx}'],
   theme: {
     extend: {
       // ── Color Token System ─────────────────────────────────────────────
@@ -56,9 +56,9 @@ export default {
 
       // ── Font Families ──────────────────────────────────────────────────
       fontFamily: {
-        sans:    ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Georgia', 'Times New Roman', 'serif'],
-        mono:    ['Menlo', 'Monaco', 'Consolas', 'monospace'],
+        sans:    ['Geist', 'system-ui', 'sans-serif'],
+        display: ['Geist', 'system-ui', 'sans-serif'],
+        mono:    ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
 
       // ── Spacing Extensions (8-point grid) ─────────────────────────────

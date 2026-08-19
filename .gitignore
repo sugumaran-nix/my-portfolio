@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+lighthouse-*.json
+.DS_Store
+.env
+.env.*
+!.env.example
