@@ -22,26 +22,26 @@ export default {
       // ── Color Token System ─────────────────────────────────────────────
       colors: {
         // Light surfaces
-        surface:        '#F7F5F2',   // page background — warm off-white
-        surfaceMuted:   '#EDEAE6',   // alternate section bg
-        cardLight:      '#FAFAF8',   // card background
-        borderLight:    '#868380',   // solid border
+        surface:        '#F4F4F4',   // page background
+        surfaceMuted:   '#EAEAEA',   // alternate section bg
+        cardLight:      '#FAFAFA',   // card background
+        borderLight:    '#B8B8B8',   // solid border
 
         // Dark surfaces
-        surfaceDark:      '#050505',  // page background — deep warm black
-        surfaceDarkMuted: '#0A0A0A',  // alternate section bg
-        cardDark:         '#0E0E0E',  // card background
-        borderDark: '#2E2E2E',  // border
+        surfaceDark:      '#0B0B0B',  // page background
+        surfaceDarkMuted: '#141414',  // alternate section bg
+        cardDark:         '#1C1C1C',  // card background
+        borderDark: '#464646',  // border
 
         // Text tokens
-        ink:       '#0D0D0B',  // primary text light mode
-        inkMuted:  '#6B6860',  // secondary text — warm gray
+        ink:       '#171717',  // primary text light mode
+        inkMuted:  '#5B5B5B',  // secondary text
 
         // Accent system — purely monochrome
-        accent:        '#1A1A18',   // primary CTA light mode
-        accentHover:   '#2E2D2B',   // CTA hover light mode
-        accentDark:    '#F8F8F8',   // primary CTA dark mode
-        accentMid:     '#4A4A47',   // mid-tone for shimmer/hover
+        accent:        '#1B1B1B',   // primary CTA light mode
+        accentHover:   '#333333',   // CTA hover light mode
+        accentDark:    '#F5F5F5',   // primary CTA dark mode
+        accentMid:     '#707070',   // mid-tone for hover
       },
 
       // ── Typography Scale (Major Third 1.250) ───────────────────────────

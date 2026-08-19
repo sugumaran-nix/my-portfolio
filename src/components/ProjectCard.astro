@@ -30,7 +30,7 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
       alt={`${title} screenshot`}
       loading="lazy"
       decoding="async"
-      class="project-img-light absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-200"
+      class="project-img-light monochrome-image absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-200"
     />
     <img
       data-src={imgDark}
@@ -42,7 +42,7 @@ const imgDarkSmall = imgDark.replace('.webp', '-640.webp');
       aria-hidden="true"
       loading="lazy"
       decoding="async"
-      class="project-img-dark absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-200"
+      class="project-img-dark monochrome-image absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-200"
     />
     <div class="project-image-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-stone-700 to-stone-900">
       <span class="text-xs font-mono text-white/30">screenshot coming soon</span>
