@@ -55,47 +55,47 @@ html.dark {
 
 /* ── Shared visual system ──────────────────────────────────────────────── */
 :root {
-  --page-bg: #F4F4F4;
-  --section-bg: #EAEAEA;
-  --card-bg: #FAFAFA;
-  --card-bg-hover: #FFFFFF;
-  --card-border: #B8B8B8;
-  --card-border-strong: #777777;
-  --card-shadow: 0 12px 28px -18px rgba(0,0,0,.34), 0 2px 6px rgba(0,0,0,.10);
-  --card-shadow-hover: 0 22px 44px -22px rgba(0,0,0,.42), 0 6px 12px rgba(0,0,0,.13);
-  --chip-bg: #E7E7E7;
-  --chip-border: #A7A7A7;
-  --control-bg: #FAFAFA;
-  --control-border: #969696;
-  --progress-track: rgba(0,0,0,.20);
-  --progress-fill: #1B1B1B;
-  --progress-glow: rgba(0,0,0,.24);
-  --text-primary: #171717;
-  --text-secondary: #5B5B5B;
-  --focus-ring: rgba(0,0,0,.20);
+  --page-bg: #FFFFFF;
+  --section-bg: #FAFAFA;
+  --card-bg: #FFFFFF;
+  --card-bg-hover: #FCFCFC;
+  --card-border: #EAEAEA;
+  --card-border-strong: #A1A1A1;
+  --card-shadow: 0 8px 24px -16px rgba(0,0,0,.22), 0 1px 3px rgba(0,0,0,.06);
+  --card-shadow-hover: 0 18px 36px -20px rgba(0,0,0,.30), 0 4px 10px rgba(0,0,0,.08);
+  --chip-bg: #F5F5F5;
+  --chip-border: #D4D4D4;
+  --control-bg: #FFFFFF;
+  --control-border: #C4C4C4;
+  --progress-track: rgba(0,0,0,.14);
+  --progress-fill: #111111;
+  --progress-glow: rgba(0,0,0,.18);
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --focus-ring: rgba(0,0,0,.18);
   --radius-card: 20px;
   --radius-control: 14px;
   --radius-pill: 999px;
 }
 html.dark {
-  --page-bg: #0B0B0B;
-  --section-bg: #141414;
-  --card-bg: #1C1C1C;
-  --card-bg-hover: #252525;
-  --card-border: #464646;
-  --card-border-strong: #737373;
-  --card-shadow: 0 14px 32px -18px rgba(0,0,0,.92), 0 2px 8px rgba(255,255,255,.06);
-  --card-shadow-hover: 0 24px 48px -22px rgba(0,0,0,.98), 0 8px 16px rgba(255,255,255,.09);
-  --chip-bg: #252525;
-  --chip-border: #5B5B5B;
-  --control-bg: #181818;
-  --control-border: #707070;
-  --progress-track: rgba(255,255,255,.24);
-  --progress-fill: #F5F5F5;
-  --progress-glow: rgba(255,255,255,.28);
-  --text-primary: #F5F5F5;
-  --text-secondary: #C4C4C4;
-  --focus-ring: rgba(255,255,255,.24);
+  --page-bg: #000000;
+  --section-bg: #0A0A0A;
+  --card-bg: #111111;
+  --card-bg-hover: #181818;
+  --card-border: #262626;
+  --card-border-strong: #5C5C5C;
+  --card-shadow: 0 14px 32px -18px rgba(0,0,0,.90), 0 1px 4px rgba(255,255,255,.04);
+  --card-shadow-hover: 0 24px 48px -22px rgba(0,0,0,.96), 0 7px 14px rgba(255,255,255,.07);
+  --chip-bg: #1A1A1A;
+  --chip-border: #3A3A3A;
+  --control-bg: #111111;
+  --control-border: #555555;
+  --progress-track: rgba(255,255,255,.22);
+  --progress-fill: #FFFFFF;
+  --progress-glow: rgba(255,255,255,.22);
+  --text-primary: #EDEDED;
+  --text-secondary: #A1A1A1;
+  --focus-ring: rgba(255,255,255,.22);
 }
 .site-shell {
   background: var(--page-bg);
@@ -749,11 +749,6 @@ html.dark .hero-ambient { opacity: .72; }
   }
 }
 
-/* ── Monochrome imagery and ambient effects ───────────────────────────────── */
-.monochrome-image,
-.profile-image {
-  filter: grayscale(1) contrast(1.03);
-}
 .hero-ambient-one {
   background: radial-gradient(circle, rgba(0,0,0,.10), transparent 68%);
 }

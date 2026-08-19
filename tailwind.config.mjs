@@ -22,26 +22,26 @@ export default {
       // ── Color Token System ─────────────────────────────────────────────
       colors: {
         // Light surfaces
-        surface:        '#F4F4F4',   // page background
-        surfaceMuted:   '#EAEAEA',   // alternate section bg
-        cardLight:      '#FAFAFA',   // card background
-        borderLight:    '#B8B8B8',   // solid border
+        surface:        '#FFFFFF',   // page background
+        surfaceMuted:   '#FAFAFA',   // alternate section bg
+        cardLight:      '#FFFFFF',   // card background
+        borderLight:    '#EAEAEA',   // subtle border
 
         // Dark surfaces
-        surfaceDark:      '#0B0B0B',  // page background
-        surfaceDarkMuted: '#141414',  // alternate section bg
-        cardDark:         '#1C1C1C',  // card background
-        borderDark: '#464646',  // border
+        surfaceDark:      '#000000',  // page background
+        surfaceDarkMuted: '#0A0A0A',  // alternate section bg
+        cardDark:         '#111111',  // card background
+        borderDark: '#262626',  // border
 
         // Text tokens
-        ink:       '#171717',  // primary text light mode
-        inkMuted:  '#5B5B5B',  // secondary text
+        ink:       '#111111',  // primary text light mode
+        inkMuted:  '#666666',  // secondary text
 
-        // Accent system — purely monochrome
-        accent:        '#1B1B1B',   // primary CTA light mode
+        // Accent system — neutral Vercel-style contrast
+        accent:        '#111111',   // primary CTA light mode
         accentHover:   '#333333',   // CTA hover light mode
-        accentDark:    '#F5F5F5',   // primary CTA dark mode
-        accentMid:     '#707070',   // mid-tone for hover
+        accentDark:    '#FFFFFF',   // primary CTA dark mode
+        accentMid:     '#666666',   // mid-tone for hover
       },
 
       // ── Typography Scale (Major Third 1.250) ───────────────────────────
