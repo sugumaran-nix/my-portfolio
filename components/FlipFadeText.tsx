@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const defaultWords = [
   'AI/ML Engineer',
@@ -15,102 +15,39 @@ type FlipFadeTextProps = {
   interval?: number;
   className?: string;
   textClassName?: string;
-  letterDuration?: number;
-  staggerDelay?: number;
-  exitStaggerDelay?: number;
 };
 
-type LetterProps = {
-  char: string;
-  letterDuration: number;
-};
-
-const letterVariants = {
+const wordVariants = {
   initial: {
     opacity: 0,
-    y: 12,
-    rotateX: -55,
-    filter: 'blur(4px)',
+    y: 8,
+    rotateX: -18,
   },
-  animate: ({ letterDuration }: LetterProps) => ({
+  animate: {
     opacity: 1,
     y: 0,
     rotateX: 0,
-    filter: 'blur(0px)',
     transition: {
-      duration: letterDuration,
-      ease: [0.2, 0.65, 0.3, 0.9] as const,
+      duration: 0.24,
+      ease: [0.23, 1, 0.32, 1] as const,
     },
-  }),
-  exit: ({ letterDuration }: LetterProps) => ({
+  },
+  exit: {
     opacity: 0,
-    y: -12,
-    rotateX: 55,
-    filter: 'blur(4px)',
+    y: -8,
+    rotateX: 18,
     transition: {
-      duration: Math.min(letterDuration * 0.67, 0.24),
+      duration: 0.16,
       ease: [0.4, 0, 1, 1] as const,
     },
-  }),
+  },
 };
-
-function Letter({ char, letterDuration }: LetterProps) {
-  return (
-    <motion.span
-      aria-hidden="true"
-      className="flip-letter inline-block"
-      custom={{ char, letterDuration }}
-      variants={letterVariants}
-      style={{ transformStyle: 'preserve-3d' }}
-    >
-      {char === ' ' ? '\u00a0' : char}
-    </motion.span>
-  );
-}
-
-function Word({
-  text,
-  letterDuration,
-  staggerDelay,
-  exitStaggerDelay,
-  textClassName,
-}: {
-  text: string;
-  letterDuration: number;
-  staggerDelay: number;
-  exitStaggerDelay: number;
-  textClassName?: string;
-}) {
-  const letters = useMemo(() => [...text], [text]);
-
-  return (
-    <motion.span
-      aria-hidden="true"
-      className={`flip-word ${textClassName ?? ''}`}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={{
-        initial: { opacity: 1 },
-        animate: { opacity: 1, transition: { staggerChildren: staggerDelay } },
-        exit: { opacity: 1, transition: { staggerChildren: exitStaggerDelay } },
-      }}
-    >
-      {letters.map((char, letterIndex) => (
-        <Letter key={`${text}-${char}-${letterIndex}`} char={char} letterDuration={letterDuration} />
-      ))}
-    </motion.span>
-  );
-}
 
 export function FlipFadeText({
   words = defaultWords,
   interval = 3000,
   className = '',
   textClassName = '',
-  letterDuration = 0.34,
-  staggerDelay = 0.035,
-  exitStaggerDelay = 0.02,
 }: FlipFadeTextProps) {
   const safeWords = words.length > 0 ? words : defaultWords;
   const [index, setIndex] = useState(0);
@@ -148,14 +85,17 @@ export function FlipFadeText({
       ) : (
         <span className="flip-stage" aria-hidden="true">
           <AnimatePresence mode="wait" initial={false}>
-            <Word
+            <motion.span
               key={currentWord}
-              text={currentWord}
-              letterDuration={letterDuration}
-              staggerDelay={staggerDelay}
-              exitStaggerDelay={exitStaggerDelay}
-              textClassName={textClassName}
-            />
+              className={`flip-word ${textClassName}`}
+              variants={wordVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              style={{ transformPerspective: 700 }}
+            >
+              {currentWord}
+            </motion.span>
           </AnimatePresence>
         </span>
       )}
