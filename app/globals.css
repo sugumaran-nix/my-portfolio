@@ -1329,3 +1329,11 @@ html.dark .project-card .project-image-shell img {
   inset: 0 !important;
   border-radius: 0 !important;
 }
+
+/* ── Desktop hero breathing space ─────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .hero-section {
+    padding-top: 7.5rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
