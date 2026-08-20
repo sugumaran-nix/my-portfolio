@@ -1473,3 +1473,28 @@ html.dark .project-card .project-image-shell img {
     transform: none !important;
   }
 }
+
+
+/* ── Softer active mobile navigation state ────────────────────────────────── */
+.mobile-nav-link {
+  transition: color .16s ease-out, background-color .16s ease-out, border-color .16s ease-out;
+}
+
+.mobile-nav-link.font-semibold {
+  border-left-width: 1px !important;
+  border-left-color: rgba(20, 20, 20, .30) !important;
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+  background: rgba(20, 20, 20, .035);
+}
+
+html.dark .mobile-nav-link.font-semibold {
+  border-left-width: 1px !important;
+  border-left-color: rgba(255, 255, 255, .28) !important;
+  background: rgba(255, 255, 255, .045);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-link {
+    transition: none !important;
+  }
+}
