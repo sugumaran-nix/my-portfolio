@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function ProjectImage({
   title,
@@ -16,6 +16,7 @@ export function ProjectImage({
   const [dark, setDark] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const syncTheme = () => setDark(document.documentElement.classList.contains('dark'));
@@ -33,10 +34,18 @@ export function ProjectImage({
   const src = dark ? darkSrc : lightSrc;
   const smallSrc = src.replace('.webp', '-640.webp');
 
+  useEffect(() => {
+    const image = imageRef.current;
+    if (!image || !image.complete) return;
+    if (image.naturalWidth > 0) setLoaded(true);
+    else setFailed(true);
+  }, [src]);
+
   return (
     <div className={`project-image-shell relative aspect-[16/9] w-full flex-shrink-0 overflow-hidden ${loaded || failed ? '' : 'img-skeleton'}`} aria-busy={!loaded && !failed}>
       {!failed && (
         <img
+          ref={imageRef}
           key={src}
           src={src}
           srcSet={`${smallSrc} 640w, ${src} 1280w`}
