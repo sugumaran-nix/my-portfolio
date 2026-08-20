@@ -289,9 +289,13 @@ html.dark .section-eyebrow { color: #A3A3A8; }
 }
 .flip-word {
   display: inline-flex;
+  gap: .04em;
   white-space: nowrap;
   transform-style: preserve-3d;
   transform-origin: center center;
+  backface-visibility: hidden;
+}
+.flip-letter {
   backface-visibility: hidden;
   will-change: transform, opacity;
 }
