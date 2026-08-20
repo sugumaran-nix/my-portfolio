@@ -123,7 +123,7 @@ export default function HomePage() {
             <Reveal className="mb-2">
               <p className="section-eyebrow">✦ Let&apos;s Connect</p>
               <h2 className="section-heading text-2xl font-bold tracking-tight sm:text-3xl md:text-[48px]">Say hello — <em>let&apos;s talk.</em></h2>
-              <p className="mt-3 max-w-[440px] text-[16px] leading-[1.8] text-inkMuted dark:text-white/65">Open to AI/ML and full-stack roles, internships, and thoughtful collaborations. Prefer email? Write directly at sugumarankugan@gmail.com. I typically reply within 1–2 business days.</p>
+              <p className="mt-3 w-full max-w-[760px] text-[16px] leading-[1.8] text-inkMuted dark:text-white/65">Open to AI/ML and full-stack roles, internships, and thoughtful collaborations. Prefer email? Write directly at sugumarankugan@gmail.com. I typically reply within 1–2 business days.</p>
             </Reveal>
 
             <div className="contact-grid mt-12 grid grid-cols-1 items-stretch gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
