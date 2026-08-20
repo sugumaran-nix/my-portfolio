@@ -465,35 +465,6 @@ html.dark .bento-glass-card:hover {
   border-color: rgba(192,189,184,0.18) !important;
 }
 
-/* ── Neumorphic button ───────────────────────────────────────────────────── */
-.neu-btn {
-  background: #EDEAE6;
-  box-shadow: 8px 8px 18px #C8C5C0, -8px -8px 18px #FAFAF8;
-  border-radius: 14px; border: none;
-  transition: box-shadow .2s ease, transform .14s cubic-bezier(.22,1,.36,1);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 600; color: #0D0D0B; text-decoration: none; user-select: none;
-}
-.neu-btn:hover {
-  box-shadow: 6px 6px 14px #C8C5C0, -6px -6px 14px #FAFAF8;
-  transform: translateY(-1px);
-}
-.neu-btn:active {
-  box-shadow: inset 6px 6px 12px #C8C5C0, inset -6px -6px 12px #FAFAF8;
-  transform: translateY(0);
-}
-html.dark .neu-btn {
-  background: #0A0A0A;
-  box-shadow: 8px 8px 18px #0E0D0C, -8px -8px 18px #141414;
-  color: #F8F8F8;
-}
-html.dark .neu-btn:hover {
-  box-shadow: 6px 6px 14px #0E0D0C, -6px -6px 14px #141414;
-}
-html.dark .neu-btn:active {
-  box-shadow: inset 6px 6px 12px #0E0D0C, inset -6px -6px 12px #141414;
-}
-
 /* ── Button 4: outline pill ─────────────────────────────────────────────── */
 .btn-outline-pill {
   display: inline-flex; align-items: center; justify-content: center;
@@ -504,10 +475,7 @@ html.dark .neu-btn:active {
   transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s cubic-bezier(.23,1,.32,1);
   white-space: nowrap;
 }
-.btn-outline-pill:hover { background: #0D0D0B; color: #F7F5F2; transform: scale(1.03); }
-.btn-outline-pill:active { transform: scale(0.97); }
 html.dark .btn-outline-pill { border-color: rgba(192,189,184,.65); color: #F8F8F8; }
-html.dark .btn-outline-pill:hover { background: #F8F8F8; color: #050505; border-color: #F8F8F8; }
 
 /* ── Button 5: filled pill ──────────────────────────────────────────────── */
 .btn-filled-pill {
@@ -518,22 +486,8 @@ html.dark .btn-outline-pill:hover { background: #F8F8F8; color: #050505; border-
   transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s cubic-bezier(.23,1,.32,1);
   white-space: nowrap;
 }
-.btn-filled-pill:hover {
-  background-color: #2E2D2B;
-  box-shadow: 0 0 18px rgba(13,13,11,.22);
-  transform: scale(1.04);
-}
-.btn-filled-pill:active {
-  background-color: #4A4A47; box-shadow: none;
-  transform: scale(0.97); transition: background-color .1s ease-out, box-shadow .1s ease-out, transform .1s cubic-bezier(.22,1,.36,1);
-}
 .btn-filled-pill:disabled { opacity: 0.6; pointer-events: none; }
 html.dark .btn-filled-pill { background-color: #F8F8F8; color: #050505; }
-html.dark .btn-filled-pill:hover {
-  background-color: #F8F8F8;
-  box-shadow: var(--control-shadow-hover);
-}
-html.dark .btn-filled-pill:active { background-color: #C0BDB8; }
 
 /* ── Unified control geometry ───────────────────────────────────────────── */
 .btn-outline-pill,
@@ -1474,4 +1428,28 @@ html.dark .project-card .project-image-shell img {
   .menu-toggle > svg {
     animation: none !important;
   }
+}
+
+
+/* ── Lightweight control finish ──────────────────────────────────────────── */
+.btn-filled-pill,
+.btn-outline-pill {
+  box-shadow: none;
+  transition:
+    background-color .16s ease-out,
+    border-color .16s ease-out,
+    color .16s ease-out,
+    transform .14s cubic-bezier(.22, 1, .36, 1);
+}
+
+.btn-filled-pill:hover,
+.btn-outline-pill:hover,
+.btn-filled-pill:active,
+.btn-outline-pill:active {
+  box-shadow: none;
+}
+
+.site-nav .theme-toggle:hover,
+.site-nav .menu-toggle:hover {
+  transform: none;
 }
