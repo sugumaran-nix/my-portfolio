@@ -67,8 +67,8 @@ export const socials: Social[] = [
 export const skillCategories = [
   { title: 'Languages', icon: 'M4 5h16M4 12h16M4 19h16M8 2l-4 10 4 10M16 2l4 10-4 10', span: 'sm:col-span-2 md:col-span-2', skills: ['Python (Primary)', 'TypeScript', 'JavaScript (ES6+)', 'SQL'] },
   { title: 'Frontend', icon: 'M3 4h18v16H3zM3 9h18M7 14h3M7 17h6', span: 'sm:col-span-1 md:col-span-1', skills: ['React.js', 'Next.js', 'Tailwind CSS'] },
-  { title: 'Backend', icon: 'M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01M12 7h5M12 17h5', span: 'sm:col-span-1 md:col-span-1', skills: ['FastAPI', 'Flask', 'WebSockets'] },
+  { title: 'Backend', icon: 'M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01M12 7h5M12 17h5', span: 'sm:col-span-1 md:col-span-1', skills: ['FastAPI', 'Flask', 'REST APIs', 'WebSockets'] },
   { title: 'Databases', icon: 'M5 5a7 3 0 1014 0a7 3 0 10-14 0M5 5v7c0 1.66 3.13 3 7 3s7-1.34 7-3V5M5 12v7c0 1.66 3.13 3 7 3s7-1.34 7-3v-7', span: 'sm:col-span-1 md:col-span-1', skills: ['MySQL', 'MongoDB'] },
   { title: 'Tools & OS', icon: 'M14.7 6.3a4 4 0 00-5.2 5.2L4 17a2.12 2.12 0 003 3l5.5-5.5a4 4 0 005.2-5.2l-2.3 2.3-2.8-.2-.2-2.8 2.3-2.3z', span: 'sm:col-span-1 md:col-span-1', skills: ['Git', 'Docker', 'Linux'] },
-  { title: 'AI / ML & NLP', icon: 'M12 3a3 3 0 013 3v1h1a3 3 0 013 3v1a3 3 0 013 3 3 3 0 01-3 3h-1v1a3 3 0 01-3 3 3 3 0 01-3-3v-1H9a3 3 0 01-3-3v-1a3 3 0 013-3h1V6a3 3 0 013-3zM9 12h6M12 9v6', span: 'sm:col-span-2 md:col-span-3', skills: ['Scikit-learn', 'Hugging Face', 'BERT', 'Prompt Engineering', 'NLP'], featured: true },
+  { title: 'AI / ML & NLP', icon: 'M12 3a3 3 0 013 3v1h1a3 3 0 013 3v1a3 3 0 013 3 3 3 0 01-3 3h-1v1a3 3 0 01-3 3 3 3 0 01-3-3v-1H9a3 3 0 01-3-3v-1a3 3 0 013-3h1V6a3 3 0 013-3zM9 12h6M12 9v6', span: 'sm:col-span-2 md:col-span-3', skills: ['Scikit-learn', 'Hugging Face', 'DistilBERT', 'ONNX', 'Prompt Engineering', 'NLP'], featured: true },
 ];
