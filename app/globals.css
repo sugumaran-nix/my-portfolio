@@ -1498,3 +1498,21 @@ html.dark .mobile-nav-link.font-semibold {
     transition: none !important;
   }
 }
+
+
+/* ── Instant navbar Resume control ─────────────────────────────────────────── */
+.site-nav .navbar-resume {
+  transition: background-color .14s ease-out, border-color .14s ease-out, color .14s ease-out;
+}
+
+.site-nav .navbar-resume:hover,
+.site-nav .navbar-resume:active {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav .navbar-resume {
+    transition: none !important;
+  }
+}
