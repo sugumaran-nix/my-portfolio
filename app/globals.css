@@ -1516,3 +1516,27 @@ html.dark .mobile-nav-link.font-semibold {
     transition: none !important;
   }
 }
+
+/* ── Lightweight hero gradient pulse ─────────────────────────────────────── */
+@keyframes hero-gradient-pulse {
+  0%,
+  100% { opacity: .12; }
+  50% { opacity: .24; }
+}
+.hero-spline-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: .12;
+  pointer-events: none;
+  will-change: opacity;
+  animation: hero-gradient-pulse 14s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-spline-layer::before {
+    animation: none;
+    opacity: .16;
+    will-change: auto;
+  }
+}
