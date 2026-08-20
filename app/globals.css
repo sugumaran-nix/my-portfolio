@@ -470,7 +470,7 @@ html.dark .bento-glass-card:hover {
   background: #EDEAE6;
   box-shadow: 8px 8px 18px #C8C5C0, -8px -8px 18px #FAFAF8;
   border-radius: 14px; border: none;
-  transition: all 0.3s ease;
+  transition: box-shadow .2s ease, transform .14s cubic-bezier(.22,1,.36,1);
   display: inline-flex; align-items: center; justify-content: center;
   font-weight: 600; color: #0D0D0B; text-decoration: none; user-select: none;
 }
@@ -525,7 +525,7 @@ html.dark .btn-outline-pill:hover { background: #F8F8F8; color: #050505; border-
 }
 .btn-filled-pill:active {
   background-color: #4A4A47; box-shadow: none;
-  transform: scale(0.97); transition: all 0.15s;
+  transform: scale(0.97); transition: background-color .1s ease-out, box-shadow .1s ease-out, transform .1s cubic-bezier(.22,1,.36,1);
 }
 .btn-filled-pill:disabled { opacity: 0.6; pointer-events: none; }
 html.dark .btn-filled-pill { background-color: #F8F8F8; color: #050505; }
@@ -1335,5 +1335,143 @@ html.dark .project-card .project-image-shell img {
   .hero-section {
     padding-top: 7.5rem !important;
     padding-bottom: 4rem !important;
+  }
+}
+
+
+/* ── Unified button interaction system ────────────────────────────────────── */
+.btn-outline-pill,
+.btn-filled-pill,
+.btn-ghost-pill,
+.theme-toggle,
+.menu-toggle {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-outline-pill,
+.btn-filled-pill,
+.btn-ghost-pill {
+  transition:
+    background-color .18s ease-out,
+    border-color .18s ease-out,
+    color .18s ease-out,
+    box-shadow .18s ease-out,
+    transform .16s cubic-bezier(.22, 1, .36, 1);
+}
+
+.btn-outline-pill > svg,
+.btn-filled-pill > svg,
+.btn-ghost-pill > svg,
+.theme-toggle > svg,
+.menu-toggle > svg {
+  transition: transform .16s cubic-bezier(.22, 1, .36, 1), opacity .16s ease-out;
+}
+
+.btn-filled-pill:focus-visible,
+.btn-outline-pill:focus-visible,
+.btn-ghost-pill:focus-visible,
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.btn-filled-pill:disabled,
+.btn-outline-pill:disabled,
+.btn-ghost-pill:disabled,
+[aria-busy="true"] {
+  cursor: wait;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-filled-pill:hover,
+  .btn-outline-pill:hover,
+  .btn-ghost-pill:hover,
+  .theme-toggle:hover,
+  .menu-toggle:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-filled-pill:hover > svg,
+  .btn-outline-pill:hover > svg,
+  .btn-ghost-pill:hover > svg {
+    transform: translateX(1px);
+  }
+
+  .btn-filled-pill:hover > svg[aria-hidden="true"],
+  .btn-outline-pill:hover > svg[aria-hidden="true"] {
+    transform: translateY(-1px) translateX(1px);
+  }
+
+  .btn-ghost-pill.project-action:hover > svg {
+    transform: translate(1px, -1px);
+  }
+
+  .theme-toggle:hover > svg,
+  .menu-toggle:hover > svg {
+    transform: scale(1.08);
+  }
+}
+
+.btn-filled-pill:active,
+.btn-outline-pill:active,
+.btn-ghost-pill:active,
+.theme-toggle:active,
+.menu-toggle:active {
+  transform: translateY(0) scale(.975);
+  transition-duration: .1s;
+}
+
+.btn-filled-pill:active > svg,
+.btn-outline-pill:active > svg,
+.btn-ghost-pill:active > svg,
+.theme-toggle:active > svg,
+.menu-toggle:active > svg {
+  transform: scale(.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-outline-pill,
+  .btn-filled-pill,
+  .btn-ghost-pill,
+  .theme-toggle,
+  .menu-toggle,
+  .btn-outline-pill > svg,
+  .btn-filled-pill > svg,
+  .btn-ghost-pill > svg,
+  .theme-toggle > svg,
+  .menu-toggle > svg {
+    transition: none !important;
+  }
+
+  .btn-filled-pill:hover,
+  .btn-outline-pill:hover,
+  .btn-ghost-pill:hover,
+  .theme-toggle:hover,
+  .menu-toggle:hover,
+  .btn-filled-pill:active,
+  .btn-outline-pill:active,
+  .btn-ghost-pill:active,
+  .theme-toggle:active,
+  .menu-toggle:active {
+    transform: none !important;
+  }
+}
+
+
+@keyframes control-icon-in {
+  from { opacity: 0; transform: scale(.72) rotate(-12deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.theme-toggle > svg,
+.menu-toggle > svg {
+  animation: control-icon-in .18s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle > svg,
+  .menu-toggle > svg {
+    animation: none !important;
   }
 }
