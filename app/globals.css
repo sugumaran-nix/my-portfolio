@@ -1453,3 +1453,23 @@ html.dark .project-card .project-image-shell img {
 .site-nav .menu-toggle:hover {
   transform: none;
 }
+
+
+/* ── Minute project preview zoom ──────────────────────────────────────────── */
+.project-card .project-image-shell img {
+  transition: opacity .2s ease-out, transform .24s cubic-bezier(.22, 1, .36, 1);
+  transform-origin: center;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .project-image-shell img {
+    transform: scale(1.012);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card .project-image-shell img {
+    transition: opacity .2s ease-out;
+    transform: none !important;
+  }
+}
