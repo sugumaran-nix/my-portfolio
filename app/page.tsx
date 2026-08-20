@@ -39,7 +39,7 @@ export default function HomePage() {
           <SplineHeroBackground />
 
           <div className="relative z-10 mx-auto flex w-full max-w-[760px] flex-col items-center px-4 text-center">
-            <p className="hero-kicker">AI/ML &amp; FULL-STACK ENGINEER</p>
+            <p className="hero-kicker">Open to internships &amp; full-time opportunities</p>
             <h1 className="hero-name-display mb-4 text-[42px] leading-[1.1] tracking-tight text-ink sm:text-[56px] md:text-[68px] dark:text-white">Hi, I&apos;m <em>Sugumaran</em></h1>
             <div className="mb-6 flex h-9 items-center justify-center text-[18px] font-semibold text-ink sm:text-[21px] md:text-[23px] dark:text-white">
               <FlipFadeText className="text-ink dark:text-white" />
