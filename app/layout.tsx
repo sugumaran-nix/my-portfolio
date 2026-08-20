@@ -28,7 +28,7 @@ const geistMono = localFont({
   display: 'swap',
 });
 
-const siteUrl = 'https://sugumaran.dev';
+const siteUrl = 'https://sugumaran-portfolio.vercel.app';
 const description = 'Sugumaran is an AI/ML and full-stack engineer building browser ML tools, realtime systems, and resilient AI products with Python, FastAPI, and Next.js.';
 
 export const metadata: Metadata = {
@@ -36,6 +36,11 @@ export const metadata: Metadata = {
   title: 'Sugumaran — AI/ML & Full-Stack Engineer',
   description,
   authors: [{ name: 'Sugumaran S.' }],
+  creator: 'Sugumaran S.',
+  publisher: 'Sugumaran S.',
+  category: 'technology',
+  keywords: ['Sugumaran S.', 'AI/ML Engineer', 'Full-Stack Engineer', 'Python', 'Next.js', 'FastAPI', 'NLP', 'real-time systems'],
+  robots: { index: true, follow: true },
   alternates: { canonical: siteUrl },
   icons: { icon: '/favicon.png' },
   openGraph: {
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
     description,
     siteName: 'Sugumaran S.',
     locale: 'en_IN',
-    images: [{ url: '/profile.jpg', width: 1200, height: 630 }],
+    images: [{ url: '/profile.jpg', width: 1200, height: 630, alt: 'Sugumaran S. — AI/ML and Full-Stack Engineer' }],
   },
   twitter: {
     card: 'summary_large_image',
