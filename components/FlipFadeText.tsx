@@ -26,8 +26,8 @@ type LetterProps = {
 const letterVariants = {
   initial: {
     opacity: 0,
-    y: 12,
-    rotateX: -55,
+    y: 8,
+    rotateX: -28,
   },
   animate: ({ letterDuration }: LetterProps) => ({
     opacity: 1,
@@ -40,8 +40,8 @@ const letterVariants = {
   }),
   exit: ({ letterDuration }: LetterProps) => ({
     opacity: 0,
-    y: -12,
-    rotateX: 55,
+    y: -8,
+    rotateX: 28,
     transition: {
       duration: Math.min(letterDuration * 0.67, 0.24),
       ease: [0.4, 0, 1, 1] as const,
@@ -103,9 +103,9 @@ export function FlipFadeText({
   interval = 3000,
   className = '',
   textClassName = '',
-  letterDuration = 0.34,
-  staggerDelay = 0.035,
-  exitStaggerDelay = 0.02,
+  letterDuration = 0.28,
+  staggerDelay = 0.025,
+  exitStaggerDelay = 0.014,
 }: FlipFadeTextProps) {
   const safeWords = words.length > 0 ? words : defaultWords;
   const [index, setIndex] = useState(0);

@@ -13,7 +13,8 @@ type PortfolioWindow = Window & { __portfolioLenis?: PortfolioLenis };
 export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reducedMotion.matches) return;
+    const coarsePointer = window.matchMedia('(pointer: coarse)');
+    if (reducedMotion.matches || coarsePointer.matches || 'ontouchstart' in window) return;
 
     let disposed = false;
     let initialized = false;
