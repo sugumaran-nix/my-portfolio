@@ -59,7 +59,7 @@ export function ContactForm() {
       <div className="flex h-full flex-col items-center justify-center gap-3 py-14 text-center" role="status" aria-live="polite">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-10 w-10 text-ink dark:text-white/80" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" strokeLinecap="round" strokeLinejoin="round" /><path d="M22 4L12 14.01l-3-3" strokeLinecap="round" strokeLinejoin="round" /></svg>
         <p className="text-base font-semibold">Message sent!</p>
-        <p className="text-sm text-inkMuted dark:text-white/50">I’ll reply within 1–2 business days.</p>
+        <p className="text-sm text-inkMuted dark:text-white/50">I usually reply within 1–2 days.</p>
       </div>
     );
   }
